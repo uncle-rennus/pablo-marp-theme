@@ -1,0 +1,47 @@
+// =============================================================================
+// CUSTOM THEME EXAMPLE
+// =============================================================================
+// This file demonstrates how to create a custom theme variant
+// by importing the configuration and overriding variables
+
+// Import the configuration file first
+@import 'card-theme.config';
+
+// Override theme variables for custom styling
+$ctp-base: #0f1419;
+$ctp-mantle: #131721;
+$ctp-crust: #151a1f;
+$ctp-surface0: #1e2328;
+$ctp-surface1: #272c33;
+$ctp-surface2: #2e3338;
+$ctp-overlay0: #363a3f;
+$ctp-overlay1: #3e4247;
+$ctp-overlay2: #454a4f;
+$ctp-subtext0: #4c5158;
+$ctp-subtext1: #535a61;
+$ctp-text: #5a616a;
+$ctp-lavender: #5dafff;
+$ctp-blue: #4dabf7;
+$ctp-sapphire: #39a0e7;
+$ctp-sky: #25a5e7;
+$ctp-teal: #20c997;
+$ctp-green: #51cf66;
+$ctp-yellow: #ffd43b;
+$ctp-peach: #ffa94d;
+$ctp-maroon: #ff6b6b;
+$ctp-red: #ff5252;
+$ctp-mauve: #ae3ec9;
+$ctp-pink: #e64980;
+$ctp-flamingo: #f06595;
+$ctp-rosewater: #f8a5c2;
+
+// Or use a preset theme mixin
+// @include dark-blue-theme;
+
+// Customize layout if needed
+$card-sidebar-width: 30%;
+$card-border-radius: 15px;
+$font-size-base: 22px;
+
+// Import the main theme (this will use the overridden variables)
+@import 'card-theme'; 

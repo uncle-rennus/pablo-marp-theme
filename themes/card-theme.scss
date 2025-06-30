@@ -1,0 +1,572 @@
+/*!
+ * @theme card-theme
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ */
+
+// =============================================================================
+// THEME CONFIGURATION VARIABLES
+// =============================================================================
+
+// Color Palette - Catppuccin Mocha (configurable)
+$ctp-base: #1e1e2e !default;
+$ctp-mantle: #181825 !default;
+$ctp-crust: #11111b !default;
+$ctp-surface0: #313244 !default;
+$ctp-surface1: #45475a !default;
+$ctp-surface2: #585b70 !default;
+$ctp-overlay0: #6c7086 !default;
+$ctp-overlay1: #7f849c !default;
+$ctp-overlay2: #9399b2 !default;
+$ctp-subtext0: #a6adc8 !default;
+$ctp-subtext1: #bac2de !default;
+$ctp-text: #cdd6f4 !default;
+$ctp-lavender: #b4befe !default;
+$ctp-blue: #89b4fa !default;
+$ctp-sapphire: #74c7ec !default;
+$ctp-sky: #89dceb !default;
+$ctp-teal: #94e2d5 !default;
+$ctp-green: #a6e3a1 !default;
+$ctp-yellow: #f9e2af !default;
+$ctp-peach: #fab387 !default;
+$ctp-maroon: #eba0ac !default;
+$ctp-red: #f38ba8 !default;
+$ctp-mauve: #cba6f7 !default;
+$ctp-pink: #f5c2e7 !default;
+$ctp-flamingo: #f2cdcd !default;
+$ctp-rosewater: #f5e0dc !default;
+
+// Theme-specific colors
+$cover-bg: $ctp-crust !default;
+$cover-text: $ctp-text !default;
+$cover-accent: $ctp-mauve !default;
+$cover-subtitle: $ctp-subtext1 !default;
+
+// Typography
+$font-family: 'Inter', 'Segoe UI', system-ui, sans-serif !default;
+$font-size-base: 24px !default;
+$line-height: 1.6 !default;
+
+// Layout
+$slide-padding: 80px !default;
+$card-padding: 160px !default;
+$card-sidebar-width: 28% !default;
+$card-border-radius: 20px !default;
+$card-border-width: 3px !default;
+
+// Spacing
+$spacing-xs: 8px !default;
+$spacing-sm: 12px !default;
+$spacing-md: 16px !default;
+$spacing-lg: 24px !default;
+$spacing-xl: 32px !default;
+$spacing-xxl: 40px !default;
+
+// =============================================================================
+// BASE STYLES (Marpit-compliant)
+// =============================================================================
+
+:root {
+  // CSS Custom Properties for runtime customization
+  --ctp-base: #{$ctp-base};
+  --ctp-mantle: #{$ctp-mantle};
+  --ctp-crust: #{$ctp-crust};
+  --ctp-surface0: #{$ctp-surface0};
+  --ctp-surface1: #{$ctp-surface1};
+  --ctp-surface2: #{$ctp-surface2};
+  --ctp-overlay0: #{$ctp-overlay0};
+  --ctp-overlay1: #{$ctp-overlay1};
+  --ctp-overlay2: #{$ctp-overlay2};
+  --ctp-subtext0: #{$ctp-subtext0};
+  --ctp-subtext1: #{$ctp-subtext1};
+  --ctp-text: #{$ctp-text};
+  --ctp-lavender: #{$ctp-lavender};
+  --ctp-blue: #{$ctp-blue};
+  --ctp-sapphire: #{$ctp-sapphire};
+  --ctp-sky: #{$ctp-sky};
+  --ctp-teal: #{$ctp-teal};
+  --ctp-green: #{$ctp-green};
+  --ctp-yellow: #{$ctp-yellow};
+  --ctp-peach: #{$ctp-peach};
+  --ctp-maroon: #{$ctp-maroon};
+  --ctp-red: #{$ctp-red};
+  --ctp-mauve: #{$ctp-mauve};
+  --ctp-pink: #{$ctp-pink};
+  --ctp-flamingo: #{$ctp-flamingo};
+  --ctp-rosewater: #{$ctp-rosewater};
+  
+  --cover-bg: #{$cover-bg};
+  --cover-text: #{$cover-text};
+  --cover-accent: #{$cover-accent};
+  --cover-subtitle: #{$cover-subtitle};
+}
+
+// Base section styles (Marpit requirement)
+section {
+  width: 1280px;
+  height: 720px;
+  background: var(--ctp-base);
+  color: var(--ctp-text);
+  font-family: $font-family;
+  font-size: $font-size-base;
+  line-height: $line-height;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+// =============================================================================
+// TITLE SLIDE STYLES
+// =============================================================================
+
+section.title {
+  background: var(--cover-bg) !important;
+  color: var(--cover-text) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: $slide-padding !important;
+
+  h1 {
+    color: var(--cover-accent) !important;
+    font-size: 3.5em !important;
+    font-weight: 700 !important;
+    margin-bottom: 30px !important;
+    letter-spacing: 1px !important;
+  }
+
+  h3 {
+    color: var(--cover-subtitle) !important;
+    font-size: 1.8em !important;
+    font-weight: 400 !important;
+    margin-bottom: 40px !important;
+  }
+
+  em {
+    color: var(--ctp-overlay1) !important;
+    font-style: normal !important;
+  }
+}
+
+// =============================================================================
+// CARD SLIDE LAYOUT
+// =============================================================================
+
+// Card slide base styles
+section.card,
+section.card-single,
+section.card-start,
+section.card-middle,
+section.card-end {
+  background: var(--ctp-base) !important;
+  color: var(--ctp-text) !important;
+  padding: 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+// Card background - positioned behind content
+section.card::before,
+section.card-single::before,
+section.card-start::before,
+section.card-middle::before,
+section.card-end::before {
+  content: '';
+  position: absolute;
+  top: 120px;
+  right: 80px;
+  bottom: 80px;
+  left: calc(#{$card-sidebar-width} + 20px);
+  background: var(--ctp-surface0);
+  border: $card-border-width solid var(--ctp-mauve);
+  border-radius: $card-border-radius;
+  box-shadow: 0 12px 40px rgba(17, 17, 27, 0.4);
+  z-index: 1;
+}
+
+// Card backgrounds for slides without titles
+section.card-middle::before,
+section.card-end::before {
+  top: 40px;
+}
+
+// Card transition styles for backgrounds
+section.card-single::before {
+  border-radius: $card-border-radius;
+}
+
+section.card-start::before {
+  border-radius: $card-border-radius $card-border-radius 0 0;
+  border-bottom: none;
+  bottom: 0;
+}
+
+section.card-middle::before {
+  border-radius: 0;
+  border-left: $card-border-width solid var(--ctp-mauve);
+  border-right: $card-border-width solid var(--ctp-mauve);
+  border-top: none;
+  border-bottom: none;
+  top: 0;
+  bottom: 0;
+}
+
+section.card-end::before {
+  border-radius: 0 0 $card-border-radius $card-border-radius;
+  border-top: none;
+  top: 0;
+}
+
+// Position main content in card area
+section.card,
+section.card-single,
+section.card-start,
+section.card-middle,
+section.card-end {
+  padding: $card-padding calc(120px) 120px calc(#{$card-sidebar-width} + 60px) !important;
+}
+
+// Adjust padding for slides without titles
+section.card-middle,
+section.card-end {
+  padding: 80px 120px 120px calc(#{$card-sidebar-width} + 60px) !important;
+}
+
+// =============================================================================
+// TYPOGRAPHY
+// =============================================================================
+
+// Headings
+section.card h1,
+section.card-single h1,
+section.card-start h1,
+section.card-middle h1,
+section.card-end h1 {
+  color: var(--ctp-mauve);
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0 0 $spacing-lg 0;
+  position: relative;
+  z-index: 2;
+}
+
+section.card h2,
+section.card-single h2,
+section.card-start h2,
+section.card-middle h2,
+section.card-end h2 {
+  color: var(--ctp-pink);
+  font-size: 32px;
+  font-weight: 600;
+  margin: $spacing-lg 0 $spacing-md 0;
+  border-bottom: 2px solid var(--ctp-mauve);
+  padding-bottom: $spacing-xs;
+  position: relative;
+  z-index: 2;
+}
+
+section.card h3,
+section.card-single h3,
+section.card-start h3,
+section.card-middle h3,
+section.card-end h3 {
+  color: var(--ctp-yellow);
+  font-size: 24px;
+  font-weight: 500;
+  margin: 20px 0 $spacing-sm 0;
+  position: relative;
+  z-index: 2;
+}
+
+// Lists
+section.card ul,
+section.card-single ul,
+section.card-start ul,
+section.card-middle ul,
+section.card-end ul {
+  margin: $spacing-md 0;
+  padding-left: $spacing-xl;
+  position: relative;
+  z-index: 2;
+}
+
+section.card li,
+section.card-single li,
+section.card-start li,
+section.card-middle li,
+section.card-end li {
+  margin: $spacing-sm 0;
+  line-height: 1.5;
+  position: relative;
+  z-index: 2;
+}
+
+// Paragraphs and text
+section.card p,
+section.card-single p,
+section.card-start p,
+section.card-middle p,
+section.card-end p {
+  margin: $spacing-md 0;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+}
+
+section.card strong,
+section.card-single strong,
+section.card-start strong,
+section.card-middle strong,
+section.card-end strong {
+  color: var(--ctp-green);
+  font-weight: 600;
+}
+
+section.card em,
+section.card-single em,
+section.card-start em,
+section.card-middle em,
+section.card-end em {
+  color: var(--ctp-peach);
+  font-style: italic;
+}
+
+// =============================================================================
+// LEFT NOTES SIDEBAR
+// =============================================================================
+
+.left-notes {
+  position: absolute;
+  top: 120px;
+  left: 40px;
+  width: calc(#{$card-sidebar-width} - 80px);
+  height: calc(100% - 200px);
+  overflow-y: auto;
+  color: var(--ctp-subtext1);
+  font-size: 18px;
+  line-height: 1.5;
+  z-index: 3;
+  padding-right: 20px;
+
+  h2, h3 {
+    color: var(--ctp-blue);
+    margin-top: $spacing-lg;
+    margin-bottom: $spacing-sm;
+  }
+
+  ul, ol {
+    margin: $spacing-sm 0;
+    padding-left: $spacing-lg;
+  }
+
+  li {
+    margin: $spacing-xs 0;
+    color: var(--ctp-subtext0);
+  }
+
+  strong {
+    color: var(--ctp-green);
+    font-weight: 600;
+  }
+
+  em {
+    color: var(--ctp-peach);
+    font-style: italic;
+  }
+
+  p {
+    margin: $spacing-sm 0;
+    color: var(--ctp-subtext1);
+  }
+
+  .sources {
+    margin-top: $spacing-xl;
+    padding-top: $spacing-lg;
+    border-top: 2px solid var(--ctp-surface1);
+    font-size: 18px;
+    color: var(--ctp-subtext0);
+    background: var(--ctp-surface0);
+    padding: $spacing-md;
+    border-radius: 8px;
+    margin-right: 10px;
+
+    h1, h2, h3 {
+      color: var(--ctp-blue);
+      font-size: 20px;
+      margin-bottom: $spacing-sm;
+      font-weight: 600;
+    }
+
+    strong {
+      color: var(--ctp-green);
+      font-weight: 600;
+    }
+
+    ul, ol {
+      margin: $spacing-xs 0;
+      padding-left: $spacing-md;
+    }
+
+    li {
+      margin: $spacing-xs 0;
+      color: var(--ctp-subtext1);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    li:before {
+      content: "• ";
+      color: var(--ctp-mauve);
+      font-weight: bold;
+    }
+
+    a {
+      color: var(--ctp-sapphire) !important;
+      text-decoration: none !important;
+      border-bottom: 2px solid var(--ctp-sapphire) !important;
+      display: inline-block !important;
+      position: relative !important;
+      z-index: 10 !important;
+      font-weight: 500 !important;
+      padding: 2px 0 !important;
+    }
+
+    a:hover {
+      color: var(--ctp-blue) !important;
+      border-bottom: 2px solid var(--ctp-blue) !important;
+      background: var(--ctp-surface1) !important;
+      padding: 2px 4px !important;
+      border-radius: 4px !important;
+    }
+
+    p {
+      margin: $spacing-xs 0;
+      color: var(--ctp-subtext1);
+    }
+  }
+}
+
+// =============================================================================
+// SLIDE TITLE
+// =============================================================================
+
+.slide-title {
+  position: absolute;
+  top: 40px;
+  left: calc(#{$card-sidebar-width} + 60px);
+  right: 120px;
+  color: var(--ctp-mauve);
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  z-index: 3;
+  padding: $spacing-md 0;
+  border-bottom: 2px solid var(--ctp-mauve);
+}
+
+section.card-middle .slide-title,
+section.card-end .slide-title {
+  display: none;
+}
+
+section.card-middle .left-notes,
+section.card-end .left-notes {
+  top: 40px;
+  height: calc(100% - 80px);
+}
+
+// =============================================================================
+// GLOBAL ELEMENT STYLES
+// =============================================================================
+
+// Global headings (fallback)
+section h1 {
+  color: var(--ctp-mauve);
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: $spacing-lg;
+}
+
+section h2 {
+  color: var(--ctp-pink);
+  font-size: 2em;
+  font-weight: 600;
+  margin: $spacing-lg 0 $spacing-md 0;
+  border-bottom: 2px solid var(--ctp-mauve);
+  padding-bottom: $spacing-xs;
+}
+
+section h3 {
+  color: var(--ctp-yellow);
+  font-size: 1.5em;
+  font-weight: 500;
+  margin: $spacing-lg 0 $spacing-sm 0;
+}
+
+// Global lists
+section ul, section ol {
+  margin: $spacing-md 0;
+  padding-left: $spacing-xl;
+}
+
+section li {
+  margin: $spacing-sm 0;
+  line-height: 1.5;
+}
+
+// Global text formatting
+section strong {
+  color: var(--ctp-green);
+  font-weight: 600;
+}
+
+section em {
+  color: var(--ctp-peach);
+  font-style: italic;
+}
+
+// Code blocks
+section code {
+  background: var(--ctp-surface0);
+  color: var(--ctp-yellow);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9em;
+  border: 1px solid var(--ctp-surface1);
+}
+
+// Links
+section a {
+  color: var(--ctp-sapphire);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--ctp-sapphire);
+}
+
+section a:hover {
+  color: var(--ctp-blue);
+  border-bottom: 1px solid var(--ctp-blue);
+}
+
+// Footer
+section footer {
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+  font-size: 14px;
+  color: var(--ctp-overlay1);
+}
+
+// Pagination (Marpit requirement)
+section::after {
+  content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  font-size: 14px;
+  color: var(--ctp-overlay1);
+  font-weight: bold;
+} 

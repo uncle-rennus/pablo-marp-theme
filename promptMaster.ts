@@ -8,9 +8,4 @@ export const slideDefaults = {
   paginate: true
 };
 
-export const layoutTokens = {
-  cardClass: "<!-- _class: card -->",
-  titleSlide: "# {title}\n\n### {subtitle}\n*{company}*",
-  agendaSlide: "## Agenda\n\n- Market Maturity\n- Buyer Traits\n- Pricing Models\n- Sales Process",
-  closingSlide: "## Ready to sell smarter?\n\n**Contact:** {email}"
-};
+

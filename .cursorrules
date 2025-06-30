@@ -1,0 +1,28 @@
+# Cursor AI Development Rules
+
+## Live Server Configuration
+- Development server runs on http://localhost:8000 (Python) or http://localhost:3000 (Node.js)
+- Main presentation file: zappts-AI-as-a-service.html
+- Access presentation at: http://localhost:8000/zappts-AI-as-a-service.html
+
+## Project Structure
+- HTML presentations are self-contained with embedded CSS/JS
+- Theme files in /themes/ directory (SCSS source, CSS compiled)
+- Build script: build-theme.js for theme compilation
+
+## Development Workflow
+1. Start live server: `python -m http.server 8000` or `npx live-server --port=3000`
+2. Open browser to view presentation
+3. Edit HTML file and refresh browser to see changes
+4. For theme changes: run `npm run build` or `npm run watch`
+
+## Testing Behavior
+- Presentation uses Marpit framework with Bespoke.js
+- Supports presenter view, fullscreen, and navigation
+- Interactive elements: slide navigation, fragments, transitions
+- Test responsive behavior and animations in browser
+
+## Common Issues
+- CORS issues: Use live server instead of file:// protocol
+- Theme not updating: Rebuild themes with `npm run build`
+- Navigation not working: Check browser console for JS errors 

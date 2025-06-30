@@ -1,0 +1,14 @@
+/*!
+ * @theme light-card-theme
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ */
+
+// Import configuration and use light theme preset
+@import 'card-theme.config';
+
+// Apply light theme preset
+@include light-theme;
+
+// Import the main theme
+@import 'card-theme'; 

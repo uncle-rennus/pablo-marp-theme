@@ -1,0 +1,160 @@
+// =============================================================================
+// CARD THEME CONFIGURATION
+// =============================================================================
+// This file allows customization of theme variables
+// Import this file before the main theme to override defaults
+
+// Color Palette Overrides
+// Uncomment and modify the variables below to customize the theme
+
+// $ctp-base: #1e1e2e;
+// $ctp-mantle: #181825;
+// $ctp-crust: #11111b;
+// $ctp-surface0: #313244;
+// $ctp-surface1: #45475a;
+// $ctp-surface2: #585b70;
+// $ctp-overlay0: #6c7086;
+// $ctp-overlay1: #7f849c;
+// $ctp-overlay2: #9399b2;
+// $ctp-subtext0: #a6adc8;
+// $ctp-subtext1: #bac2de;
+// $ctp-text: #cdd6f4;
+// $ctp-lavender: #b4befe;
+// $ctp-blue: #89b4fa;
+// $ctp-sapphire: #74c7ec;
+// $ctp-sky: #89dceb;
+// $ctp-teal: #94e2d5;
+// $ctp-green: #a6e3a1;
+// $ctp-yellow: #f9e2af;
+// $ctp-peach: #fab387;
+// $ctp-maroon: #eba0ac;
+// $ctp-red: #f38ba8;
+// $ctp-mauve: #cba6f7;
+// $ctp-pink: #f5c2e7;
+// $ctp-flamingo: #f2cdcd;
+// $ctp-rosewater: #f5e0dc;
+
+// Theme-specific color overrides
+// $cover-bg: $ctp-crust;
+// $cover-text: $ctp-text;
+// $cover-accent: $ctp-mauve;
+// $cover-subtitle: $ctp-subtext1;
+
+// Typography overrides
+// $font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+// $font-size-base: 24px;
+// $line-height: 1.6;
+
+// Layout overrides
+// $slide-padding: 80px;
+// $card-padding: 160px;
+// $card-sidebar-width: 28%;
+// $card-border-radius: 20px;
+// $card-border-width: 3px;
+
+// Spacing overrides
+// $spacing-xs: 8px;
+// $spacing-sm: 12px;
+// $spacing-md: 16px;
+// $spacing-lg: 24px;
+// $spacing-xl: 32px;
+// $spacing-xxl: 40px;
+
+// =============================================================================
+// PRESET THEMES
+// =============================================================================
+
+// Light theme preset
+@mixin light-theme {
+  $ctp-base: #eff1f5;
+  $ctp-mantle: #e6e9ef;
+  $ctp-crust: #dce0e8;
+  $ctp-surface0: #ccd0da;
+  $ctp-surface1: #bcc0cc;
+  $ctp-surface2: #acb0be;
+  $ctp-overlay0: #9ca0b0;
+  $ctp-overlay1: #8c8fa1;
+  $ctp-overlay2: #7c7f93;
+  $ctp-subtext0: #6c6f85;
+  $ctp-subtext1: #5c5f77;
+  $ctp-text: #4c4f69;
+  $ctp-lavender: #7287fd;
+  $ctp-blue: #209fb5;
+  $ctp-sapphire: #209fb5;
+  $ctp-sky: #04a5e5;
+  $ctp-teal: #17a2a2;
+  $ctp-green: #40a02b;
+  $ctp-yellow: #df8e1d;
+  $ctp-peach: #fe640b;
+  $ctp-maroon: #e64553;
+  $ctp-red: #d20f39;
+  $ctp-mauve: #8839ef;
+  $ctp-pink: #ea76cb;
+  $ctp-flamingo: #dd7878;
+  $ctp-rosewater: #dc8a78;
+}
+
+// Dark blue theme preset
+@mixin dark-blue-theme {
+  $ctp-base: #0f1419;
+  $ctp-mantle: #131721;
+  $ctp-crust: #151a1f;
+  $ctp-surface0: #1e2328;
+  $ctp-surface1: #272c33;
+  $ctp-surface2: #2e3338;
+  $ctp-overlay0: #363a3f;
+  $ctp-overlay1: #3e4247;
+  $ctp-overlay2: #454a4f;
+  $ctp-subtext0: #4c5158;
+  $ctp-subtext1: #535a61;
+  $ctp-text: #5a616a;
+  $ctp-lavender: #5dafff;
+  $ctp-blue: #4dabf7;
+  $ctp-sapphire: #39a0e7;
+  $ctp-sky: #25a5e7;
+  $ctp-teal: #20c997;
+  $ctp-green: #51cf66;
+  $ctp-yellow: #ffd43b;
+  $ctp-peach: #ffa94d;
+  $ctp-maroon: #ff6b6b;
+  $ctp-red: #ff5252;
+  $ctp-mauve: #ae3ec9;
+  $ctp-pink: #e64980;
+  $ctp-flamingo: #f06595;
+  $ctp-rosewater: #f8a5c2;
+}
+
+// Corporate theme preset
+@mixin corporate-theme {
+  $ctp-base: #ffffff;
+  $ctp-mantle: #f8f9fa;
+  $ctp-crust: #e9ecef;
+  $ctp-surface0: #dee2e6;
+  $ctp-surface1: #ced4da;
+  $ctp-surface2: #adb5bd;
+  $ctp-overlay0: #6c757d;
+  $ctp-overlay1: #495057;
+  $ctp-overlay2: #343a40;
+  $ctp-subtext0: #212529;
+  $ctp-subtext1: #1a1d20;
+  $ctp-text: #000000;
+  $ctp-lavender: #6f42c1;
+  $ctp-blue: #0d6efd;
+  $ctp-sapphire: #0dcaf0;
+  $ctp-sky: #17a2b8;
+  $ctp-teal: #20c997;
+  $ctp-green: #198754;
+  $ctp-yellow: #ffc107;
+  $ctp-peach: #fd7e14;
+  $ctp-maroon: #dc3545;
+  $ctp-red: #dc3545;
+  $ctp-mauve: #6f42c1;
+  $ctp-pink: #e83e8c;
+  $ctp-flamingo: #d63384;
+  $ctp-rosewater: #f8bbd9;
+}
+
+// Usage example:
+// @include light-theme;
+// @include dark-blue-theme;
+// @include corporate-theme; 

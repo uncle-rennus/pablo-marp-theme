@@ -1,0 +1,35 @@
+{
+  "name": "marpit-card-theme",
+  "version": "1.0.0",
+  "description": "Configurable card theme for Marpit presentations",
+  "main": "build-theme.js",
+  "scripts": {
+    "build": "node build-theme.js",
+    "watch": "node build-theme.js watch",
+    "dev": "node build-theme.js watch",
+    "serve": "node dev-server.js",
+    "start": "node dev-server.js",
+    "live": "npx live-server --port=3000 --open=/zappts-AI-as-a-service.html",
+    "build:ext": "node build-with-extensions.js",
+    "watch:ext": "node build-with-extensions.js watch",
+    "build:presentation": "powershell -ExecutionPolicy Bypass -File build-presentation.ps1",
+    "build:ps": "powershell -ExecutionPolicy Bypass -File build-presentation.ps1"
+  },
+  "keywords": [
+    "marpit",
+    "theme",
+    "presentation",
+    "slides",
+    "scss"
+  ],
+  "author": "Rennan Leite",
+  "license": "MIT",
+  "devDependencies": {
+    "@marp-team/marpit": "^3.12.0",
+    "sass": "^1.69.0",
+    "markdown-it": "^14.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
