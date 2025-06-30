@@ -1,0 +1,49 @@
+# Cursor Ignore File
+# Prevents Cursor from indexing sensitive files
+
+# Environment files
+*.env
+*.env.*
+env.ps1
+env.sh
+.env.local
+.env.production
+.env.staging
+
+# API Keys and secrets
+*secret*
+*key*
+*token*
+*credential*
+*password*
+
+# Global config files
+.config/
+.config/env.ps1
+.config/env.sh
+
+# PowerShell profiles
+Microsoft.PowerShell_profile.ps1
+profile.ps1
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Node modules
+node_modules/
+
+# Git files
+.git/
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db 

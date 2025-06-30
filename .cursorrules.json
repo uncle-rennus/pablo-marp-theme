@@ -1,0 +1,9 @@
+{
+  "updates": [
+    {
+      "pattern": ".*",
+      "multiple": true,
+      "replacement": "Ensure every slide after the first uses `<!-- _class: card -->`.\nAll headings must use H2 or H3 inside cards.\nWrap agenda or topic lists in bullet points.\nEnsure each bullet is one line long, simple, and jargon-free.\nOnly use the Marp theme defined in `promptMaster.ts`."
+    }
+  ]
+}
