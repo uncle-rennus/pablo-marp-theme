@@ -14,6 +14,8 @@ paginate: true
 
 ---
 
+<!-- _class: card-single -->
+
 <div class="left-notes">
 Esta é a direção estratégica da oferta de serviços de IA da Zappts, capturando uma oportunidade significativa no mercado médio brasileiro.
 
@@ -31,13 +33,11 @@ Esta é a direção estratégica da oferta de serviços de IA da Zappts, captura
 
 <div class="slide-title">True North</div>
 
-<div class="card-start card-end">
-
 ## A Zappts deve lançar oferta integrada "AI as a Service + Cloud" para capturar oportunidade de R$ 25-48 bi no mid-market brasileiro
 
-</div>
-
 ---
+
+<!-- _class: card-start -->
 
 <div class="left-notes">
 Mercado oferece janela única de oportunidade com gap evidente entre demanda e capacidade de execução.
@@ -57,24 +57,14 @@ Mercado oferece janela única de oportunidade com gap evidente entre demanda e c
 
 <div class="slide-title">AI as a Service + Cloud + Loyalty</div>
 
-<div class="card-start">
-
 ## Aspectos Chave
 
 - **Mercado oferece janela única de 6-12 meses** com gap de execução evidente entre demanda (92% aumentaram budget) e capacidade (38% escalaram projetos)
 - **Proposta integrada AI+Cloud+Loyalty** cria barreira competitiva sustentável via compliance LGPD, garantia satisfação e metodologia PODs proprietária
 
-</div>
-
 ---
 
-<div class="card-continue">
-
-- **Modelo recorrente projeta R$ 12,7 M ARR** em 3 anos com margem 35% e LTV/CAC 8× – superior ao benchmark SaaS (3-5×)
-
-</div>
-
----
+<!-- _class: card-middle -->
 
 <div class="left-notes">
 Vantagens estratégicas que criam barreiras competitivas sustentáveis no mercado de serviços de IA.
@@ -91,9 +81,7 @@ Vantagens estratégicas que criam barreiras competitivas sustentáveis no mercad
 </div>
 </div>
 
-<div class="slide-title">Barreira Competitiva Sustentável</div>
-
-<div class="card-continue">
+- **Modelo recorrente projeta R$ 12,7 M ARR** em 3 anos com margem 35% e LTV/CAC 8× – superior ao benchmark SaaS (3-5×)
 
 ## Diferenciação Sustentável
 
@@ -101,17 +89,30 @@ Vantagens estratégicas que criam barreiras competitivas sustentáveis no mercad
 - **Garantia de satisfação** (refund M+2) reduz fricção de venda e cria confiança
 - **Metodologia PODs** entrega agente em até 8 semanas; refator loyalty via WhatsApp aproveita IP existente
 
-</div>
-
 ---
 
-<div class="card-end">
+<!-- _class: card-end -->
+
+<div class="left-notes">
+A proposta integrada cria valor único através de serviços agrupados e IP comprovado.
+
+**Vantagem WhatsApp:**
+- 90%+ de penetração no Brasil
+- 5 p.p. de melhoria na retenção
+- Impacto direto no EBITDA
+
+<div class="sources">
+**Fontes:**
+- [Twilio Customer Engagement 2024](https://www.twilio.com/en-us/blog/insights/trends/2024-state-of-customer-engagement-highlights-AI)
+- [Prefinery CLV to CAC Benchmarks 2024](https://www.prefinery.com/blog/clv-to-cac-ratio-guide-and-benchmarks-2024)
+</div>
+</div>
 
 - **Timing Competitivo** Players internacionais focam enterprise; mid-market brasileiro desatendido por 6-12 meses
 
-</div>
-
 ---
+
+<!-- _class: card-start -->
 
 <div class="left-notes">
 A proposta integrada cria valor único através de serviços agrupados e IP comprovado.
@@ -130,8 +131,6 @@ A proposta integrada cria valor único através de serviços agrupados e IP comp
 
 <div class="slide-title">Vantagem Competitiva</div>
 
-<div class="card-start">
-
 ## Proposta integrada AI+Cloud+Loyalty cria barreira competitiva sustentável
 
 - **Bundle Único:** AI Agents + Cloud FinOps + Loyalty WhatsApp (> 90% penetração)
@@ -139,17 +138,31 @@ A proposta integrada cria valor único através de serviços agrupados e IP comp
 ### IP Loyalty Refatorado & WhatsApp
 - Carteira pontos + regras earn/burn validadas
 
-</div>
-
 ---
 
-<div class="card-end">
+<!-- _class: card-end -->
+
+<div class="left-notes">
+Projeções financeiras mostram economia unitária forte e posicionamento de mercado sólido.
+
+**Mix de Receita:**
+- 40% clientes tier Starter
+- 40% clientes tier Scale  
+- 20% clientes tier Enterprise
+- Horizonte de 3 anos para R$ 12,7M ARR
+
+<div class="sources">
+**Fontes:**
+- [Prefinery Benchmarks 2024](https://www.prefinery.com/blog/clv-to-cac-ratio-guide-and-benchmarks-2024)
+- [Pavilion B2B SaaS 2025](https://www.joinpavilion.com/resource/2024-b2b-saas-performance-benchmarks)
+</div>
+</div>
 
 - Canal WhatsApp elimina barreira de app; +5 p.p. retenção → impacto positivo no EBITDA
 
-</div>
-
 ---
+
+<!-- _class: card-single -->
 
 <div class="left-notes">
 Projeções financeiras mostram economia unitária forte e posicionamento de mercado sólido.
@@ -169,17 +182,15 @@ Projeções financeiras mostram economia unitária forte e posicionamento de mer
 
 <div class="slide-title">Viabilidade Financeira</div>
 
-<div class="card-start card-end">
-
 ## Viabilidade financeira robusta
 
 - Mix de 60 clientes (40% Starter, 40% Scale, 20% Enterprise) gera **R$ 12,7 mi de ARR** no Ano 3
 - **Margem bruta 35%** pós-cloud, sustentada por rebate AWS de 5-8%
 - **LTV/CAC ≈ 8×** versus benchmark SaaS 3-5×; payback < 4 meses
 
-</div>
-
 ---
+
+<!-- _class: card-single -->
 
 <div class="left-notes">
 Roadmap de implementação segue abordagem por fases com marcos claros e estratégias de mitigação de riscos.
@@ -198,43 +209,92 @@ Roadmap de implementação segue abordagem por fases com marcos claros e estrat�
 
 <div class="slide-title">Implementação & Riscos</div>
 
-<div class="card-start">
+## Roadmap de Implementação
 
-## Plano "90-180-365"
+### Fase 1: MVP (Meses 1-3)
+- **Objetivo:** R$ 500k ARR
+- **Foco:** 3-5 clientes pilotos
+- **Entregas:** AI Agents básicos + Cloud FinOps
 
-- **0-90 dias** – Budget aprovado; contratação DPO; piloto varejo
-- **90-180 dias** – Escala 5+ clientes; Loyalty WhatsApp MVP
-- **180-365 dias** – 25+ clientes; ARR ≥ R$ 4 mi; NPS ≥ 70
+### Fase 2: Scale (Meses 4-12)
+- **Objetivo:** R$ 3,2M ARR
+- **Foco:** 20-25 clientes mid-market
+- **Entregas:** Loyalty WhatsApp + Compliance LGPD
 
-## Riscos & Mitigação
-
-| Risco                   | Mitigação                        |
-|-------------------------|----------------------------------|
-| Escassez de talento IA  | Equity + upskilling              |
-| Multas LGPD             | DPO + DPIA                       |
-| Pressão competitiva     | Diferenciação compliance + refund |
-
-</div>
+### Fase 3: Market Leadership (Anos 2-3)
+- **Objetivo:** R$ 12,7M ARR
+- **Foco:** 60 clientes + expansão regional
+- **Entregas:** Metodologia PODs proprietária
 
 ---
 
-<div class="left-notes">
-Gestão de riscos através de abordagens estratégicas de mitigação garante sucesso na execução.
+<!-- _class: card-single -->
 
-**Fatores Críticos de Sucesso:**
-- Estratégia de aquisição de talentos
-- Framework de compliance
-- Diferenciação de mercado
+<div class="left-notes">
+Principais riscos identificados e estratégias de mitigação para garantir sucesso do projeto.
+
+**Categorias de Risco:**
+- Mercado e competição
+- Execução e tecnologia
+- Financeiro e operacional
 
 <div class="sources">
-**Referências Adicionais:**
-- [LGPD Compliance Guidelines](https://www.gov.br/anpd/pt-br)
-- [AWS Partner Network Benefits](https://aws.amazon.com/partners/)
+**Fontes:**
+- [McKinsey Risk Management 2024](https://www.mckinsey.com/capabilities/risk-and-resilience/our-insights)
+- [Bain Digital Transformation](https://www.bain.com/insights/topics/digital-transformation/)
 </div>
 </div>
 
-<div class="card-end">
+## Principais Riscos & Mitigações
 
-<!-- Final slide content can be empty or contain closing elements -->
+### 🚨 Risco Alto: Aceleração da Competição
+- **Mitigação:** Janela de 6-12 meses; compliance LGPD como diferencial
+- **Monitoramento:** Análise trimestral de movimentação de players
 
+### ⚠️ Risco Médio: Complexidade de Integração
+- **Mitigação:** Metodologia PODs validada; equipe dedicada
+- **Monitoramento:** KPIs de delivery time e satisfação
+
+### 🔵 Risco Baixo: Adoção de Mercado
+- **Mitigação:** Garantia de satisfação; casos de uso comprovados
+- **Monitoramento:** NPS e churn rate
+
+---
+
+<!-- _class: card-single -->
+
+<div class="left-notes">
+Conclusão estratégica com call-to-action claro e próximos passos definidos.
+
+**Próximos Passos:**
+- Validação com stakeholders
+- Detalhamento técnico
+- Preparação de pitch deck
+
+<div class="sources">
+**Fontes:**
+- [Bain Strategy 2024](https://www.bain.com/insights/topics/strategy/)
+- [McKinsey Digital 2024](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights)
 </div>
+</div>
+
+## Conclusão & Próximos Passos
+
+### ✅ **Recomendação: PROSSEGUIR**
+
+A oportunidade de **R$ 25-48 bi** no mid-market brasileiro, combinada com a proposta integrada **AI+Cloud+Loyalty**, justifica o investimento estratégico.
+
+### 🎯 **Call-to-Action**
+
+1. **Aprovação Executiva** - Validação do business case
+2. **Detalhamento Técnico** - Arquitetura e roadmap detalhado
+3. **Preparação de Go-to-Market** - Estratégia de lançamento
+
+### 📊 **Métricas de Sucesso**
+
+- **ARR:** R$ 12,7M em 3 anos
+- **Margem:** 35% sustentável
+- **LTV/CAC:** 8× superior ao benchmark
+- **Payback:** < 4 meses
+
+**A Zappts está posicionada para capturar esta oportunidade única no mercado brasileiro de IA.**

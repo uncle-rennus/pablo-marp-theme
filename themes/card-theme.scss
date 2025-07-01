@@ -42,21 +42,19 @@ $cover-text: $ctp-text !default;
 $cover-accent: $ctp-mauve !default;
 $cover-subtitle: $ctp-subtext1 !default;
 
-// Typography - Readable sizes with golden ratio relationships
+// Typography - Match preview.html font sizes
 $font-family: 'Inter', 'Segoe UI', system-ui, sans-serif !default;
-
-// Font hierarchy: Card content > Card title > Left section > Sources
-// Pre-calculated phi-based values for maximum readability (avoiding tiny text)
-$font-size-card-content: 18px !default;   // S - balanced readable size
-$font-size-card-title: 11px !default;     // S/φ ≈ 11px (18/1.618)  
-$font-size-left-section: 11px !default;   // Increased for readability (was 7px)
-$font-size-sources: 9px !default;         // Increased for readability (was 4px)
+$font-size-base: 24px !default;
+$font-size-card-content: 22px !default;
+$font-size-left-notes: 16px !default;
+$font-size-left-notes-small: 14px !default;
+$font-size-sources: 11px !default;
+$font-size-sources-small: 10px !default;
 
 $line-height: 1.6 !default;
 
-// Layout
-$slide-padding: 80px !default;
-$card-padding: 40px !default;
+// Layout - Match preview.html proportions
+$left-sidebar-width: 28% !default;
 $card-border-radius: 20px !default;
 $card-border-width: 3px !default;
 
@@ -114,7 +112,7 @@ section {
   background: var(--ctp-base);
   color: var(--ctp-text);
   font-family: $font-family;
-  font-size: $font-size-card-content;
+  font-size: $font-size-base;
   line-height: $line-height;
   margin: 0;
   padding: 0;
@@ -134,7 +132,7 @@ section.title {
   justify-content: center !important;
   align-items: center !important;
   text-align: center !important;
-  padding: $slide-padding !important;
+  padding: 80px !important;
 
   h1 {
     color: var(--cover-accent) !important;
@@ -158,257 +156,300 @@ section.title {
 }
 
 // =============================================================================
-// LEFT NOTES SIDEBAR (ALWAYS OUTSIDE CARDS)
+// CARD SYSTEM - DIRECT SECTION STYLING (Match preview.html)
 // =============================================================================
 
-.left-notes {
-  position: absolute;
-  top: 80px;
-  left: 40px;
-  width: calc(35% - 80px); // 35% of screen width for left sidebar
-  height: calc(100% - 160px);
-  overflow-y: auto;
-  color: var(--ctp-subtext1);
-  font-size: $font-size-left-section; // 11px (readable)
-  line-height: 1.4;
-  z-index: 5; // Always above cards
-  padding-right: 20px;
-
-  h2, h3 {
-    color: var(--ctp-blue);
-    font-size: 14px; // Larger headers for better hierarchy
-    margin-top: $spacing-md;
-    margin-bottom: $spacing-xs;
-    font-weight: 600;
-  }
-
-  ul, ol {
-    margin: $spacing-xs 0;
-    padding-left: $spacing-sm;
-  }
-
-  li {
-    margin: 2px 0;
-    color: var(--ctp-subtext0);
-    line-height: 1.3;
-  }
-
-  strong {
-    color: var(--ctp-green);
-    font-weight: 600;
-  }
-
-  em {
-    color: var(--ctp-peach);
-    font-style: italic;
-  }
-
-  p {
-    margin: $spacing-xs 0;
-    color: var(--ctp-subtext1);
-    line-height: 1.3;
-  }
-
-  .sources {
-    margin-top: $spacing-md;
-    padding: $spacing-xs;
-    border-top: 1px solid var(--ctp-surface1);
-    font-size: $font-size-sources;
-    color: var(--ctp-subtext0);
-    background: var(--ctp-surface0);
-    border-radius: 4px;
-    margin-right: 10px;
-    border: 1px solid var(--ctp-surface1);
-
-    h1, h2, h3 {
-      color: var(--ctp-blue);
-      font-size: 12px; // Larger headers for sources
-      margin-bottom: 2px;
-      margin-top: $spacing-xs;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-
-    strong {
-      color: var(--ctp-green);
-      font-weight: 600;
-    }
-
-    ul, ol {
-      margin: 2px 0;
-      padding-left: $spacing-xs;
-    }
-
-    li {
-      margin: 1px 0;
-      color: var(--ctp-subtext1);
-      font-size: $font-size-sources;
-      line-height: 1.2;
-    }
-
-    a {
-      color: var(--ctp-sapphire) !important;
-      text-decoration: none !important;
-      border-bottom: 1px solid var(--ctp-sapphire) !important;
-      display: inline-block !important;
-      position: relative !important;
-      z-index: 10 !important;
-      font-weight: 500 !important;
-      padding: 1px 0 !important;
-      font-size: $font-size-sources !important;
-    }
-
-    a:hover {
-      color: var(--ctp-blue) !important;
-      border-bottom: 1px solid var(--ctp-blue) !important;
-      background: var(--ctp-surface1) !important;
-      padding: 1px 2px !important;
-      border-radius: 2px !important;
-    }
-
-    p {
-      margin: 2px 0;
-      color: var(--ctp-subtext1);
-      line-height: 1.2;
-    }
-  }
+// Card sections - direct styling like preview.html
+section.card,
+section.card-single,
+section.card-start,
+section.card-middle,
+section.card-end {
+  background: var(--ctp-base) !important;
+  color: var(--ctp-text) !important;
+  padding: 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
 }
 
-// =============================================================================
-// CARD SYSTEM - DIV-BASED WRAPPING
-// =============================================================================
-
-// Card regions wrap content - 65% width on RIGHT side with proper margins for PDF continuity
-.card-start,
-.card-continue, 
-.card-end {
+// Card backgrounds via ::before pseudo-elements (match preview.html)
+section.card::before,
+section.card-single::before,
+section.card-start::before,
+section.card-middle::before,
+section.card-end::before {
+  content: '';
   position: absolute;
-  top: 80px;
-  right: 60px;
+  top: 120px;
+  right: 80px;
   bottom: 80px;
-  left: calc(35% + 20px); // Start after 35% left sidebar + gap
-  padding: $card-padding;
-  z-index: 3;
-  overflow-y: auto;
-  
-  // Adjust for slides with titles
-  &.has-title {
-    top: 120px;
-  }
-}
-
-// Card backgrounds - behind each card div with proper margins for PDF continuity
-.card-start::before {
-  content: '';
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  bottom: -20px;
-  left: -20px;
+  left: calc(#{$left-sidebar-width} + 20px);
   background: var(--ctp-surface0);
   border: $card-border-width solid var(--ctp-mauve);
-  border-radius: $card-border-radius $card-border-radius 0 0;
-  border-bottom: none;
+  border-radius: $card-border-radius;
   box-shadow: 0 12px 40px rgba(17, 17, 27, 0.4);
-  z-index: -1;
+  z-index: 1;
 }
 
-.card-continue::before {
-  content: '';
-  position: absolute;
-  top: -80px;
-  right: -20px;
-  bottom: -80px;
-  left: -20px;
-  background: var(--ctp-surface0);
-  border-left: $card-border-width solid var(--ctp-mauve);
-  border-right: $card-border-width solid var(--ctp-mauve);
-  box-shadow: 0 12px 40px rgba(17, 17, 27, 0.4);
-  z-index: -1;
+// Card middle and end adjustments
+section.card-middle::before,
+section.card-end::before {
+  top: 40px;
 }
 
-.card-end::before {
-  content: '';
-  position: absolute;
-  top: -80px;
-  right: -20px;
-  bottom: -20px;
-  left: -20px;
-  background: var(--ctp-surface0);
-  border: $card-border-width solid var(--ctp-mauve);
-  border-radius: 0 0 $card-border-radius $card-border-radius;
-  border-top: none;
-  box-shadow: 0 12px 40px rgba(17, 17, 27, 0.4);
-  z-index: -1;
-}
-
-// Single slide cards (start and end together)
-.card-start.card-end::before {
-  top: -20px;
-  bottom: -20px;
-  border: $card-border-width solid var(--ctp-mauve);
+// Single card - all rounded corners
+section.card-single::before {
   border-radius: $card-border-radius;
 }
 
-// Typography inside card divs
-  .card-start,
-  .card-continue,
-  .card-end {
-        font-size: $font-size-card-content; // S = 18px (balanced)
-    
-    h1 {
-      color: var(--ctp-mauve);
-      font-size: 30px; // Large, readable card titles
-      font-weight: 700;
-      margin: 0 0 $spacing-lg 0;
-      position: relative;
-      z-index: 3;
+// Card start - top rounded, bottom open
+section.card-start::before {
+  border-radius: $card-border-radius $card-border-radius 0 0;
+  border-bottom: none;
+  bottom: 0;
+}
+
+// Card middle - no rounded corners, only left/right borders
+section.card-middle::before {
+  border-radius: 0;
+  border-left: $card-border-width solid var(--ctp-mauve);
+  border-right: $card-border-width solid var(--ctp-mauve);
+  border-top: none;
+  border-bottom: none;
+  top: 0;
+  bottom: 0;
+}
+
+// Card end - bottom rounded, top open
+section.card-end::before {
+  border-radius: 0 0 $card-border-radius $card-border-radius;
+  border-top: none;
+  top: 0;
+}
+
+// Card content padding (match preview.html)
+section.card,
+section.card-single,
+section.card-start,
+section.card-middle,
+section.card-end {
+  padding: 160px 120px 120px calc(#{$left-sidebar-width} + 60px) !important;
+}
+
+section.card-middle,
+section.card-end {
+  padding: 80px 120px 120px calc(#{$left-sidebar-width} + 60px) !important;
+}
+
+// =============================================================================
+// LEFT NOTES SIDEBAR (Match preview.html positioning)
+// =============================================================================
+
+.left-notes {
+  position: absolute !important;
+  top: 120px !important;
+  left: 80px !important;
+  width: calc(#{$left-sidebar-width} - 120px) !important;
+  bottom: 40px !important;
+  z-index: 3 !important;
+  color: var(--ctp-subtext1) !important;
+  font-size: $font-size-left-notes !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+
+  h2, h3 {
+    color: var(--ctp-mauve) !important;
+    font-size: 18px !important;
+    margin: $spacing-md 0 $spacing-xs 0 !important;
+  }
+
+  ul, ol {
+    margin: $spacing-xs 0 !important;
+    padding-left: $spacing-md !important;
+  }
+
+  li {
+    margin-bottom: 4px !important;
+    font-size: $font-size-left-notes-small !important;
+    color: var(--ctp-subtext1) !important;
+  }
+
+  strong {
+    color: var(--ctp-green) !important;
+  }
+
+  em {
+    color: var(--ctp-peach) !important;
+  }
+
+  p {
+    margin-bottom: $spacing-xs !important;
+    font-size: $font-size-left-notes-small !important;
+    color: var(--ctp-subtext1) !important;
+  }
+
+  .sources {
+    margin-top: auto !important;
+    padding-top: $spacing-sm !important;
+    border-top: 1px solid var(--ctp-surface1) !important;
+    color: var(--ctp-subtext0) !important;
+    font-size: $font-size-sources !important;
+    line-height: 1.3 !important;
+    max-height: 80px !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--ctp-overlay2) !important;
+      font-size: $font-size-sources !important;
+      font-weight: 600 !important;
+      margin: 0 0 4px 0 !important;
     }
 
-    h2 {
-      color: var(--ctp-pink);
-      font-size: 24px; // Readable card subtitles
-      font-weight: 600;
-      margin: $spacing-lg 0 $spacing-md 0;
-      border-bottom: 2px solid var(--ctp-mauve);
-      padding-bottom: $spacing-xs;
-      position: relative;
-      z-index: 3;
+    strong {
+      color: var(--ctp-overlay2) !important;
+      font-weight: 600 !important;
+      font-size: $font-size-sources !important;
     }
+
+    ul, ol {
+      margin: 4px 0 !important;
+      padding-left: $spacing-sm !important;
+      list-style: none !important;
+    }
+
+    li {
+      margin-bottom: 2px !important;
+      font-size: $font-size-sources-small !important;
+      color: var(--ctp-subtext0) !important;
+      position: relative !important;
+
+      &:before {
+        content: "• " !important;
+        color: var(--ctp-overlay1) !important;
+      }
+    }
+
+    a {
+      color: var(--ctp-blue) !important;
+      text-decoration: none !important;
+      font-size: $font-size-sources-small !important;
+
+      &:hover {
+        color: var(--ctp-sky) !important;
+        text-decoration: underline !important;
+      }
+    }
+
+    p {
+      margin: 2px 0 !important;
+      font-size: $font-size-sources-small !important;
+      color: var(--ctp-subtext0) !important;
+    }
+  }
+}
+
+// Adjust left notes for middle/end cards
+section.card-middle .left-notes,
+section.card-end .left-notes {
+  top: 80px !important;
+}
+
+// =============================================================================
+// SLIDE TITLE (Match preview.html)
+// =============================================================================
+
+.slide-title {
+  position: absolute !important;
+  top: 40px !important;
+  left: 80px !important;
+  width: calc(#{$left-sidebar-width} - 40px) !important;
+  z-index: 3 !important;
+  font-size: 28px !important;
+  font-weight: 600 !important;
+  color: var(--ctp-mauve) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  line-height: 1.3 !important;
+}
+
+// Hide slide title for middle/end cards
+section.card-middle .slide-title,
+section.card-end .slide-title {
+  display: none !important;
+}
+
+// =============================================================================
+// CARD CONTENT TYPOGRAPHY (Match preview.html)
+// =============================================================================
+
+section.card,
+section.card-single,
+section.card-start,
+section.card-middle,
+section.card-end {
+  h1 {
+    color: var(--ctp-mauve);
+    font-size: 40px;
+    font-weight: 700;
+    margin: 0 0 $spacing-lg 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  h2 {
+    color: var(--ctp-pink);
+    font-size: 32px;
+    font-weight: 600;
+    margin: $spacing-lg 0 $spacing-md 0;
+    border-bottom: 2px solid var(--ctp-mauve);
+    padding-bottom: $spacing-xs;
+    position: relative;
+    z-index: 2;
+  }
 
   h3 {
     color: var(--ctp-yellow);
-          font-size: $font-size-card-content;
+    font-size: 24px;
     font-weight: 500;
     margin: 20px 0 $spacing-sm 0;
     position: relative;
-    z-index: 3;
+    z-index: 2;
   }
 
   ul, ol {
     margin: $spacing-md 0;
-    padding-left: $spacing-xl;
+    padding-left: 20px;
     position: relative;
-    z-index: 3;
+    z-index: 2;
   }
 
   li {
-    margin: $spacing-sm 0;
+    margin-bottom: $spacing-xs;
+    font-size: $font-size-card-content;
+    color: var(--ctp-text);
     line-height: 1.5;
     position: relative;
-    z-index: 3;
+    z-index: 2;
   }
 
   p {
-    margin: $spacing-md 0;
+    margin-bottom: $spacing-md;
+    font-size: $font-size-card-content;
+    color: var(--ctp-text);
     line-height: 1.6;
     position: relative;
-    z-index: 3;
+    z-index: 2;
   }
 
   strong {
     color: var(--ctp-green);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   em {
@@ -417,56 +458,14 @@ section.title {
   }
 
   code {
-    background: var(--ctp-surface0);
+    background: var(--ctp-mantle);
     color: var(--ctp-yellow);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: 'Fira Code', 'Consolas', monospace;
-    font-size: 0.9em;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 20px;
     border: 1px solid var(--ctp-surface1);
   }
-
-  table {
-    margin: $spacing-lg 0;
-    border-collapse: collapse;
-    width: 100%;
-    position: relative;
-    z-index: 3;
-
-    th, td {
-      border: 1px solid var(--ctp-surface1);
-      padding: $spacing-sm;
-      text-align: left;
-    }
-
-    th {
-      background: var(--ctp-surface1);
-      color: var(--ctp-text);
-      font-weight: 600;
-    }
-
-    tr:nth-child(even) {
-      background: var(--ctp-surface0);
-    }
-  }
-}
-
-// =============================================================================
-// SLIDE TITLE (OPTIONAL)
-// =============================================================================
-
-.slide-title {
-  position: absolute;
-  top: 20px;
-  left: calc(35% + 60px);
-      right: 120px;
-    color: var(--ctp-mauve);
-        font-size: $font-size-card-title; // 11px
-    font-weight: 600;
-    text-align: center;
-  z-index: 4;
-  padding: $spacing-sm 0;
-  border-bottom: 1px solid var(--ctp-mauve);
 }
 
 // =============================================================================
@@ -476,40 +475,42 @@ section.title {
 section {
   h1 {
     color: var(--ctp-mauve);
-    font-size: 2.5em;
+    font-size: 48px;
     font-weight: 700;
-    margin-bottom: $spacing-lg;
+    margin-bottom: 20px;
+    text-align: left;
   }
 
   h2 {
     color: var(--ctp-pink);
-    font-size: 2em;
+    font-size: 32px;
     font-weight: 600;
-    margin: $spacing-lg 0 $spacing-md 0;
+    margin-bottom: 16px;
     border-bottom: 2px solid var(--ctp-mauve);
-    padding-bottom: $spacing-xs;
+    padding-bottom: 8px;
   }
 
   h3 {
     color: var(--ctp-yellow);
-    font-size: 1.5em;
+    font-size: 24px;
     font-weight: 500;
-    margin: $spacing-lg 0 $spacing-sm 0;
+    margin-bottom: 12px;
   }
 
   ul, ol {
-    margin: $spacing-md 0;
-    padding-left: $spacing-xl;
+    margin: 16px 0;
+    padding-left: 20px;
   }
 
   li {
-    margin: $spacing-sm 0;
-    line-height: 1.5;
+    margin-bottom: 8px;
+    font-size: 22px;
+    color: var(--ctp-text);
   }
 
   strong {
     color: var(--ctp-green);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   em {
@@ -518,21 +519,23 @@ section {
   }
 
   code {
-    background: var(--ctp-surface0);
+    background: var(--ctp-mantle);
     color: var(--ctp-yellow);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: 'Fira Code', 'Consolas', monospace;
-    font-size: 0.9em;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 20px;
     border: 1px solid var(--ctp-surface1);
   }
 
   a {
-    color: var(--ctp-sapphire);
+    color: var(--ctp-blue);
     text-decoration: underline;
+    font-weight: 500;
     
     &:hover {
-      color: var(--ctp-blue);
+      color: var(--ctp-sky);
+      text-decoration: none;
     }
   }
 } 
