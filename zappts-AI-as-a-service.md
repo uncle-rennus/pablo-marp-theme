@@ -1,6 +1,6 @@
 ---
 marp: true
-theme: card-theme
+theme: zappts-dark-theme
 size: 16:9
 paginate: true
 ---

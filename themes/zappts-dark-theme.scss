@@ -1,0 +1,109 @@
+/*!
+ * @theme zappts-dark-theme
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ */
+
+// =============================================================================
+// ZAPPTS DARK THEME CONFIGURATION
+// =============================================================================
+
+// Zappts Brand Colors - Dark Theme
+$ctp-base: #121326 !default;              // Dark navy - main slide background
+$ctp-mantle: #0f1120 !default;            // Even darker navy for contrast
+$ctp-crust: #0c0e1a !default;             // Darkest navy for deep sections
+$ctp-surface0: #0A85CC !default;          // Lighter blue for content cards
+$ctp-surface1: #1a93d4 !default;          // Card hover state
+$ctp-surface2: #2aa1dc !default;          // Interactive elements
+$ctp-overlay0: #888888 !default;          // Mid-gray for supporting text
+$ctp-overlay1: #999999 !default;          // Slightly lighter gray
+$ctp-overlay2: #aaaaaa !default;          // Even lighter gray
+$ctp-subtext0: #cccccc !default;          // Light gray for secondary text
+$ctp-subtext1: #e0e0e0 !default;          // Very light gray for subtitles
+$ctp-text: #FFFFFF !default;              // White for main text
+$ctp-lavender: #FFFFFF !default;          // White for accents
+$ctp-blue: #FFFFFF !default;              // White for links (accessibility)
+$ctp-sapphire: #F0F0F0 !default;          // Light gray for link hover
+$ctp-sky: #e0e0e0 !default;               // Light gray for link active
+$ctp-teal: #0A85CC !default;              // Keep blue for card backgrounds
+$ctp-green: #F0F0F0 !default;             // Very light gray for content
+$ctp-yellow: #F0F0F0 !default;            // Very light gray alternative
+$ctp-peach: #F0F0F0 !default;             // Very light gray alternative
+$ctp-maroon: #888888 !default;            // Supporting text color
+$ctp-red: #888888 !default;               // Supporting text color
+$ctp-mauve: #FFFFFF !default;             // White for highlights
+$ctp-pink: #F0F0F0 !default;              // Very light gray
+$ctp-flamingo: #F0F0F0 !default;          // Very light gray
+$ctp-rosewater: #F0F0F0 !default;         // Very light gray
+
+// Theme-specific colors for special sections
+$cover-bg: #121326 !default;              // Dark navy for title slide
+$cover-text: #FFFFFF !default;            // White text for title
+$cover-accent: #0076BD !default;          // Zappts blue for horizontal strip
+$cover-subtitle: #F0F0F0 !default;        // Light gray for subtitles
+
+// Import the base card theme with our color overrides
+@import 'card-theme';
+
+// =============================================================================
+// ZAPPTS TITLE SLIDE CUSTOMIZATION
+// =============================================================================
+
+// Override title slide styling with highest specificity - override base theme
+div#\:\$p > svg > foreignObject > section.title.title {
+  background: var(--cover-bg) !important;
+  color: var(--cover-text) !important;
+  display: block !important; // Override flex layout
+  flex-direction: initial !important; // Override flex
+  justify-content: initial !important; // Override flex  
+  align-items: initial !important; // Override flex
+  text-align: initial !important; // Override centered text
+  padding: 0 !important;
+  position: relative !important;
+  
+  // Horizontal blue strip
+  &::before {
+    content: '';
+    position: absolute;
+    top: 35%;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: var(--cover-accent);
+    z-index: 1;
+  }
+  
+  h1 {
+    position: absolute !important;
+    top: 45% !important; // Position mid-below the strip
+    left: 80px !important; // Left-aligned with standard margin
+    right: 80px !important;
+    color: var(--cover-text) !important;
+    font-size: 2.8em !important; // Smaller than original 3.5em
+    font-weight: 700 !important;
+    margin: 0 !important;
+    letter-spacing: 1px !important;
+    text-align: left !important; // Left-oriented
+    z-index: 2;
+    margin-bottom: 0 !important; // Override base margin
+  }
+
+  h3 {
+    position: absolute !important;
+    top: 60% !important; // Below the title
+    left: 80px !important;
+    right: 80px !important;
+    color: var(--cover-subtitle) !important;
+    font-size: 1.4em !important; // Smaller subtitle
+    font-weight: 400 !important;
+    margin: 0 !important;
+    text-align: left !important;
+    z-index: 2;
+    margin-bottom: 0 !important; // Override base margin
+  }
+
+  em {
+    color: var(--ctp-overlay1) !important;
+    font-style: normal !important;
+  }
+} 

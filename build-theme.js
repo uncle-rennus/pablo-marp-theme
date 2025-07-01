@@ -18,7 +18,8 @@ const config = {
 const themeFiles = [
   'card-theme.scss',
   'light-theme.scss',
-  'custom-theme.scss'
+  'custom-theme.scss',
+  'zappts-dark-theme.scss'
 ];
 
 // Build function

@@ -1,7 +1,7 @@
 #!/usr/bin/env pwsh
 
 Write-Host "Building presentation with Marp..." -ForegroundColor Yellow
-npx marp zappts-AI-as-a-service.md --theme ./output/card-theme.css -o output/zappts-AI-as-a-service.html
+npx marp zappts-AI-as-a-service.md --theme ./output/zappts-dark-theme.css -o output/zappts-AI-as-a-service.html
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "✅ Marp build completed successfully" -ForegroundColor Green

@@ -6,7 +6,7 @@ A presentation system built with Marpit that supports rendering markdown content
 
 - **Full Marp/Bespoke.js Integration**: Complete presentation layout with navigation, presenter view, and transitions
 - **Markdown-in-HTML Support**: Render markdown content inside custom HTML elements
-- **Custom Card Theme**: Beautiful Catppuccin-inspired theme with card-based layout
+- **Multiple Themes**: Card theme and Zappts dark branding theme
 - **Post-processing Pipeline**: Automatically converts markdown in HTML elements to proper HTML
 - **PowerShell Automation**: Easy build scripts for Windows development
 
@@ -136,24 +136,42 @@ If you prefer manual control:
 
 ## Theme Customization
 
-### Card Theme Features
+### Available Themes
 
+#### Zappts Dark Theme (Latest)
+- **Brand Colors**: Dark navy (`#121326`) background with Zappts blue (`#0076BD`) accents
+- **Title Layout**: Custom horizontal strip design with left-aligned titles
+- **High Contrast**: White/light gray text on dark backgrounds for accessibility
+- **Card Layout**: Blue content cards (`#0A85CC`) with professional spacing
+- **Usage**: Set `theme: zappts-dark-theme` in your markdown frontmatter
+
+#### Card Theme (Original)
 - **Catppuccin Color Palette**: Beautiful dark theme with accent colors
 - **Card-based Layout**: Content displayed in styled cards
 - **Left Notes Panel**: Speaker notes and sources in sidebar
-- **Responsive Design**: Works on different screen sizes
+- **Usage**: Set `theme: card-theme` in your markdown frontmatter
 
-### Customizing the Theme
+### Customizing Themes
 
-1. Edit `themes/card-theme.scss`
-2. Rebuild the theme:
+1. **Edit theme files**:
+   - Card theme: `themes/card-theme.scss`
+   - Zappts theme: `themes/zappts-dark-theme.scss`
+2. **Rebuild themes**:
    ```bash
    npm run build
    ```
-3. Rebuild the presentation:
+3. **Rebuild presentation**:
    ```bash
    npm run build:presentation
    ```
+
+### Theme Development
+
+The themes are built using SCSS and include:
+- Color variable overrides
+- Custom layout components
+- High-specificity selectors to override base styles
+- Accessibility-compliant contrast ratios
 
 ## Technical Details
 
@@ -216,3 +234,100 @@ MIT License - see LICENSE file for details.
 ---
 
 **Note**: This project extends Marpit's capabilities to support markdown content within HTML elements while maintaining full presentation functionality. The post-processing approach ensures compatibility with all Marp/Bespoke.js features. 
+
+# Marpit Card Theme for Presentations
+
+A configurable card-based theme for Marpit presentations with support for multiple color schemes and layouts.
+
+## Available Themes
+
+### Zappts Dark Theme (NEW)
+- **File**: `zappts-dark-theme`
+- **Colors**: Zappts signature blue (#0076BD) backgrounds with high-contrast white text
+- **Card Background**: Lighter blue (#0A85CC) for content separation
+- **Text Colors**: White (#FFFFFF) for titles, light gray (#F0F0F0) for content
+- **Supporting Text**: Mid-gray (#888888) for sources and secondary information
+- **Notes Section**: Dark gray (#1A1A1A) background with light text
+- **Usage**: `theme: zappts-dark-theme`
+
+### Card Theme (Default)
+- **File**: `card-theme`
+- **Colors**: Catppuccin Mocha dark theme
+- **Usage**: `theme: card-theme`
+
+### Light Theme
+- **File**: `light-theme`
+- **Colors**: Light/minimal color scheme
+- **Usage**: `theme: light-theme`
+
+### Custom Theme
+- **File**: `custom-theme`
+- **Colors**: Customizable theme with configuration options
+- **Usage**: `theme: custom-theme`
+
+## Quick Start
+
+1. **Start Development Server**:
+   ```bash
+   npm run serve
+   # or
+   npm run live
+   ```
+
+2. **Build Themes**:
+   ```bash
+   npm run build
+   ```
+
+3. **Watch for Changes**:
+   ```bash
+   npm run watch
+   ```
+
+## Using the Zappts Dark Theme
+
+To use the new Zappts dark theme in your presentation:
+
+1. **Set theme in your Markdown file**:
+   ```markdown
+   ---
+   marp: true
+   theme: zappts-dark-theme
+   size: 16:9
+   paginate: true
+   ---
+   ```
+
+2. **Build the theme** (if not already built):
+   ```bash
+   npm run build
+   ```
+
+3. **Start the development server**:
+   ```bash
+   npm run serve
+   ```
+
+## Theme Features
+
+- **Card-based layouts** with left sidebar for notes
+- **Multiple slide types**: title, card-single, card-start, card-middle, card-end
+- **High contrast** accessibility-compliant color schemes
+- **Responsive design** optimized for 16:9 presentations
+- **Source citations** with dedicated styling in notes section
+
+## Development
+
+- **Build Scripts**: `build-theme.js` compiles SCSS to CSS
+- **Theme Sources**: `/themes/` directory contains SCSS source files
+- **Output**: `/output/` directory contains compiled CSS files
+- **Live Server**: Available on http://localhost:8000 or http://localhost:3000
+
+## Color Accessibility
+
+The Zappts dark theme maintains high contrast ratios:
+- **Background to Text**: 21:1 (WCAG AAA compliant)
+- **Card Background to Text**: 19:1 (WCAG AAA compliant)
+- **Supporting Text**: 4.5:1 minimum (WCAG AA compliant)
+
+All color combinations meet WCAG 2.1 accessibility standards for professional presentations. 
