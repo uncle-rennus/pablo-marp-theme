@@ -5,10 +5,12 @@ const path = require('path');
 const { Marpit } = require('@marp-team/marpit');
 const { createMarpitWithExtensions } = require('./marpit-extensions');
 
+process.stdout.setEncoding('utf8');
+
 // Configuration
 const config = {
   inputFile: './zappts-AI-as-a-service.md',
-  outputFile: './zappts-AI-as-a-service.html',
+  outputFile: './output/zappts-AI-as-a-service.html',
   theme: 'card-theme'
 };
 
@@ -25,7 +27,7 @@ if (fs.existsSync(themePath)) {
 // Build function
 function buildPresentation() {
   try {
-    console.log('🔄 Building presentation with custom extensions...');
+    console.log('Building presentation with custom extensions...');
     
     // Read markdown file
     const markdown = fs.readFileSync(config.inputFile, 'utf8');
@@ -36,23 +38,23 @@ function buildPresentation() {
     // Write HTML file
     fs.writeFileSync(config.outputFile, result.html);
     
-    console.log('✅ Presentation built successfully!');
-    console.log(`📁 Output: ${config.outputFile}`);
-    console.log(`🌐 View at: http://localhost:3000/${path.basename(config.outputFile)}`);
+    console.log('[OK] Presentation built successfully!');
+    console.log('[FILE] Output: ' + config.outputFile);
+    console.log('[INFO] View at: http://localhost:3000/output/' + path.basename(config.outputFile));
     
   } catch (error) {
-    console.error('❌ Build failed:', error.message);
+    console.error('[FAIL] Build failed:', error.message);
     process.exit(1);
   }
 }
 
 // Watch function
 function watchPresentation() {
-  console.log('👀 Watching for changes...');
+  console.log('[WATCH] Watching for changes...');
   
   fs.watch('.', { recursive: true }, (eventType, filename) => {
     if (filename && (filename.endsWith('.md') || filename.endsWith('.scss'))) {
-      console.log(`🔄 File changed: ${filename}`);
+      console.log('[WATCH] File changed: ' + filename);
       
       if (filename.endsWith('.md')) {
         buildPresentation();

@@ -14,10 +14,6 @@ paginate: true
 
 ---
 
-<!-- _class: card-single -->
-
-<div class="slide-title">True North</div>
-
 <div class="left-notes">
 Esta é a direção estratégica da oferta de serviços de IA da Zappts, capturando uma oportunidade significativa no mercado médio brasileiro.
 
@@ -33,25 +29,52 @@ Esta é a direção estratégica da oferta de serviços de IA da Zappts, captura
 </div>
 </div>
 
+<div class="slide-title">True North</div>
+
+<div class="card-start card-end">
+
 ## A Zappts deve lançar oferta integrada "AI as a Service + Cloud" para capturar oportunidade de R$ 25-48 bi no mid-market brasileiro
+
+</div>
 
 ---
 
-<!-- _class: card-single -->
+<div class="left-notes">
+Mercado oferece janela única de oportunidade com gap evidente entre demanda e capacidade de execução.
+
+**Principais Pilares:**
+- AI as a Service integrado
+- Cloud infrastructure
+- Loyalty program refatorado
+- Compliance LGPD by-design
+
+<div class="sources">
+**Fontes:**
+- [McKinsey AI Report 2024](https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-state-of-ai-in-2024)
+- [AWS Partner Network](https://aws.amazon.com/partners/)
+</div>
+</div>
 
 <div class="slide-title">AI as a Service + Cloud + Loyalty</div>
 
-### Aspectos Chave
+<div class="card-start">
+
+## Aspectos Chave
 
 - **Mercado oferece janela única de 6-12 meses** com gap de execução evidente entre demanda (92% aumentaram budget) e capacidade (38% escalaram projetos)
 - **Proposta integrada AI+Cloud+Loyalty** cria barreira competitiva sustentável via compliance LGPD, garantia satisfação e metodologia PODs proprietária
-- **Modelo recorrente projeta R$ 12,7 M ARR** em 3 anos com margem 35% e LTV/CAC 8× – superior ao benchmark SaaS (3-5×)
+
+</div>
 
 ---
 
-<!-- _class: card-single -->
+<div class="card-continue">
 
-<div class="slide-title">Barreira Competitiva Sustentável</div>
+- **Modelo recorrente projeta R$ 12,7 M ARR** em 3 anos com margem 35% e LTV/CAC 8× – superior ao benchmark SaaS (3-5×)
+
+</div>
+
+---
 
 <div class="left-notes">
 Vantagens estratégicas que criam barreiras competitivas sustentáveis no mercado de serviços de IA.
@@ -68,18 +91,27 @@ Vantagens estratégicas que criam barreiras competitivas sustentáveis no mercad
 </div>
 </div>
 
+<div class="slide-title">Barreira Competitiva Sustentável</div>
+
+<div class="card-continue">
+
 ## Diferenciação Sustentável
 
 - **Compliance LGPD by-design** + DPO dedicado ainda raros entre concorrentes
 - **Garantia de satisfação** (refund M+2) reduz fricção de venda e cria confiança
 - **Metodologia PODs** entrega agente em até 8 semanas; refator loyalty via WhatsApp aproveita IP existente
-- **Timing Competitivo** Players internacionais focam enterprise; mid-market brasileiro desatendido por 6-12 meses
+
+</div>
 
 ---
 
-<!-- _class: card-single -->
+<div class="card-end">
 
-<div class="slide-title">Vantagem Competitiva</div>
+- **Timing Competitivo** Players internacionais focam enterprise; mid-market brasileiro desatendido por 6-12 meses
+
+</div>
+
+---
 
 <div class="left-notes">
 A proposta integrada cria valor único através de serviços agrupados e IP comprovado.
@@ -96,19 +128,28 @@ A proposta integrada cria valor único através de serviços agrupados e IP comp
 </div>
 </div>
 
+<div class="slide-title">Vantagem Competitiva</div>
+
+<div class="card-start">
+
 ## Proposta integrada AI+Cloud+Loyalty cria barreira competitiva sustentável
 
 - **Bundle Único:** AI Agents + Cloud FinOps + Loyalty WhatsApp (> 90% penetração)
 
 ### IP Loyalty Refatorado & WhatsApp
 - Carteira pontos + regras earn/burn validadas
-- Canal WhatsApp elimina barreira de app; +5 p.p. retenção → impacto positivo no EBITDA
+
+</div>
 
 ---
 
-<!-- _class: card-single -->
+<div class="card-end">
 
-<div class="slide-title">Viabilidade Financeira</div>
+- Canal WhatsApp elimina barreira de app; +5 p.p. retenção → impacto positivo no EBITDA
+
+</div>
+
+---
 
 <div class="left-notes">
 Projeções financeiras mostram economia unitária forte e posicionamento de mercado sólido.
@@ -126,17 +167,19 @@ Projeções financeiras mostram economia unitária forte e posicionamento de mer
 </div>
 </div>
 
+<div class="slide-title">Viabilidade Financeira</div>
+
+<div class="card-start card-end">
+
 ## Viabilidade financeira robusta
 
 - Mix de 60 clientes (40% Starter, 40% Scale, 20% Enterprise) gera **R$ 12,7 mi de ARR** no Ano 3
 - **Margem bruta 35%** pós-cloud, sustentada por rebate AWS de 5-8%
 - **LTV/CAC ≈ 8×** versus benchmark SaaS 3-5×; payback < 4 meses
 
+</div>
+
 ---
-
-<!-- _class: card-start -->
-
-<div class="slide-title">Implementação & Riscos</div>
 
 <div class="left-notes">
 Roadmap de implementação segue abordagem por fases com marcos claros e estratégias de mitigação de riscos.
@@ -153,12 +196,15 @@ Roadmap de implementação segue abordagem por fases com marcos claros e estrat�
 </div>
 </div>
 
+<div class="slide-title">Implementação & Riscos</div>
+
+<div class="card-start">
+
 ## Plano "90-180-365"
 
 - **0-90 dias** – Budget aprovado; contratação DPO; piloto varejo
 - **90-180 dias** – Escala 5+ clientes; Loyalty WhatsApp MVP
 - **180-365 dias** – 25+ clientes; ARR ≥ R$ 4 mi; NPS ≥ 70
-
 
 ## Riscos & Mitigação
 
@@ -168,10 +214,9 @@ Roadmap de implementação segue abordagem por fases com marcos claros e estrat�
 | Multas LGPD             | DPO + DPIA                       |
 | Pressão competitiva     | Diferenciação compliance + refund |
 
+</div>
 
 ---
-
-
 
 <div class="left-notes">
 Gestão de riscos através de abordagens estratégicas de mitigação garante sucesso na execução.
@@ -188,4 +233,8 @@ Gestão de riscos através de abordagens estratégicas de mitigação garante su
 </div>
 </div>
 
-<!-- _class: card-end -->
+<div class="card-end">
+
+<!-- Final slide content can be empty or contain closing elements -->
+
+</div>

@@ -28,19 +28,11 @@ function processSourcesDivs(html) {
     (match, content) => {
       console.log('Processing sources div:', content);
       
-      // Convert markdown links to HTML
+      // Convert markdown links to HTML and bold text only
+      // Do NOT process lists here - postprocess-marp-html.js handles full markdown rendering
       let processedContent = content
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
-        .replace(/^- (.+)$/gm, '<li>$1</li>');
-      
-      // Wrap list items in ul if they exist
-      if (processedContent.includes('<li>')) {
-        processedContent = processedContent.replace(
-          /(<li>.*<\/li>)/s, 
-          '<ul>$1</ul>'
-        );
-      }
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
       
       console.log('Processed content:', processedContent);
       

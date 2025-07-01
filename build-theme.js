@@ -4,10 +4,12 @@ const sass = require('sass');
 const fs = require('fs');
 const path = require('path');
 
+process.stdout.setEncoding('utf8');
+
 // Configuration
 const config = {
   inputDir: './themes',
-  outputDir: './themes',
+  outputDir: './output',
   sourceMap: false,
   style: 'compressed'
 };
@@ -26,7 +28,7 @@ function buildTheme(inputFile) {
   const outputPath = path.join(config.outputDir, outputFile);
   
   try {
-    console.log(`🔄 Compiling ${inputFile}...`);
+    console.log('[WATCH] Compiling ' + inputFile + '...');
     
     const result = sass.compile(inputPath, {
       style: config.style,
@@ -40,11 +42,11 @@ function buildTheme(inputFile) {
       fs.writeFileSync(outputPath + '.map', JSON.stringify(result.sourceMap));
     }
     
-    console.log(`✅ ${inputFile} compiled successfully!`);
-    console.log(`📁 Output: ${outputPath}`);
+    console.log('[OK] ' + inputFile + ' compiled successfully!');
+    console.log('[FILE] Output: ' + outputPath);
     
   } catch (error) {
-    console.error(`❌ Compilation failed for ${inputFile}:`, error.message);
+    console.error('[FAIL] Compilation failed for ' + inputFile + ':', error.message);
     return false;
   }
   
@@ -53,7 +55,7 @@ function buildTheme(inputFile) {
 
 // Build all themes
 function buildAllThemes() {
-  console.log('🎨 Building all themes...\n');
+  console.log('[INFO] Building all themes...\n');
   
   let successCount = 0;
   let totalCount = themeFiles.length;
@@ -64,11 +66,11 @@ function buildAllThemes() {
         successCount++;
       }
     } else {
-      console.log(`⚠️  Skipping ${themeFile} (file not found)`);
+      console.log('[WARN] Skipping ' + themeFile + ' (file not found)');
     }
   });
   
-  console.log(`\n📊 Build Summary: ${successCount}/${totalCount} themes compiled successfully`);
+  console.log('\n[INFO] Build Summary: ' + successCount + '/' + totalCount + ' themes compiled successfully');
   
   if (successCount < totalCount) {
     process.exit(1);
@@ -77,11 +79,11 @@ function buildAllThemes() {
 
 // Watch function for development
 function watchTheme() {
-  console.log('👀 Watching for changes...');
+  console.log('[WATCH] Watching for changes...');
   
   fs.watch(config.inputDir, { recursive: true }, (eventType, filename) => {
     if (filename && filename.endsWith('.scss')) {
-      console.log(`🔄 File changed: ${filename}`);
+      console.log('[WATCH] File changed: ' + filename);
       
       // Build the specific file that changed
       if (fs.existsSync(path.join(config.inputDir, filename))) {

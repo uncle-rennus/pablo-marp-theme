@@ -7,6 +7,8 @@ const url = require('url');
 
 const PORT = process.env.PORT || 8000;
 
+process.stdout.setEncoding('utf8');
+
 const mimeTypes = {
   '.html': 'text/html',
   '.css': 'text/css',
@@ -45,15 +47,15 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`🚀 Development server running at http://localhost:${PORT}`);
-  console.log(`📊 Presentation: http://localhost:${PORT}/zappts-AI-as-a-service.html`);
-  console.log(`⏹️  Press Ctrl+C to stop`);
+  console.log('Development server running at http://localhost:' + PORT);
+  console.log('[INFO] Presentation: http://localhost:' + PORT + '/zappts-AI-as-a-service.html');
+  console.log('[STOP]  Press Ctrl+C to stop');
 });
 
 process.on('SIGINT', () => {
-  console.log('\n👋 Shutting down server...');
+  console.log('\n[STOP] Shutting down server...');
   server.close(() => {
-    console.log('✅ Server stopped');
+    console.log('[OK] Server stopped');
     process.exit(0);
   });
 }); 

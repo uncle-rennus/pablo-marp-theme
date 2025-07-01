@@ -15,7 +15,8 @@ A presentation system built with Marpit that supports rendering markdown content
 ```
 pablo/
 ├── zappts-AI-as-a-service.md          # Main presentation source
-├── zappts-AI-as-a-service.html        # Generated presentation
+├── output/
+│   └── zappts-AI-as-a-service.html    # Generated presentation
 ├── themes/
 │   ├── card-theme.scss                # SCSS theme source
 │   └── card-theme.css                 # Compiled theme
@@ -54,7 +55,7 @@ pablo/
    ```
 
 3. **View the presentation**:
-   Open `http://localhost:8000/zappts-AI-as-a-service.html`
+   Open `http://localhost:8000/output/zappts-AI-as-a-service.html`
 
 ## Usage
 
@@ -125,7 +126,7 @@ If you prefer manual control:
 
 1. **Generate HTML with Marp**:
    ```bash
-   npx marp zappts-AI-as-a-service.md --theme ./themes/card-theme.css -o zappts-AI-as-a-service.html
+   npx marp zappts-AI-as-a-service.md --theme ./themes/card-theme.css -o output/zappts-AI-as-a-service.html
    ```
 
 2. **Process markdown in HTML elements**:

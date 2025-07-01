@@ -4,7 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const MarkdownIt = require('markdown-it');
 
-const inputFile = path.join(__dirname, 'zappts-AI-as-a-service.html');
+process.stdout.setEncoding('utf8');
+
+const inputFile = path.join(__dirname, 'output', 'zappts-AI-as-a-service.html');
 const md = new MarkdownIt({ html: true, linkify: true });
 
 let html = fs.readFileSync(inputFile, 'utf8');
@@ -26,4 +28,4 @@ html = html.replace(/<div class="sources">([\s\S]*?)<\/div>/g, (match, content) 
 
 fs.writeFileSync(inputFile, html);
 
-console.log('✅ Post-processed Marp HTML for markdown-in-divs.'); 
+console.log('[OK] Post-processed Marp HTML for markdown-in-divs.'); 
