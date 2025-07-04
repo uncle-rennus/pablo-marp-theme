@@ -1,46 +1,58 @@
-/*!
- * @theme card-theme
- * @auto-scaling true
- * @size 16:9 1280px 720px
- */
+// Hyperflow Brand Colors
+$hyperflow-deep-purple: #24135f;
+$hyperflow-light-purple: #7A52F7;
+$hyperflow-white: #FFFFFF;
+$hyperflow-light-gray: #E0E0E0;
+$hyperflow-vibrant-blue: #3FA9F5;
+
+@use 'card-theme' as * with (
+  $ctp-base: $hyperflow-deep-purple,
+  $cover-bg: $hyperflow-deep-purple,
+  $ctp-surface0: #e4d8fe,
+  $ctp-text: #333333,
+  $cover-text: $hyperflow-white,
+  $ctp-subtext1: #CCCCCC,
+  $ctp-subtext0: #CCCCCC,
+  $cover-subtitle: $hyperflow-light-gray,
+  $ctp-blue: $hyperflow-vibrant-blue,
+  $ctp-sky: $hyperflow-vibrant-blue,
+  $ctp-mauve: $hyperflow-vibrant-blue,
+  $ctp-pink: $hyperflow-vibrant-blue,
+  $ctp-yellow: $hyperflow-vibrant-blue,
+  $ctp-green: $hyperflow-vibrant-blue,
+  $ctp-peach: $hyperflow-vibrant-blue,
+  $cover-accent: $hyperflow-vibrant-blue
+);
 
 // =============================================================================
-// THEME CONFIGURATION VARIABLES
+// THEME CONFIGURATION VARIABLES (Overriding Catppuccin defaults)
 // =============================================================================
 
-// Color Palette - Catppuccin Mocha (configurable)
-$ctp-base: #1e1e2e !default;
-$ctp-mantle: #181825 !default;
-$ctp-crust: #11111b !default;
-$ctp-surface0: #313244 !default;
-$ctp-surface1: #45475a !default;
-$ctp-surface2: #585b70 !default;
-$ctp-overlay0: #6c7086 !default;
-$ctp-overlay1: #7f849c !default;
-$ctp-overlay2: #9399b2 !default;
-$ctp-subtext0: #a6adc8 !default;
-$ctp-subtext1: #bac2de !default;
-$ctp-text: #cdd6f4 !default;
-$ctp-lavender: #b4befe !default;
-$ctp-blue: #89b4fa !default;
-$ctp-sapphire: #74c7ec !default;
-$ctp-sky: #89dceb !default;
-$ctp-teal: #94e2d5 !default;
-$ctp-green: #a6e3a1 !default;
-$ctp-yellow: #f9e2af !default;
-$ctp-peach: #fab387 !default;
-$ctp-maroon: #eba0ac !default;
-$ctp-red: #f38ba8 !default;
-$ctp-mauve: #cba6f7 !default;
-$ctp-pink: #f5c2e7 !default;
-$ctp-flamingo: #f2cdcd !default;
-$ctp-rosewater: #f5e0dc !default;
+// Main slide background
+$ctp-base: $hyperflow-deep-purple;
+$cover-bg: $hyperflow-deep-purple;
 
-// Theme-specific colors
-$cover-bg: $ctp-crust !default;
-$cover-text: $ctp-text !default;
-$cover-accent: $ctp-mauve !default;
-$cover-subtitle: $ctp-subtext1 !default;
+// Content cards background
+$ctp-surface0: $hyperflow-light-purple !default;
+
+// Primary text (titles and body)
+$ctp-text: $hyperflow-white !default;
+$cover-text: $hyperflow-white !default;
+
+// Secondary/supporting text
+$ctp-subtext1: $hyperflow-light-gray !default;
+$ctp-subtext0: $hyperflow-light-gray !default;
+$cover-subtitle: $hyperflow-light-gray !default;
+
+// Accent links/highlights
+$ctp-blue: $hyperflow-vibrant-blue !default;
+$ctp-sky: $hyperflow-vibrant-blue !default; // For hover states
+$ctp-mauve: $hyperflow-vibrant-blue !default; // Used for titles and borders in card-theme
+$ctp-pink: $hyperflow-vibrant-blue !default; // Used for h2 in card-theme
+$ctp-yellow: $hyperflow-vibrant-blue !default; // Used for h3 in card-theme
+$ctp-green: $hyperflow-vibrant-blue !default; // Used for strong in card-theme
+$ctp-peach: $hyperflow-vibrant-blue !default; // Used for em in card-theme
+$cover-accent: $hyperflow-vibrant-blue !default;
 
 // Typography - Match preview.html font sizes
 $font-family: 'Inter', 'Segoe UI', system-ui, sans-serif !default;
@@ -246,77 +258,77 @@ section.card-end {
 // =============================================================================
 
 .left-notes {
-  position: absolute !important;
-  top: 120px !important;
-  left: 80px !important;
-  width: calc(#{$left-sidebar-width} - 120px) !important;
-  bottom: 40px !important;
-  z-index: 3 !important;
-  color: var(--ctp-subtext1) !important;
-  font-size: $font-size-left-notes !important;
-  line-height: 1.5 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow-y: auto !important;
-  display: flex !important;
-  flex-direction: column !important;
+  position: absolute;
+  top: 120px;
+  left: 80px;
+  width: calc(#{$left-sidebar-width} - 120px);
+  bottom: 40px;
+  z-index: 3;
+  color: #CCCCCC;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 
   h2, h3 {
-    color: var(--ctp-mauve) !important;
-    font-size: 18px !important;
-    margin: $spacing-md 0 $spacing-xs 0 !important;
+    color: #3FA9F5;
+    font-size: 18px;
+    margin: 16px 0 8px 0;
   }
 
   ul, ol {
-    margin: $spacing-xs 0 !important;
-    padding-left: $spacing-md !important;
+    margin: 8px 0;
+    padding-left: 16px;
   }
 
   li {
-    margin-bottom: 4px !important;
-    font-size: $font-size-left-notes-small !important;
-    color: var(--ctp-subtext1) !important;
+    margin-bottom: 4px;
+    font-size: 14px;
+    color: #CCCCCC;
   }
 
   strong {
-    color: var(--ctp-green) !important;
+    color: #3FA9F5;
   }
 
   em {
-    color: var(--ctp-peach) !important;
+    color: #3FA9F5;
   }
 
   p {
-    margin-bottom: $spacing-xs !important;
-    font-size: $font-size-left-notes-small !important;
-    color: var(--ctp-subtext1) !important;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #CCCCCC;
   }
 
   .sources {
     margin-top: 32px !important;
     padding-top: 24px !important;
-    border-top: 2px solid var(--ctp-surface1) !important;
-    font-size: $font-size-sources !important;
+    border-top: 2px solid #45475a !important;
     color: #CCCCCC !important;
+    font-size: 11px !important;
     line-height: 1.3 !important;
     background: transparent !important;
     padding: 16px !important;
     border-radius: 8px !important;
     margin-right: 10px !important;
-    max-height: none !important;
-    overflow: visible !important;
+    max-height: none !important; // Remove max-height limitation
+    overflow: visible !important; // Ensure content is not clipped
 
     h1, h2, h3, h4, h5, h6 {
       color: #9399b2 !important;
-      font-size: $font-size-sources !important;
+      font-size: 11px !important;
       font-weight: 600 !important;
       margin: 0 0 4px 0 !important;
     }
 
     strong {
-      color: #aaaaaa !important;
+      color: #aaaaaa !important; // Changed to match reference
       font-weight: 600 !important;
-      font-size: $font-size-sources !important;
+      font-size: 11px !important;
     }
 
     ul, ol {
@@ -327,13 +339,14 @@ section.card-end {
 
     li {
       margin: 8px 0 !important;
+      font-size: 10px !important;
       color: #CCCCCC !important;
-      font-size: $font-size-sources-small !important;
+      position: relative !important;
       line-height: 1.5 !important;
 
       &:before {
         content: "• " !important;
-        color: var(--ctp-mauve) !important;
+        color: #7f849c !important;
         font-weight: bold !important;
       }
     }
@@ -347,7 +360,7 @@ section.card-end {
       z-index: 10 !important;
       font-weight: 500 !important;
       padding: 2px 0 !important;
-      font-size: $font-size-sources-small !important;
+      font-size: 10px !important;
 
       &:hover {
         color: #3FA9F5 !important;
@@ -360,16 +373,15 @@ section.card-end {
 
     p {
       margin: 8px 0 !important;
+      font-size: 10px !important;
       color: #CCCCCC !important;
-      font-size: $font-size-sources-small !important;
     }
   }
-}
 
 // Adjust left notes for middle/end cards
 section.card-middle .left-notes,
 section.card-end .left-notes {
-  top: 80px !important;
+  top: 80px;
 }
 
 // =============================================================================
@@ -551,4 +563,4 @@ section {
       text-decoration: none;
     }
   }
-} 
+}

@@ -1,29 +1,74 @@
-# Marpit Presentation with Markdown-in-HTML Support
+# Marpit Presentation with Advanced Processing Pipeline
 
-A presentation system built with Marpit that supports rendering markdown content inside HTML elements like `<div class="sources">` and tables, while preserving the full Marp/Bespoke.js presentation layout and features.
+A presentation system built with Marpit that supports intelligent slide generation, markdown-in-HTML rendering, and automated content processing through a three-stage pipeline.
 
 ## Features
 
+- **Intelligent Slide Generation**: Automatic content chunking and slide creation based on semantic blocks
 - **Full Marp/Bespoke.js Integration**: Complete presentation layout with navigation, presenter view, and transitions
 - **Markdown-in-HTML Support**: Render markdown content inside custom HTML elements
-- **Multiple Themes**: Card theme and Zappts dark branding theme
-- **Post-processing Pipeline**: Automatically converts markdown in HTML elements to proper HTML
+- **Multiple Themes**: Card theme, Zappts dark branding theme, and Hyperflow dark theme
+- **Three-Stage Processing Pipeline**: Preprocessor → Marp → Post-processor for optimal results
 - **PowerShell Automation**: Easy build scripts for Windows development
+
+## Processing Pipeline
+
+The presentation generation follows a sophisticated three-stage pipeline:
+
+### Stage 1: Preprocessor (`src/preprocessor/`)
+**Purpose**: Intelligent content analysis and slide generation
+
+The `PabloSlideGenerator` class:
+- **Parses semantic blocks**: Identifies headings, content sections, and HTML elements
+- **Extracts sources**: Automatically formats source sections into HTML blocks
+- **Chunks content**: Splits content into slides based on estimated height and semantic boundaries
+- **Applies card classes**: Adds appropriate CSS classes for styling
+- **Handles HTML placeholders**: Preserves HTML blocks during processing
+
+**Key Features**:
+- Configurable `maxLinesPerCard` (default: 20 lines)
+- Semantic block detection (H1, H2, H3, HTML blocks)
+- Automatic slide separation based on content density
+- Source section extraction and formatting
+
+### Stage 2: Marp Processing
+**Purpose**: Convert processed markdown to HTML with theme application
+
+Marp handles:
+- **Theme application**: Applies SCSS/CSS themes to the presentation
+- **HTML generation**: Converts markdown to presentation-ready HTML
+- **Bespoke.js integration**: Adds navigation, presenter view, and transitions
+- **Asset processing**: Handles images, fonts, and other resources
+
+### Stage 3: Post-processor (`postprocess-marp-html.js`)
+**Purpose**: Process markdown content within HTML elements
+
+The post-processor:
+- **Finds HTML elements**: Locates `<div class="sources">` and other custom elements
+- **Renders markdown**: Converts markdown syntax to HTML using markdown-it
+- **Preserves structure**: Maintains Marp/Bespoke.js functionality
+- **Safety features**: Creates backups, validates output, atomic file operations
 
 ## Project Structure
 
 ```
 pablo/
-├── zappts-AI-as-a-service.md          # Main presentation source
+├── zappts-AI-as-a-service.source.md    # Original source markdown
+├── zappts-AI-as-a-service.md           # Preprocessed markdown (generated)
 ├── output/
-│   └── zappts-AI-as-a-service.html    # Generated presentation
+│   └── zappts-AI-as-a-service.html     # Final presentation (generated)
+├── src/
+│   └── preprocessor/
+│       ├── index.js                    # Preprocessor exports
+│       └── slide-generator.js          # Core slide generation logic
 ├── themes/
-│   ├── card-theme.scss                # SCSS theme source
-│   └── card-theme.css                 # Compiled theme
-├── build-presentation.ps1             # PowerShell build script
-├── postprocess-marp-html.js           # Markdown-in-HTML processor
-├── dev-server.js                      # Development server
-└── package.json                       # Project dependencies
+│   ├── *.scss                          # SCSS theme sources
+│   └── output/themes/*.css             # Compiled themes
+├── build-presentation.js               # Main build script
+├── postprocess-marp-html.js            # HTML post-processor
+├── pablo.config.js                     # Preprocessor configuration
+├── marp.config.js                      # Marp configuration
+└── package.json                        # Project dependencies
 ```
 
 ## Quick Start
@@ -61,29 +106,29 @@ pablo/
 
 ### Writing Presentations
 
-Create your presentation in Markdown format with custom HTML elements:
+Create your presentation in Markdown format with semantic structure:
 
 ```markdown
 ---
 marp: true
-theme: card-theme
+theme: zappts-dark-theme
 ---
 
-# Slide Title
+# Main Title
 
-<div class="left-notes">
-  Speaker notes and context information.
-  
-  <div class="sources">
-    **Fontes:**
-    - [Source 1](https://example.com)
-    - [Source 2](https://example.com)
-  </div>
+## Section Heading
+
+Your content here with automatic slide generation.
+
+<div class="sources">
+  **Fontes:**
+  - [Source 1](https://example.com)
+  - [Source 2](https://example.com)
 </div>
 
-## Main Content
+## Another Section
 
-Your slide content here...
+More content that will be intelligently split into slides.
 ```
 
 ### Supported HTML Elements
@@ -102,37 +147,75 @@ The markdown inside `<div class="sources">` will be automatically converted to H
 - Links (`[text](url)` → `<a href="url">text</a>`)
 - Lists (`- item` → `<ul><li>item</li></ul>`)
 
-#### Tables
+#### Left Notes
 ```html
-<table>
-  | Header 1 | Header 2 |
-  |----------|----------|
-  | Cell 1   | Cell 2   |
-</table>
+<div class="left-notes">
+  Speaker notes and context information.
+  
+  <div class="sources">
+    Additional sources here.
+  </div>
+</div>
 ```
 
 ### Build Commands
 
 | Command | Description |
 |---------|-------------|
-| `npm run build:presentation` | Build presentation with markdown processing |
+| `npm run build:presentation` | Complete pipeline: preprocess → Marp → post-process |
 | `npm run build:ps` | Alternative PowerShell build command |
 | `npm run serve` | Start development server |
 | `npm run live` | Start live-server with auto-refresh |
 
 ### Manual Build Steps
 
-If you prefer manual control:
+For debugging or custom processing:
 
-1. **Generate HTML with Marp**:
+1. **Preprocess markdown**:
    ```bash
-   npx marp zappts-AI-as-a-service.md --theme ./themes/card-theme.css -o output/zappts-AI-as-a-service.html
+   node -e "const {PabloSlideGenerator} = require('./src/preprocessor/index.js'); const generator = new PabloSlideGenerator(); const processed = generator.processMarkdown(fs.readFileSync('zappts-AI-as-a-service.source.md', 'utf8')); fs.writeFileSync('zappts-AI-as-a-service.md', processed);"
    ```
 
-2. **Process markdown in HTML elements**:
+2. **Generate HTML with Marp**:
    ```bash
-   node postprocess-marp-html.js
+   npx marp zappts-AI-as-a-service.md --theme ./themes/zappts-dark-theme.css -o output/zappts-AI-as-a-service.html
    ```
+
+3. **Process markdown in HTML elements**:
+   ```bash
+   node postprocess-marp-html.js output/zappts-AI-as-a-service.html
+   ```
+
+## Configuration
+
+### Preprocessor Configuration (`pablo.config.js`)
+
+```javascript
+export const config = {
+  maxLinesPerCard: 20,        // Maximum lines per slide
+  maxColumnsPerSlide: 4,      // Maximum columns for grid layouts
+  maxRowsPerSlide: 10,        // Maximum rows for grid layouts
+  charsPerLine: 80,           // Characters per line for height estimation
+  themes: [                   // Available themes
+    'card-theme',
+    'custom-theme', 
+    'light-theme',
+    'zappts-dark-theme',
+    'hyperflow-dark-theme'
+  ]
+};
+```
+
+### Marp Configuration (`marp.config.js`)
+
+```javascript
+module.exports = {
+  html: true,
+  allowLocalFiles: true,
+  themeSet: './themes',
+  // Additional Marp options...
+};
+```
 
 ## Theme Customization
 
@@ -145,6 +228,12 @@ If you prefer manual control:
 - **Card Layout**: Blue content cards (`#0A85CC`) with professional spacing
 - **Usage**: Set `theme: zappts-dark-theme` in your markdown frontmatter
 
+#### Hyperflow Dark Theme
+- **Modern Design**: Clean dark theme optimized for technical presentations
+- **Grid Support**: Advanced layout capabilities for complex content
+- **Professional Typography**: Optimized font sizing and spacing
+- **Usage**: Set `theme: hyperflow-dark-theme` in your markdown frontmatter
+
 #### Card Theme (Original)
 - **Catppuccin Color Palette**: Beautiful dark theme with accent colors
 - **Card-based Layout**: Content displayed in styled cards
@@ -154,8 +243,9 @@ If you prefer manual control:
 ### Customizing Themes
 
 1. **Edit theme files**:
-   - Card theme: `themes/card-theme.scss`
    - Zappts theme: `themes/zappts-dark-theme.scss`
+   - Hyperflow theme: `themes/hyperflow-dark-theme.scss`
+   - Card theme: `themes/card-theme.scss`
 2. **Rebuild themes**:
    ```bash
    npm run build
@@ -165,31 +255,38 @@ If you prefer manual control:
    npm run build:presentation
    ```
 
-### Theme Development
-
-The themes are built using SCSS and include:
-- Color variable overrides
-- Custom layout components
-- High-specificity selectors to override base styles
-- Accessibility-compliant contrast ratios
-
 ## Technical Details
+
+### Preprocessor Algorithm
+
+The `PabloSlideGenerator` uses a sophisticated algorithm:
+
+1. **Frontmatter Preservation**: Extracts and preserves YAML frontmatter
+2. **Source Extraction**: Finds and formats source sections into HTML blocks
+3. **HTML Placeholder Creation**: Replaces HTML blocks with placeholders for processing
+4. **Semantic Block Parsing**: Identifies content types (headings, paragraphs, HTML)
+5. **Height Estimation**: Calculates content height based on lines, tables, lists
+6. **Slide Chunking**: Groups blocks into slides based on height limits and semantic boundaries
+7. **HTML Reinsertion**: Restores HTML blocks to their original positions
+8. **Class Application**: Adds appropriate CSS classes for styling
 
 ### Post-processing Pipeline
 
-The `postprocess-marp-html.js` script:
+The `postprocess-marp-html.js` script provides:
 
-1. **Reads** the Marp-generated HTML
-2. **Finds** `<div class="sources">` elements
-3. **Processes** markdown content using markdown-it
-4. **Replaces** raw markdown with rendered HTML
-5. **Preserves** all Marp/Bespoke.js functionality
+- **Safety Features**: Backup creation, atomic file operations, content validation
+- **Markdown Processing**: Uses markdown-it for reliable markdown-to-HTML conversion
+- **Element Targeting**: Specifically processes `<div class="sources">` and other custom elements
+- **Error Recovery**: Automatic backup restoration on processing failures
+- **Command-line Interface**: Flexible input/output file specification
 
 ### Dependencies
 
 - `@marp-team/marpit`: Core Marpit functionality
 - `markdown-it`: Markdown processing for HTML elements
 - `sass`: SCSS compilation for themes
+- `front-matter`: YAML frontmatter parsing
+- `child_process`: Build process orchestration
 
 ## Troubleshooting
 
@@ -200,24 +297,47 @@ The `postprocess-marp-html.js` script:
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
-**Port Already in Use**:
+**Preprocessor Errors**:
+- Check source file syntax and frontmatter
+- Verify `pablo.config.js` configuration
+- Ensure proper markdown structure
+
+**Marp Build Failures**:
+- Verify theme files exist and are compiled
+- Check markdown syntax and HTML elements
+- Ensure all referenced assets exist
+
+**Post-processing Issues**:
+- Check HTML file permissions
+- Verify markdown syntax in HTML elements
+- Review backup files for content comparison
+
+### Debug Mode
+
+Enable verbose logging for troubleshooting:
+
 ```bash
-# Use different port
-python -m http.server 8001
+DEBUG=* npm run build:presentation
 ```
 
-**Theme Not Updating**:
-```bash
-npm run build
-npm run build:presentation
-```
+### Manual Pipeline Steps
 
-### Development Tips
+For debugging specific stages:
 
-1. **Auto-refresh**: Use `npm run live` for automatic browser refresh
-2. **Theme Development**: Edit SCSS files and run `npm run watch` for live compilation
-3. **Debug Mode**: Check browser console for any JavaScript errors
-4. **Presenter View**: Press `P` in the presentation for presenter mode
+1. **Test preprocessor only**:
+   ```bash
+   node -e "const {PabloSlideGenerator} = require('./src/preprocessor/index.js'); console.log(new PabloSlideGenerator().processMarkdown(fs.readFileSync('zappts-AI-as-a-service.source.md', 'utf8')));"
+   ```
+
+2. **Test Marp only**:
+   ```bash
+   npx marp zappts-AI-as-a-service.md --output test.html --theme ./themes/zappts-dark-theme.css
+   ```
+
+3. **Test post-processor only**:
+   ```bash
+   node postprocess-marp-html.js test.html --help
+   ```
 
 ## Contributing
 

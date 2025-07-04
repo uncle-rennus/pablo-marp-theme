@@ -8,42 +8,523 @@
 // ZAPPTS DARK THEME CONFIGURATION
 // =============================================================================
 
-// Zappts Brand Colors - Dark Theme
-$ctp-base: #121326 !default;              // Dark navy - main slide background
-$ctp-mantle: #0f1120 !default;            // Even darker navy for contrast
-$ctp-crust: #0c0e1a !default;             // Darkest navy for deep sections
-$ctp-surface0: #0A85CC !default;          // Lighter blue for content cards
-$ctp-surface1: #1a93d4 !default;          // Card hover state
-$ctp-surface2: #2aa1dc !default;          // Interactive elements
-$ctp-overlay0: #888888 !default;          // Mid-gray for supporting text
-$ctp-overlay1: #999999 !default;          // Slightly lighter gray
-$ctp-overlay2: #aaaaaa !default;          // Even lighter gray
-$ctp-subtext0: #cccccc !default;          // Light gray for secondary text
-$ctp-subtext1: #e0e0e0 !default;          // Very light gray for subtitles
-$ctp-text: #FFFFFF !default;              // White for main text
-$ctp-lavender: #FFFFFF !default;          // White for accents
-$ctp-blue: #FFFFFF !default;              // White for links (accessibility)
-$ctp-sapphire: #F0F0F0 !default;          // Light gray for link hover
-$ctp-sky: #e0e0e0 !default;               // Light gray for link active
-$ctp-teal: #0A85CC !default;              // Keep blue for card backgrounds
-$ctp-green: #F0F0F0 !default;             // Very light gray for content
-$ctp-yellow: #F0F0F0 !default;            // Very light gray alternative
-$ctp-peach: #F0F0F0 !default;             // Very light gray alternative
-$ctp-maroon: #888888 !default;            // Supporting text color
-$ctp-red: #888888 !default;               // Supporting text color
-$ctp-mauve: #FFFFFF !default;             // White for highlights
-$ctp-pink: #F0F0F0 !default;              // Very light gray
-$ctp-flamingo: #F0F0F0 !default;          // Very light gray
-$ctp-rosewater: #F0F0F0 !default;         // Very light gray
+// Import configuration file with all variables
+@use 'zappts-dark-theme.config' as *;
 
-// Theme-specific colors for special sections
-$cover-bg: #121326 !default;              // Dark navy for title slide
-$cover-text: #FFFFFF !default;            // White text for title
-$cover-accent: #0076BD !default;          // Zappts blue for horizontal strip
-$cover-subtitle: #F0F0F0 !default;        // Light gray for subtitles
+// =============================================================================
+// BASE STYLES (Marpit-compliant)
+// =============================================================================
 
-// Import the base card theme with our color overrides
-@import 'card-theme';
+:root {
+  // CSS Custom Properties for runtime customization
+  --zappts-base: #{$zappts-base};
+  --zappts-mantle: #{$zappts-mantle};
+  --zappts-crust: #{$zappts-crust};
+  --zappts-surface0: #{$zappts-surface0};
+  --zappts-surface1: #{$zappts-surface1};
+  --zappts-surface2: #{$zappts-surface2};
+  --zappts-overlay0: #{$zappts-overlay0};
+  --zappts-overlay1: #{$zappts-overlay1};
+  --zappts-overlay2: #{$zappts-overlay2};
+  --zappts-subtext0: #{$zappts-subtext0};
+  --zappts-subtext1: #{$zappts-subtext1};
+  --zappts-text: #{$zappts-text};
+  --zappts-lavender: #{$zappts-lavender};
+  --zappts-blue: #{$zappts-blue};
+  --zappts-sapphire: #{$zappts-sapphire};
+  --zappts-sky: #{$zappts-sky};
+  --zappts-teal: #{$zappts-teal};
+  --zappts-green: #{$zappts-green};
+  --zappts-yellow: #{$zappts-yellow};
+  --zappts-peach: #{$zappts-peach};
+  --zappts-maroon: #{$zappts-maroon};
+  --zappts-red: #{$zappts-red};
+  --zappts-mauve: #{$zappts-mauve};
+  --zappts-pink: #{$zappts-pink};
+  --zappts-flamingo: #{$zappts-flamingo};
+  --zappts-rosewater: #{$zappts-rosewater};
+  
+  --cover-bg: #{$cover-bg};
+  --cover-text: #{$cover-text};
+  --cover-accent: #{$cover-accent};
+  --cover-subtitle: #{$cover-subtitle};
+}
+
+// Base section styles (Marpit requirement)
+section {
+  width: 1280px;
+  height: 720px;
+  background: var(--zappts-base);
+  color: var(--zappts-text);
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  font-size: 24px;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+// =============================================================================
+// TITLE SLIDE STYLES
+// =============================================================================
+
+section.title {
+  background: var(--cover-bg) !important;
+  color: var(--cover-text) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 80px !important;
+
+  h1 {
+    color: var(--cover-accent) !important;
+    font-size: 3.5em !important;
+    font-weight: 700 !important;
+    margin-bottom: 30px !important;
+    letter-spacing: 1px !important;
+  }
+
+  h3 {
+    color: var(--cover-subtitle) !important;
+    font-size: 1.8em !important;
+    font-weight: 400 !important;
+    margin-bottom: 40px !important;
+  }
+
+  em {
+    color: var(--zappts-overlay1) !important;
+    font-style: normal !important;
+  }
+}
+
+// =============================================================================
+// CARD SYSTEM - DIRECT SECTION STYLING
+// =============================================================================
+
+// Card sections - direct styling
+section.card,
+section.card-single,
+section.card-start,
+section.card-middle,
+section.card-end {
+  background: var(--zappts-base) !important;
+  color: var(--zappts-text) !important;
+  padding: 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+// Card backgrounds via ::before pseudo-elements
+section.card::before,
+section.card-single::before,
+section.card-start::before,
+section.card-middle::before,
+section.card-end::before {
+  content: '';
+  position: absolute;
+  top: 120px;
+  right: 80px;
+  bottom: 80px;
+  left: calc(28% + 20px);
+  background: var(--zappts-surface0);
+  border: 3px solid var(--zappts-mauve);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(17, 17, 27, 0.4);
+  z-index: 1;
+}
+
+// Card middle and end adjustments
+section.card-middle::before,
+section.card-end::before {
+  top: 40px;
+}
+
+// Single card - all rounded corners
+section.card-single::before {
+  border-radius: 20px;
+}
+
+// Card start - top rounded only
+section.card-start::before {
+  border-radius: 20px 20px 0 0;
+  border-bottom: none;
+  bottom: 0;
+}
+
+// Card middle - no top/bottom radius
+section.card-middle::before {
+  border-radius: 0;
+  border-left: 3px solid var(--zappts-mauve);
+  border-right: 3px solid var(--zappts-mauve);
+  border-top: none;
+  border-bottom: none;
+  top: 0;
+  bottom: 0;
+}
+
+// Card end - bottom rounded only
+section.card-end::before {
+  border-radius: 0 0 20px 20px;
+  border-top: none;
+  top: 0;
+}
+
+// Card content padding
+section.card,
+section.card-single,
+section.card-start,
+section.card-middle,
+section.card-end {
+  padding: 160px 120px 120px calc(28% + 60px) !important;
+}
+
+section.card-middle,
+section.card-end {
+  padding: 80px 120px 120px calc(28% + 60px) !important;
+}
+
+// =============================================================================
+// LEFT NOTES STYLING
+// =============================================================================
+
+.left-notes {
+  position: absolute !important;
+  bottom: 40px !important;
+  left: 80px !important;
+  width: calc(28% - 120px) !important;
+  max-height: 200px !important;
+  z-index: 3 !important;
+  color: var(--zappts-subtext1) !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+
+  h2, h3 {
+    color: var(--zappts-mauve) !important;
+    font-size: 18px !important;
+    margin: 16px 0 8px 0 !important;
+  }
+
+  ul, ol {
+    margin: 8px 0 !important;
+    padding-left: 16px !important;
+  }
+
+  li {
+    margin-bottom: 4px !important;
+    font-size: 14px !important;
+    color: var(--zappts-subtext1) !important;
+  }
+
+  strong {
+    color: var(--zappts-green) !important;
+  }
+
+  em {
+    color: var(--zappts-peach) !important;
+  }
+
+  p {
+    margin-bottom: 8px !important;
+    font-size: 14px !important;
+    color: var(--zappts-subtext1) !important;
+  }
+
+  .sources {
+    margin-top: 16px !important;
+    font-size: 11px !important;
+    color: #ccc !important;
+    line-height: 1.3 !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin-right: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #9399b2 !important;
+      font-size: 11px !important;
+      font-weight: 600 !important;
+      margin: 0 0 4px 0 !important;
+    }
+
+    strong {
+      color: #aaa !important;
+      font-weight: 600 !important;
+      font-size: 11px !important;
+    }
+
+    ul, ol {
+      margin: 8px 0 !important;
+      padding-left: 16px !important;
+      list-style: none !important;
+    }
+
+    li {
+      margin: 8px 0 !important;
+      color: #ccc !important;
+      font-size: 10px !important;
+      line-height: 1.5 !important;
+      list-style-type: disc !important;
+      list-style-position: outside !important;
+      padding-left: 8px !important;
+
+      &:before {
+        display: none !important;
+      }
+    }
+
+    a {
+      color: #3fa9f5 !important;
+      text-decoration: none !important;
+      display: inline-block !important;
+      position: relative !important;
+      z-index: 10 !important;
+      font-weight: 500 !important;
+      padding: 2px 0 !important;
+      font-size: 10px !important;
+
+      &:hover {
+        color: #3fa9f5 !important;
+        background: var(--zappts-surface1) !important;
+        padding: 2px 4px !important;
+        border-radius: 4px !important;
+      }
+    }
+
+    p {
+      margin: 8px 0 !important;
+      color: #ccc !important;
+      font-size: 10px !important;
+    }
+  }
+}
+
+section.card-middle .left-notes,
+section.card-end .left-notes {
+  bottom: 40px !important;
+}
+
+// =============================================================================
+// SLIDE TITLE STYLING
+// =============================================================================
+
+.slide-title {
+  position: absolute !important;
+  top: 40px !important;
+  left: 80px !important;
+  width: calc(28% - 40px) !important;
+  z-index: 3 !important;
+  font-size: 28px !important;
+  font-weight: 600 !important;
+  color: var(--zappts-mauve) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: rgba(0, 0, 0, 0) !important;
+  line-height: 1.3 !important;
+}
+
+section.card-middle .slide-title,
+section.card-end .slide-title {
+  display: none !important;
+}
+
+// =============================================================================
+// CARD CONTENT STYLING
+// =============================================================================
+
+section.card h1,
+section.card-single h1,
+section.card-start h1,
+section.card-middle h1,
+section.card-end h1 {
+  color: var(--zappts-mauve);
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+  position: relative;
+  z-index: 2;
+}
+
+section.card h2,
+section.card-single h2,
+section.card-start h2,
+section.card-middle h2,
+section.card-end h2 {
+  color: var(--zappts-pink);
+  font-size: 32px;
+  font-weight: 600;
+  margin: 24px 0 16px 0;
+  border-bottom: 2px solid var(--zappts-mauve);
+  padding-bottom: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+section.card h3,
+section.card-single h3,
+section.card-start h3,
+section.card-middle h3,
+section.card-end h3 {
+  color: var(--zappts-yellow);
+  font-size: 24px;
+  font-weight: 500;
+  margin: 20px 0 12px 0;
+  position: relative;
+  z-index: 2;
+}
+
+section.card ul,
+section.card ol,
+section.card-single ul,
+section.card-single ol,
+section.card-start ul,
+section.card-start ol,
+section.card-middle ul,
+section.card-middle ol,
+section.card-end ul,
+section.card-end ol {
+  margin: 16px 0;
+  padding-left: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+section.card li,
+section.card-single li,
+section.card-start li,
+section.card-middle li,
+section.card-end li {
+  margin-bottom: 8px;
+  font-size: 22px;
+  color: var(--zappts-text);
+  line-height: 1.5;
+  position: relative;
+  z-index: 2;
+}
+
+section.card p,
+section.card-single p,
+section.card-start p,
+section.card-middle p,
+section.card-end p {
+  margin-bottom: 16px;
+  font-size: 22px;
+  color: var(--zappts-text);
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+}
+
+section.card strong,
+section.card-single strong,
+section.card-start strong,
+section.card-middle strong,
+section.card-end strong {
+  color: var(--zappts-green);
+  font-weight: 700;
+}
+
+section.card em,
+section.card-single em,
+section.card-start em,
+section.card-middle em,
+section.card-end em {
+  color: var(--zappts-peach);
+  font-style: italic;
+}
+
+section.card code,
+section.card-single code,
+section.card-start code,
+section.card-middle code,
+section.card-end code {
+  background: var(--zappts-mantle);
+  color: var(--zappts-yellow);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+  font-size: 20px;
+  border: 1px solid var(--zappts-surface1);
+}
+
+// =============================================================================
+// GENERAL SECTION STYLING
+// =============================================================================
+
+section h1 {
+  color: var(--zappts-mauve);
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+section h2 {
+  color: var(--zappts-pink);
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--zappts-mauve);
+  padding-bottom: 8px;
+}
+
+section h3 {
+  color: var(--zappts-yellow);
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+section ul,
+section ol {
+  margin: 16px 0;
+  padding-left: 20px;
+}
+
+section li {
+  margin-bottom: 8px;
+  font-size: 22px;
+  color: var(--zappts-text);
+}
+
+section strong {
+  color: var(--zappts-green);
+  font-weight: 700;
+}
+
+section em {
+  color: var(--zappts-peach);
+  font-style: italic;
+}
+
+section code {
+  background: var(--zappts-mantle);
+  color: var(--zappts-yellow);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+  font-size: 20px;
+  border: 1px solid var(--zappts-surface1);
+}
+
+section a {
+  color: var(--zappts-blue);
+  text-decoration: underline;
+  font-weight: 500;
+
+  &:hover {
+    color: var(--zappts-sky);
+    text-decoration: none;
+  }
+}
 
 // =============================================================================
 // ZAPPTS TITLE SLIDE CUSTOMIZATION
@@ -103,7 +584,112 @@ div#\:\$p > svg > foreignObject > section.title.title {
   }
 
   em {
-    color: var(--ctp-overlay1) !important;
+    color: var(--zappts-overlay1) !important;
     font-style: normal !important;
   }
+}
+
+// =============================================================================
+// TABLE STYLING
+// =============================================================================
+
+section table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: $table-margin !important;
+  background: $table-row-bg !important;
+  color: $table-text !important;
+  font-size: $table-font-size !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08) !important;
+  position: relative !important;
+  z-index: $z-index-card-content !important;
+}
+
+section th, section td {
+  border: $table-border-width solid $table-border-color !important;
+  padding: $table-padding !important;
+  text-align: left !important;
+}
+
+section th {
+  background: $table-header-bg !important;
+  color: $table-header-text !important;
+  font-weight: 700 !important;
+  font-size: $table-header-font-size !important;
+}
+
+section td {
+  background: $table-row-bg !important;
+  color: $table-text !important;
+}
+
+section tr:nth-child(even) td {
+  background: $table-row-alt-bg !important;
+}
+
+section table strong {
+  color: $zappts-green !important;
+}
+
+// Card-specific table styling for higher specificity
+section.card table,
+section.card-single table,
+section.card-start table,
+section.card-middle table,
+section.card-end table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: $table-margin !important;
+  background: $table-row-bg !important;
+  color: $table-text !important;
+  font-size: $table-font-size !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08) !important;
+  position: relative !important;
+  z-index: $z-index-card-content !important;
+}
+
+section.card th, section.card td,
+section.card-single th, section.card-single td,
+section.card-start th, section.card-start td,
+section.card-middle th, section.card-middle td,
+section.card-end th, section.card-end td {
+  border: $table-border-width solid $table-border-color !important;
+  padding: $table-padding !important;
+  text-align: left !important;
+}
+
+section.card th,
+section.card-single th,
+section.card-start th,
+section.card-middle th,
+section.card-end th {
+  background: $table-header-bg !important;
+  color: $table-header-text !important;
+  font-weight: 700 !important;
+  font-size: $table-header-font-size !important;
+}
+
+section.card td,
+section.card-single td,
+section.card-start td,
+section.card-middle td,
+section.card-end td {
+  background: $table-row-bg !important;
+  color: $table-text !important;
+}
+
+section.card tr:nth-child(even) td,
+section.card-single tr:nth-child(even) td,
+section.card-start tr:nth-child(even) td,
+section.card-middle tr:nth-child(even) td,
+section.card-end tr:nth-child(even) td {
+  background: $table-row-alt-bg !important;
+}
+
+section.card table strong,
+section.card-single table strong,
+section.card-start table strong,
+section.card-middle table strong,
+section.card-end table strong {
+  color: $zappts-green !important;
 } 

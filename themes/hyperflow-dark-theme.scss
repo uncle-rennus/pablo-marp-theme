@@ -1,46 +1,53 @@
 /*!
- * @theme card-theme
+ * @theme hyperflow-dark-theme
  * @auto-scaling true
  * @size 16:9 1280px 720px
  */
+
+// Hyperflow Brand Colors
+$hyperflow-deep-purple: #24135f;
+$hyperflow-light-purple: #e4d8fe;
+$hyperflow-white: #F5F5F5;
+$hyperflow-light-gray: #E0E0E0;
+$hyperflow-vibrant-blue: #1a0e4e;
 
 // =============================================================================
 // THEME CONFIGURATION VARIABLES
 // =============================================================================
 
 // Color Palette - Catppuccin Mocha (configurable)
-$ctp-base: #1e1e2e !default;
-$ctp-mantle: #181825 !default;
-$ctp-crust: #11111b !default;
-$ctp-surface0: #313244 !default;
+$ctp-base: $hyperflow-deep-purple !default;
+$ctp-mantle: $hyperflow-deep-purple !default;
+$ctp-crust: $hyperflow-deep-purple !default;
+$ctp-surface0: $hyperflow-light-purple !default;
 $ctp-surface1: #45475a !default;
 $ctp-surface2: #585b70 !default;
 $ctp-overlay0: #6c7086 !default;
 $ctp-overlay1: #7f849c !default;
 $ctp-overlay2: #9399b2 !default;
-$ctp-subtext0: #a6adc8 !default;
-$ctp-subtext1: #bac2de !default;
-$ctp-text: #cdd6f4 !default;
+$ctp-subtext0: $hyperflow-white !default;
+$ctp-subtext1: $hyperflow-white !default;
+$ctp-text: #333333 !default;
 $ctp-lavender: #b4befe !default;
-$ctp-blue: #89b4fa !default;
-$ctp-sapphire: #74c7ec !default;
-$ctp-sky: #89dceb !default;
-$ctp-teal: #94e2d5 !default;
-$ctp-green: #a6e3a1 !default;
-$ctp-yellow: #f9e2af !default;
-$ctp-peach: #fab387 !default;
-$ctp-maroon: #eba0ac !default;
-$ctp-red: #f38ba8 !default;
-$ctp-mauve: #cba6f7 !default;
-$ctp-pink: #f5c2e7 !default;
-$ctp-flamingo: #f2cdcd !default;
-$ctp-rosewater: #f5e0dc !default;
+$ctp-blue: $hyperflow-vibrant-blue !default;
+$ctp-sapphire: $hyperflow-vibrant-blue !default;
+$ctp-sky: $hyperflow-vibrant-blue !default;
+$ctp-teal: $hyperflow-vibrant-blue !default;
+$ctp-green: $hyperflow-vibrant-blue !default;
+$ctp-yellow: $hyperflow-vibrant-blue !default;
+$ctp-peach: $hyperflow-vibrant-blue !default;
+$ctp-maroon: $hyperflow-vibrant-blue !default;
+$ctp-red: $hyperflow-vibrant-blue !default;
+$ctp-mauve: $hyperflow-vibrant-blue !default;
+$ctp-pink: $hyperflow-vibrant-blue !default;
+$ctp-flamingo: $hyperflow-vibrant-blue !default;
+$ctp-rosewater: $hyperflow-vibrant-blue !default;
 
 // Theme-specific colors
-$cover-bg: $ctp-crust !default;
-$cover-text: $ctp-text !default;
-$cover-accent: $ctp-mauve !default;
-$cover-subtitle: $ctp-subtext1 !default;
+$cover-bg: $hyperflow-deep-purple !default;
+$cover-text: $hyperflow-white !default;
+$cover-accent: $hyperflow-light-gray !default;
+$cover-subtitle: $hyperflow-light-gray !default;
 
 // Typography - Match preview.html font sizes
 $font-family: 'Inter', 'Segoe UI', system-ui, sans-serif !default;
@@ -297,7 +304,7 @@ section.card-end {
     padding-top: 24px !important;
     border-top: 2px solid var(--ctp-surface1) !important;
     font-size: $font-size-sources !important;
-    color: #CCCCCC !important;
+    color: $hyperflow-white !important;
     line-height: 1.3 !important;
     background: transparent !important;
     padding: 16px !important;
@@ -327,13 +334,13 @@ section.card-end {
 
     li {
       margin: 8px 0 !important;
-      color: #CCCCCC !important;
+      color: $hyperflow-white !important;
       font-size: $font-size-sources-small !important;
       line-height: 1.5 !important;
 
       &:before {
         content: "• " !important;
-        color: var(--ctp-mauve) !important;
+        color: #7f849c !important;
         font-weight: bold !important;
       }
     }
@@ -360,7 +367,7 @@ section.card-end {
 
     p {
       margin: 8px 0 !important;
-      color: #CCCCCC !important;
+      color: $hyperflow-white !important;
       font-size: $font-size-sources-small !important;
     }
   }

@@ -5,10 +5,5 @@
  */
 
 // Import configuration and use light theme preset
-@import 'card-theme.config';
-
-// Apply light theme preset
-@include light-theme;
-
-// Import the main theme
-@import 'card-theme'; 
+@use 'card-theme.config' as *;
+@use 'card-theme'; 

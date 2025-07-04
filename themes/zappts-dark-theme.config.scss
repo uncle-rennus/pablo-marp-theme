@@ -1,0 +1,273 @@
+// =============================================================================
+// ZAPPTS DARK THEME CONFIGURATION
+// =============================================================================
+// This file contains all variables and configuration for the zappts-dark-theme
+// Modify these values to customize the theme appearance
+
+// =============================================================================
+// BRAND COLORS - Zappts Dark Theme
+// =============================================================================
+
+// Base colors (Zappts brand palette)
+$zappts-base: #121326 !default;              // Dark navy - main slide background
+$zappts-mantle: #0f1120 !default;            // Even darker navy for contrast
+$zappts-crust: #39437b !default;             // Darkest navy for deep sections
+$zappts-surface0: #0A85CC !default;          // Lighter blue for content cards
+$zappts-surface1: #1a93d4 !default;          // Card hover state
+$zappts-surface2: #2aa1dc !default;          // Interactive elements
+
+// Text colors
+$zappts-overlay0: #888888 !default;          // Mid-gray for supporting text
+$zappts-overlay1: #999999 !default;          // Slightly lighter gray
+$zappts-overlay2: #aaaaaa !default;          // Even lighter gray
+$zappts-subtext0: #cccccc !default;          // Light gray for secondary text
+$zappts-subtext1: #e0e0e0 !default;          // Very light gray for subtitles
+$zappts-text: #FFFFFF !default;              // White for main text
+
+// Accent colors
+$zappts-lavender: #FFFFFF !default;          // White for accents
+$zappts-blue: #FFFFFF !default;              // White for links (accessibility)
+$zappts-sapphire: #F0F0F0 !default;          // Light gray for link hover
+$zappts-sky: #e0e0e0 !default;               // Light gray for link active
+$zappts-teal: #0A85CC !default;              // Keep blue for card backgrounds
+$zappts-green: #F0F0F0 !default;             // Very light gray for content
+$zappts-yellow: #F0F0F0 !default;            // Very light gray alternative
+$zappts-peach: #F0F0F0 !default;             // Very light gray alternative
+$zappts-maroon: #888888 !default;            // Supporting text color
+$zappts-red: #888888 !default;               // Supporting text color
+$zappts-mauve: #FFFFFF !default;             // White for highlights
+$zappts-pink: #F0F0F0 !default;              // Very light gray
+$zappts-flamingo: #F0F0F0 !default;          // Very light gray
+$zappts-rosewater: #F0F0F0 !default;         // Very light gray
+
+// =============================================================================
+// THEME-SPECIFIC COLORS
+// =============================================================================
+
+// Title slide colors
+$cover-bg: #121326 !default;              // Dark navy for title slide
+$cover-text: #FFFFFF !default;            // White text for title
+$cover-accent: #0076BD !default;          // Zappts blue for horizontal strip
+$cover-subtitle: #F0F0F0 !default;        // Light gray for subtitles
+
+// =============================================================================
+// LAYOUT DIMENSIONS
+// =============================================================================
+
+// Slide dimensions
+$slide-width: 1280px !default;
+$slide-height: 720px !default;
+
+// Card layout
+$card-left-margin: 28% !default;          // Left sidebar width
+$card-padding-top: 160px !default;        // Top padding for cards
+$card-padding-bottom: 120px !default;     // Bottom padding for cards
+$card-padding-right: 120px !default;      // Right padding for cards
+$card-padding-left: calc(28% + 60px) !default; // Left padding for cards
+
+// Card middle/end adjustments
+$card-middle-padding-top: 80px !default;  // Reduced top padding for middle cards
+
+// =============================================================================
+// TYPOGRAPHY
+// =============================================================================
+
+// Base font settings
+$base-font-family: "Inter", "Segoe UI", system-ui, sans-serif !default;
+$base-font-size: 24px !default;
+$base-line-height: 1.6 !default;
+
+// Heading sizes
+$h1-font-size: 48px !default;
+$h2-font-size: 32px !default;
+$h3-font-size: 24px !default;
+
+// Card heading sizes
+$card-h1-font-size: 40px !default;
+$card-h2-font-size: 32px !default;
+$card-h3-font-size: 24px !default;
+
+// Title slide heading sizes
+$title-h1-font-size: 2.8em !default;
+$title-h3-font-size: 1.4em !default;
+
+// =============================================================================
+// TABLE STYLING
+// =============================================================================
+
+// Table colors
+$table-header-bg: $zappts-surface0 !default;  // Light blue for headers
+$table-header-text: $zappts-mauve !default;   // White text for headers
+$table-row-bg: $zappts-mantle !default;       // Dark navy for regular rows
+$table-row-alt-bg: $zappts-crust !default;    // Darkest navy for alternating rows
+$table-border-color: $zappts-surface1 !default; // Light blue for borders
+$table-text: $zappts-text !default;           // White text for table content
+
+// Table dimensions
+$table-font-size: 20px !default;
+$table-header-font-size: 22px !default;
+$table-padding: 12px 18px !default;
+$table-border-width: 1.5px !default;
+$table-margin: 24px 0 !default;
+
+// =============================================================================
+// LEFT NOTES STYLING
+// =============================================================================
+
+// Left notes colors
+$left-notes-text: $zappts-subtext1 !default;  // Light gray for notes text
+$left-notes-heading: $zappts-mauve !default;  // White for headings
+$left-notes-strong: $zappts-green !default;   // Light gray for strong text
+$left-notes-em: $zappts-peach !default;       // Light gray for emphasized text
+
+// Left notes dimensions
+$left-notes-width: calc(28% - 120px) !default;
+$left-notes-max-height: 200px !default;
+$left-notes-font-size: 16px !default;
+$left-notes-padding: 0 !default;
+$left-notes-margin: 0 !default;
+
+// Sources styling
+$sources-font-size: 11px !default;
+$sources-text-color: #ccc !default;
+$sources-heading-color: #9399b2 !default;
+$sources-link-color: #3fa9f5 !default;
+$sources-strong-color: #aaa !default;
+
+// =============================================================================
+// SLIDE TITLE STYLING
+// =============================================================================
+
+// Slide title colors
+$slide-title-color: $zappts-mauve !default;   // White for slide titles
+$slide-title-bg: transparent !default;     // Transparent background
+
+// Slide title dimensions
+$slide-title-font-size: 28px !default;
+$slide-title-width: calc(28% - 40px) !default;
+
+// =============================================================================
+// CARD STYLING
+// =============================================================================
+
+// Card background
+$card-bg: $zappts-surface0 !default;          // Light blue for card background
+$card-border-color: $zappts-mauve !default;   // White for card borders
+$card-border-width: 3px !default;
+$card-border-radius: 20px !default;
+$card-shadow: 0 12px 40px rgba(17, 17, 27, 0.4) !default;
+
+// Card positioning
+$card-top: 120px !default;
+$card-right: 80px !default;
+$card-bottom: 80px !default;
+$card-left: calc(28% + 20px) !default;
+
+// Card middle/end adjustments
+$card-middle-top: 40px !default;
+
+// =============================================================================
+// CODE STYLING
+// =============================================================================
+
+// Code block colors
+$code-bg: $zappts-mantle !default;            // Dark navy for code background
+$code-text: $zappts-yellow !default;          // Light gray for code text
+$code-border: $zappts-surface1 !default;      // Light blue for code borders
+
+// Code dimensions
+$code-padding: 4px 8px !default;
+$code-border-radius: 6px !default;
+$code-font-size: 20px !default;
+$code-font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace !default;
+
+// =============================================================================
+// LINK STYLING
+// =============================================================================
+
+// Link colors
+$link-color: $zappts-blue !default;           // White for links
+$link-hover-color: $zappts-sky !default;      // Light gray for link hover
+$link-decoration: underline !default;      // Underlined links
+$link-hover-decoration: none !default;     // No underline on hover
+
+// =============================================================================
+// SPACING
+// =============================================================================
+
+// Margins
+$h1-margin-bottom: 20px !default;
+$h2-margin-bottom: 16px !default;
+$h3-margin-bottom: 12px !default;
+$p-margin-bottom: 16px !default;
+$ul-margin: 16px 0 !default;
+$li-margin-bottom: 8px !default;
+
+// Card content margins
+$card-h1-margin: 0 0 24px 0 !default;
+$card-h2-margin: 24px 0 16px 0 !default;
+$card-h3-margin: 20px 0 12px 0 !default;
+$card-p-margin-bottom: 16px !default;
+$card-ul-margin: 16px 0 !default;
+$card-li-margin-bottom: 8px !default;
+
+// =============================================================================
+// Z-INDEX LAYERS
+// =============================================================================
+
+$z-index-card-bg: 1 !default;              // Card background
+$z-index-card-content: 2 !default;         // Card content
+$z-index-left-notes: 3 !default;           // Left notes
+$z-index-sources-links: 10 !default;       // Sources links
+
+// =============================================================================
+// ANIMATIONS & TRANSITIONS
+// =============================================================================
+
+$transition-duration: 0.2s !default;
+$transition-timing: linear !default;
+
+// =============================================================================
+// EXPORT ALL VARIABLES
+// =============================================================================
+
+// This allows other files to import and use these variables
+:export {
+  // Base colors
+  zappts-base: $zappts-base;
+  zappts-mantle: $zappts-mantle;
+  zappts-crust: $zappts-crust;
+  zappts-surface0: $zappts-surface0;
+  zappts-surface1: $zappts-surface1;
+  zappts-surface2: $zappts-surface2;
+  
+  // Text colors
+  zappts-overlay0: $zappts-overlay0;
+  zappts-overlay1: $zappts-overlay1;
+  zappts-overlay2: $zappts-overlay2;
+  zappts-subtext0: $zappts-subtext0;
+  zappts-subtext1: $zappts-subtext1;
+  zappts-text: $zappts-text;
+  
+  // Accent colors
+  zappts-lavender: $zappts-lavender;
+  zappts-blue: $zappts-blue;
+  zappts-sapphire: $zappts-sapphire;
+  zappts-sky: $zappts-sky;
+  zappts-teal: $zappts-teal;
+  zappts-green: $zappts-green;
+  zappts-yellow: $zappts-yellow;
+  zappts-peach: $zappts-peach;
+  zappts-maroon: $zappts-maroon;
+  zappts-red: $zappts-red;
+  zappts-mauve: $zappts-mauve;
+  zappts-pink: $zappts-pink;
+  zappts-flamingo: $zappts-flamingo;
+  zappts-rosewater: $zappts-rosewater;
+  
+  // Theme colors
+  cover-bg: $cover-bg;
+  cover-text: $cover-text;
+  cover-accent: $cover-accent;
+  cover-subtitle: $cover-subtitle;
+} 
