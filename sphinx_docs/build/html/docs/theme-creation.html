@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Theme Creation and Development Guide &#8212; Pablo Presentation System 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Zappts Theme Reference" href="zappts-theme-reference.html" />
+    <link rel="prev" title="Troubleshooting" href="troubleshooting.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="theme-creation-and-development-guide">
+<h1>Theme Creation and Development Guide<a class="headerlink" href="#theme-creation-and-development-guide" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>The Pablo presentation system includes several professionally designed themes, including the flagship <strong>Zappts Theme</strong> - an authentic corporate theme extracted from PowerPoint templates with precise brand identity.</p>
+</section>
+<section id="available-themes">
+<h2>Available Themes<a class="headerlink" href="#available-themes" title="Link to this heading">¶</a></h2>
+<section id="zappts-theme-professional-corporate">
+<h3>Zappts Theme - Professional Corporate<a class="headerlink" href="#zappts-theme-professional-corporate" title="Link to this heading">¶</a></h3>
+<p>The <strong>Zappts Theme</strong> is a professional business presentation theme with authentic brand identity:</p>
+<p><strong>Brand Colors (Extracted from PowerPoint theme):</strong></p>
+<ul class="simple">
+<li><p><strong>Zappts Blue:</strong> <code class="docutils literal notranslate"><span class="pre">#4285F4</span></code> - Main brand color</p></li>
+<li><p><strong>Dark Gray:</strong> <code class="docutils literal notranslate"><span class="pre">#212121</span></code> - Primary text</p></li>
+<li><p><strong>Orange:</strong> <code class="docutils literal notranslate"><span class="pre">#FFAB40</span></code> - Accent highlights</p></li>
+<li><p><strong>Teal:</strong> <code class="docutils literal notranslate"><span class="pre">#0097A7</span></code> - Links/secondary</p></li>
+<li><p><strong>White/Gray backgrounds:</strong> <code class="docutils literal notranslate"><span class="pre">#FFFFFF</span></code>, <code class="docutils literal notranslate"><span class="pre">#EEEEEE</span></code>, <code class="docutils literal notranslate"><span class="pre">#F3F3F3</span></code></p></li>
+</ul>
+<p><strong>Typography:</strong> Montserrat font family with hierarchical sizing</p>
+<p><strong>Image Assets:</strong> Professional background images and logos positioned authentically</p>
+</section>
+<section id="other-available-themes">
+<h3>Other Available Themes<a class="headerlink" href="#other-available-themes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">example-new-theme</span></code>: Custom brand colors (Orange, Navy, Turquoise)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">card-theme</span></code>: Card-based layout with modern colors</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">light-theme</span></code>: Minimal light color scheme</p></li>
+</ul>
+</section>
+</section>
+<section id="zappts-theme-slide-types">
+<h2>Zappts Theme Slide Types<a class="headerlink" href="#zappts-theme-slide-types" title="Link to this heading">¶</a></h2>
+<p>The Zappts theme supports 8 different slide layouts optimized for business presentations:</p>
+<section id="title-proposal-slide">
+<h3>1. Title/Proposal Slide<a class="headerlink" href="#title-proposal-slide" title="Link to this heading">¶</a></h3>
+<p>Perfect for proposal cover slides with client branding.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&lt;!-- _class: proposal --&gt;
+
+&lt;div class=&quot;proposal-info&quot;&gt;
+Proposta N° 2024-001&lt;br&gt;
+Data: 03/09/2025&lt;br&gt;
+Autores: Equipe Técnica
+&lt;/div&gt;
+
+&lt;div class=&quot;proposal-title&quot;&gt;
+Proposta para a área comercial do
+&lt;/div&gt;
+
+&lt;img class=&quot;customer-logo&quot; src=&quot;client-logo.png&quot; alt=&quot;Client Logo&quot;&gt;
+</pre></div>
+</div>
+<p><strong>Key Features:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.proposal-info</span></code>: Small, muted text for proposal details (top-right)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.proposal-title</span></code>: Large, centered title in brand color</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.customer-logo</span></code>: Placeholder sized exactly 6.45cm × 1.40cm</p></li>
+<li><p>Full background image with blue overlay</p></li>
+<li><p>Centered Zappts logo</p></li>
+</ul>
+</section>
+<section id="section-title-slide">
+<h3>2. Section Title Slide<a class="headerlink" href="#section-title-slide" title="Link to this heading">¶</a></h3>
+<p>Large, centered titles for major section breaks.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&lt;!-- _class: section-title --&gt;
+
+<span class="gh"># Major Section Title</span>
+</pre></div>
+</div>
+</section>
+<section id="simple-title-content-slide">
+<h3>3. Simple Title &amp; Content Slide<a class="headerlink" href="#simple-title-content-slide" title="Link to this heading">¶</a></h3>
+<p>Standard content slide with title and body text.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&lt;!-- _class: title-content --&gt;
+
+<span class="gh"># Slide Title</span>
+
+&lt;div class=&quot;content&quot;&gt;
+Your content here with optimal line length and readable typography.
+&lt;/div&gt;
+</pre></div>
+</div>
+</section>
+<section id="one-column-with-emphasis">
+<h3>4. One Column with Emphasis<a class="headerlink" href="#one-column-with-emphasis" title="Link to this heading">¶</a></h3>
+<p>Title with body text including a highlighted/emphasized paragraph.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&lt;!-- _class: onecol --&gt;
+
+<span class="gh"># Slide Title</span>
+
+Regular paragraph text here.
+
+&lt;div class=&quot;para--emphasis&quot;&gt;
+<span class="gs">**Important highlight:**</span> This paragraph gets special styling with background and accent border.
+&lt;/div&gt;
+
+More regular content.
+</pre></div>
+</div>
+</section>
+<section id="two-columns-layout">
+<h3>5. Two Columns Layout<a class="headerlink" href="#two-columns-layout" title="Link to this heading">¶</a></h3>
+<p>Side-by-side content comparison or complementary information.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&lt;!-- _class: twocol --&gt;
+
+<span class="gh"># Comparative Analysis</span>
+
+&lt;div class=&quot;columns&quot;&gt;
+&lt;div class=&quot;col--left&quot;&gt;
+
+<span class="gu">### Left Column</span>
+<span class="k">-</span><span class="w"> </span>Point one
+<span class="k">-</span><span class="w"> </span>Point two
+<span class="k">-</span><span class="w"> </span>Point three
+
+&lt;/div&gt;
+&lt;div class=&quot;col--right&quot;&gt;
+
+<span class="gu">### Right Column  </span>
+<span class="k">-</span><span class="w"> </span>Counter-point one
+<span class="k">-</span><span class="w"> </span>Counter-point two
+<span class="k">-</span><span class="w"> </span>Counter-point three
+
+&lt;/div&gt;
+&lt;/div&gt;
+</pre></div>
+</div>
+</section>
+<section id="main-topic-title">
+<h3>6. Main Topic Title<a class="headerlink" href="#main-topic-title" title="Link to this heading">¶</a></h3>
+<p>Standalone topic announcement with optional subtitle.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&lt;!-- _class: main-topic --&gt;
+
+<span class="gh"># Major Topic Announcement</span>
+
+&lt;div class=&quot;subtitle&quot;&gt;
+Optional subtitle or description
+&lt;/div&gt;
+</pre></div>
+</div>
+</section>
+<section id="title-subtitle-right-support-box">
+<h3>7. Title + Subtitle + Right Support Box<a class="headerlink" href="#title-subtitle-right-support-box" title="Link to this heading">¶</a></h3>
+<p>Content with supporting information in a styled sidebar.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&lt;!-- _class: title-sub-right --&gt;
+
+&lt;div class=&quot;left-content&quot;&gt;
+
+<span class="gh"># Primary Title</span>
+
+&lt;div class=&quot;subtitle&quot;&gt;
+Brief subtitle or context
+&lt;/div&gt;
+
+Main content goes here...
+
+&lt;/div&gt;
+
+&lt;div class=&quot;support-box&quot;&gt;
+
+<span class="gu">### Supporting Info</span>
+
+<span class="k">-</span><span class="w"> </span>Additional details
+<span class="k">-</span><span class="w"> </span>Key metrics  
+<span class="k">-</span><span class="w"> </span>Reference material
+
+&lt;/div&gt;
+</pre></div>
+</div>
+</section>
+<section id="title-subtitle-right-image-text-block">
+<h3>8. Title + Subtitle + Right Image/Text Block<a class="headerlink" href="#title-subtitle-right-image-text-block" title="Link to this heading">¶</a></h3>
+<p>Similar to above but optimized for images with supporting text.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>&lt;!-- _class: title-sub-right-block --&gt;
+
+&lt;div class=&quot;left-content&quot;&gt;
+
+<span class="gh"># Primary Title</span>
+
+&lt;div class=&quot;subtitle&quot;&gt;
+Brief subtitle or context
+&lt;/div&gt;
+
+Main content goes here...
+
+&lt;/div&gt;
+
+&lt;div class=&quot;support-block&quot;&gt;
+
+&lt;img class=&quot;support-image&quot; src=&quot;diagram.png&quot; alt=&quot;Supporting diagram&quot;&gt;
+
+&lt;div class=&quot;support-text&quot;&gt;
+<span class="gs">**Caption or explanation**</span> for the image above.
+&lt;/div&gt;
+
+&lt;/div&gt;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="theme-development-workflow">
+<h2>Theme Development Workflow<a class="headerlink" href="#theme-development-workflow" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">example-new-theme.scss</span></code> to <code class="docutils literal notranslate"><span class="pre">build-theme.js</span></code> configuration</p></li>
+<li><p>Successfully compiled SCSS to CSS using the build system</p></li>
+<li><p>Generated <code class="docutils literal notranslate"><span class="pre">output/themes/example-new-theme.css</span></code> (5,263 bytes)</p></li>
+</ul>
+</section>
+<section id="created-demo-presentation">
+<h2>3. Created Demo Presentation<a class="headerlink" href="#created-demo-presentation" title="Link to this heading">¶</a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">example-new-theme-demo.md</span></code></p>
+<ul class="simple">
+<li><p>7 slides demonstrating theme features</p></li>
+<li><p>Title slide with gradient background</p></li>
+<li><p>Content slides showing typography hierarchy</p></li>
+<li><p>Code examples and tables</p></li>
+<li><p>Step-by-step theme creation guide</p></li>
+<li><p>Resource references</p></li>
+</ul>
+</section>
+<section id="built-and-tested-theme">
+<h2>4. Built and Tested Theme<a class="headerlink" href="#built-and-tested-theme" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Successfully compiled presentation to HTML (<code class="docutils literal notranslate"><span class="pre">example-new-theme-demo.html</span></code>)</p></li>
+<li><p>Verified theme rendering works correctly</p></li>
+<li><p>All theme elements display properly</p></li>
+</ul>
+</section>
+<section id="updated-documentation">
+<h2>5. Updated Documentation<a class="headerlink" href="#updated-documentation" title="Link to this heading">¶</a></h2>
+<p><strong>Enhanced <a class="reference external" href="http://WARP.md">WARP.md</a> with comprehensive theme creation section:</strong></p>
+<ul class="simple">
+<li><p>Step-by-step theme creation process</p></li>
+<li><p>Theme structure guidelines</p></li>
+<li><p>Required Marpit compatibility elements</p></li>
+<li><p>Recommended features checklist</p></li>
+<li><p>Complete workflow from SCSS to final presentation</p></li>
+<li><p>Reference to example theme template</p></li>
+</ul>
+</section>
+<section id="files-created-modified">
+<h2>Files Created/Modified<a class="headerlink" href="#files-created-modified" title="Link to this heading">¶</a></h2>
+<section id="new-files">
+<h3>New Files:<a class="headerlink" href="#new-files" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">themes/example-new-theme.scss</span></code> - Complete theme template</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">example-new-theme-demo.md</span></code> - Demo presentation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">example-new-theme-demo.html</span></code> - Compiled HTML output</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output/themes/example-new-theme.css</span></code> - Compiled CSS theme</p></li>
+</ol>
+</section>
+<section id="modified-files">
+<h3>Modified Files:<a class="headerlink" href="#modified-files" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">build-theme.js</span></code> - Added new theme to build list</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WARP.md</span></code> - Enhanced with theme creation documentation</p></li>
+</ol>
+</section>
+</section>
+<section id="theme-creation-workflow-summary">
+<h2>Theme Creation Workflow Summary<a class="headerlink" href="#theme-creation-workflow-summary" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Create theme file</span>
+vim<span class="w"> </span>themes/your-theme-name.scss
+
+<span class="c1"># 2. Add to build configuration</span>
+<span class="c1"># Edit build-theme.js: add &#39;your-theme-name.scss&#39; to themeFiles array</span>
+
+<span class="c1"># 3. Compile theme</span>
+node<span class="w"> </span>build-theme.js
+
+<span class="c1"># 4. Create presentation using theme</span>
+<span class="c1"># Add to frontmatter: theme: your-theme-name</span>
+
+<span class="c1"># 5. Build presentation</span>
+npx<span class="w"> </span>@marp-team/marp-cli<span class="w"> </span>presentation.md<span class="w"> </span>--theme-set<span class="w"> </span>output/themes<span class="w"> </span>--output<span class="w"> </span>presentation.html
+</pre></div>
+</div>
+</section>
+<section id="theme-template-features">
+<h2>Theme Template Features<a class="headerlink" href="#theme-template-features" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">example-new-theme.scss</span></code> serves as a comprehensive template showing:</p>
+<ul class="simple">
+<li><p><strong>Color Management:</strong> SCSS variables + CSS custom properties</p></li>
+<li><p><strong>Typography:</strong> Font family, sizing, and hierarchy</p></li>
+<li><p><strong>Layout:</strong> Proper slide dimensions and spacing</p></li>
+<li><p><strong>Visual Elements:</strong> Gradients, borders, shadows</p></li>
+<li><p><strong>Component Styling:</strong> Tables, code blocks, lists, blockquotes</p></li>
+<li><p><strong>Slide Classes:</strong> Support for all card-based layouts</p></li>
+<li><p><strong>Accessibility:</strong> Proper contrast and readable typography</p></li>
+</ul>
+</section>
+<section id="next-steps-for-theme-development">
+<h2>Next Steps for Theme Development<a class="headerlink" href="#next-steps-for-theme-development" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Copy Template:</strong> Use <code class="docutils literal notranslate"><span class="pre">example-new-theme.scss</span></code> as starting point</p></li>
+<li><p><strong>Customize Colors:</strong> Modify brand color variables</p></li>
+<li><p><strong>Adjust Typography:</strong> Change fonts and sizing</p></li>
+<li><p><strong>Test Thoroughly:</strong> Build presentations to verify styling</p></li>
+<li><p><strong>Document Changes:</strong> Update theme-specific documentation</p></li>
+</ol>
+<p>This demonstration provides a complete, working example of the Pablo theme creation system in action.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Pablo Presentation System</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Theme Development</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Theme Creation and Development Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#available-themes">Available Themes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zappts-theme-slide-types">Zappts Theme Slide Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#theme-development-workflow">Theme Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#created-demo-presentation">3. Created Demo Presentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#built-and-tested-theme">4. Built and Tested Theme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#updated-documentation">5. Updated Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#files-created-modified">Files Created/Modified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#theme-creation-workflow-summary">Theme Creation Workflow Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#theme-template-features">Theme Template Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps-for-theme-development">Next Steps for Theme Development</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="zappts-theme-reference.html">Zappts Theme Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="table-colors-reference.html">Table Colors Reference - Zappts Dark Theme</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developer-guide.html">WARP.md</a></li>
+<li class="toctree-l1"><a class="reference internal" href="preprocessor-guide.html">Preprocessor Systems Guide</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="troubleshooting.html" title="previous chapter">Troubleshooting</a></li>
+      <li>Next: <a href="zappts-theme-reference.html" title="next chapter">Zappts Theme Reference</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Pablo Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/docs/theme-creation.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

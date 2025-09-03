@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Configuration &#8212; Pablo Presentation System 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Troubleshooting" href="troubleshooting.html" />
+    <link rel="prev" title="Getting Started" href="getting-started.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h1>
+<p>Pablo uses several configuration files to control different aspects of the presentation system.</p>
+<section id="preprocessor-configuration-pablo-config-js">
+<h2>Preprocessor Configuration (<code class="docutils literal notranslate"><span class="pre">pablo.config.js</span></code>)<a class="headerlink" href="#preprocessor-configuration-pablo-config-js" title="Link to this heading">¶</a></h2>
+<p>Controls the slide generation algorithm:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">maxLinesPerCard</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w">        </span><span class="c1">// Maximum lines per slide</span>
+<span class="w">  </span><span class="nx">maxColumnsPerSlide</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w">      </span><span class="c1">// Maximum columns for grid layouts</span>
+<span class="w">  </span><span class="nx">maxRowsPerSlide</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span><span class="w">        </span><span class="c1">// Maximum rows for grid layouts</span>
+<span class="w">  </span><span class="nx">charsPerLine</span><span class="o">:</span><span class="w"> </span><span class="mf">80</span><span class="p">,</span><span class="w">           </span><span class="c1">// Characters per line for height estimation</span>
+<span class="w">  </span><span class="nx">themes</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="w">                   </span><span class="c1">// Available themes</span>
+<span class="w">    </span><span class="s1">&#39;card-theme&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;custom-theme&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="s1">&#39;light-theme&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;zappts-dark-theme&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;hyperflow-dark-theme&#39;</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<section id="key-parameters">
+<h3>Key Parameters:<a class="headerlink" href="#key-parameters" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>maxLinesPerCard</strong>: Controls when content gets split into multiple slides</p></li>
+<li><p><strong>charsPerLine</strong>: Used for height estimation calculations</p></li>
+<li><p><strong>themes</strong>: List of available theme names for validation</p></li>
+</ul>
+</section>
+</section>
+<section id="marp-configuration-marp-config-js">
+<h2>Marp Configuration (<code class="docutils literal notranslate"><span class="pre">marp.config.js</span></code>)<a class="headerlink" href="#marp-configuration-marp-config-js" title="Link to this heading">¶</a></h2>
+<p>Controls Marp behavior:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">html</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">allowLocalFiles</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">themeSet</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;./themes&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">markdown</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">breaks</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">html</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">linkify</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">typographer</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">gfm</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<section id="key-settings">
+<h3>Key Settings:<a class="headerlink" href="#key-settings" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>html</strong>: Enable HTML processing in markdown</p></li>
+<li><p><strong>allowLocalFiles</strong>: Allow local file references</p></li>
+<li><p><strong>themeSet</strong>: Directory containing CSS theme files</p></li>
+<li><p><strong>markdown</strong>: Markdown-it configuration options</p></li>
+</ul>
+</section>
+</section>
+<section id="theme-configuration">
+<h2>Theme Configuration<a class="headerlink" href="#theme-configuration" title="Link to this heading">¶</a></h2>
+<section id="available-themes">
+<h3>Available Themes<a class="headerlink" href="#available-themes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>zappts-dark-theme</strong>: Corporate dark theme with blue branding</p></li>
+<li><p><strong>hyperflow-dark-theme</strong>: Modern technical presentation theme</p></li>
+<li><p><strong>card-theme</strong>: Card-based layout with Catppuccin colors</p></li>
+<li><p><strong>light-theme</strong>: Minimal light color scheme</p></li>
+<li><p><strong>custom-theme</strong>: Configurable base theme</p></li>
+</ul>
+</section>
+<section id="using-themes">
+<h3>Using Themes<a class="headerlink" href="#using-themes" title="Link to this heading">¶</a></h3>
+<p>Set the theme in your presentation frontmatter:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">marp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">theme</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">zappts-dark-theme</span>
+<span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16:9</span>
+<span class="nt">paginate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nn">---</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="file-naming-convention">
+<h2>File Naming Convention<a class="headerlink" href="#file-naming-convention" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Source files</strong>: <code class="docutils literal notranslate"><span class="pre">*.source.md</span></code> (original content)</p></li>
+<li><p><strong>Processed files</strong>: <code class="docutils literal notranslate"><span class="pre">*.md</span></code> (preprocessor output)</p></li>
+<li><p><strong>Final output</strong>: <code class="docutils literal notranslate"><span class="pre">output/*.html</span></code></p></li>
+<li><p><strong>Backups</strong>: <code class="docutils literal notranslate"><span class="pre">*.backup.timestamp</span></code></p></li>
+<li><p><strong>Temp files</strong>: <code class="docutils literal notranslate"><span class="pre">*.tmp.timestamp</span></code></p></li>
+</ul>
+<p>Example flow: <code class="docutils literal notranslate"><span class="pre">presentation.source.md</span></code> → <code class="docutils literal notranslate"><span class="pre">presentation.md</span></code> → <code class="docutils literal notranslate"><span class="pre">output/presentation.html</span></code></p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Pablo Presentation System</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preprocessor-configuration-pablo-config-js">Preprocessor Configuration (<code class="docutils literal notranslate"><span class="pre">pablo.config.js</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#marp-configuration-marp-config-js">Marp Configuration (<code class="docutils literal notranslate"><span class="pre">marp.config.js</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#theme-configuration">Theme Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-naming-convention">File Naming Convention</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Theme Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="theme-creation.html">Theme Creation Process Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="table-colors-reference.html">Table Colors Reference - Zappts Dark Theme</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developer-guide.html">WARP.md</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="getting-started.html" title="previous chapter">Getting Started</a></li>
+      <li>Next: <a href="troubleshooting.html" title="next chapter">Troubleshooting</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Pablo Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/docs/configuration.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

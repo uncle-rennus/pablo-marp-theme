@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Preprocessor Systems Guide &#8212; Pablo Presentation System 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="WARP.md" href="developer-guide.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="preprocessor-systems-guide">
+<h1>Preprocessor Systems Guide<a class="headerlink" href="#preprocessor-systems-guide" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>Pablo includes multiple preprocessor systems for different use cases:</p>
+<ol class="arabic simple">
+<li><p><strong>Current System</strong> (<code class="docutils literal notranslate"><span class="pre">src/preprocessor/</span></code>) - Production system used by main build</p></li>
+<li><p><strong>Enhanced System</strong> (<code class="docutils literal notranslate"><span class="pre">pablo-pro/</span></code>) - Next-generation preprocessor with advanced features</p></li>
+</ol>
+</section>
+<section id="current-preprocessor-system">
+<h2>Current Preprocessor System<a class="headerlink" href="#current-preprocessor-system" title="Link to this heading">¶</a></h2>
+<section id="architecture">
+<h3>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">¶</a></h3>
+<p>The current system uses a three-stage pipeline:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Source (.source.md) → Preprocessor → Marp → Post-processor → Final (.html)
+       ↓                ↓             ↓            ↓
+   Semantic        Chunked       Themed      Markdown-in-HTML
+   Blocks          Slides        HTML        Processed
+</pre></div>
+</div>
+</section>
+<section id="core-components">
+<h3>Core Components<a class="headerlink" href="#core-components" title="Link to this heading">¶</a></h3>
+<p><strong>PabloSlideGenerator</strong> (<code class="docutils literal notranslate"><span class="pre">src/preprocessor/slide-generator.js</span></code>):</p>
+<ul class="simple">
+<li><p>Parses semantic blocks (headings, content sections, HTML elements)</p></li>
+<li><p>Chunks content into slides based on estimated height</p></li>
+<li><p>Extracts sources sections into HTML blocks</p></li>
+<li><p>Applies card classes for styling</p></li>
+</ul>
+<p><strong>Configuration</strong> (<code class="docutils literal notranslate"><span class="pre">pablo.config.js</span></code>):</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">maxLinesPerCard</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w">        </span><span class="c1">// Slide height limit</span>
+<span class="w">  </span><span class="nx">maxColumnsPerSlide</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w">      </span><span class="c1">// Grid layout limits</span>
+<span class="w">  </span><span class="nx">maxRowsPerSlide</span><span class="o">:</span><span class="w"> </span><span class="mf">10</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">charsPerLine</span><span class="o">:</span><span class="w"> </span><span class="mf">80</span><span class="p">,</span><span class="w">           </span><span class="c1">// Height calculation basis</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Full pipeline (recommended)</span>
+npm<span class="w"> </span>run<span class="w"> </span>build:presentation
+
+<span class="c1"># Individual stages</span>
+node<span class="w"> </span>build-presentation.js<span class="w">  </span><span class="c1"># Preprocessing</span>
+npx<span class="w"> </span>marp<span class="w"> </span>processed.md<span class="w">       </span><span class="c1"># Marp build</span>
+node<span class="w"> </span>postprocess-marp-html.js<span class="w"> </span>output.html<span class="w">  </span><span class="c1"># Post-processing</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="enhanced-preprocessor-system-pablo-pro">
+<h2>Enhanced Preprocessor System (pablo-pro)<a class="headerlink" href="#enhanced-preprocessor-system-pablo-pro" title="Link to this heading">¶</a></h2>
+<section id="id1">
+<h3>Architecture<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>The enhanced system provides a unified, modular architecture:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Input → Content Optimization → Table Processing → Slide Generation → Output
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>Core Components<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<p><strong>Main Controller</strong> (<code class="docutils literal notranslate"><span class="pre">pablo-pro/src/core/preprocessor.js</span></code>):</p>
+<ul class="simple">
+<li><p>Orchestrates all preprocessing stages</p></li>
+<li><p>Manages configuration and processing modes</p></li>
+<li><p>Provides unified API</p></li>
+</ul>
+<p><strong>Processors</strong>:</p>
+<ul class="simple">
+<li><p><strong>ContentOptimizer</strong>: Text replacement and cleanup rules</p></li>
+<li><p><strong>IntelligentTableProcessor</strong>: Smart table splitting and optimization</p></li>
+<li><p><strong>SlideGenerator</strong>: Enhanced card-based slide generation</p></li>
+</ul>
+</section>
+<section id="processing-modes">
+<h3>Processing Modes<a class="headerlink" href="#processing-modes" title="Link to this heading">¶</a></h3>
+<section id="smart-mode-default">
+<h4>Smart Mode (Default)<a class="headerlink" href="#smart-mode-default" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>All features enabled with balanced settings</p></li>
+<li><p>Best for most presentations</p></li>
+<li><p>Combines table processing + slide generation + content optimization</p></li>
+</ul>
+</section>
+<section id="table-mode">
+<h4>Table Mode<a class="headerlink" href="#table-mode" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Focus on advanced table processing</p></li>
+<li><p>Minimal card splitting</p></li>
+<li><p>Optimizes tables for presentation display</p></li>
+</ul>
+</section>
+<section id="cards-mode">
+<h4>Cards Mode<a class="headerlink" href="#cards-mode" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Focus on card-based slide generation</p></li>
+<li><p>Basic table handling</p></li>
+<li><p>Emphasizes content flow and readability</p></li>
+</ul>
+</section>
+</section>
+<section id="configuration">
+<h3>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Enhanced config structure</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="nx">slides</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">maxLinesPerCard</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="nx">autoSplitting</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">tables</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">maxRowsPerSlide</span><span class="o">:</span><span class="w"> </span><span class="mf">6</span><span class="p">,</span><span class="w"> </span><span class="nx">maxColumnsPerSlide</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">contentOptimization</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">enabled</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">rules</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="kr">from</span><span class="o">:</span><span class="w"> </span><span class="sr">/LONG_COMPANY_NAME/g</span><span class="p">,</span><span class="w"> </span><span class="nx">to</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;SHORT_NAME&#39;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>Usage<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Smart processing (default)</span>
+pablo-pro<span class="w"> </span>input.md
+
+<span class="c1"># Table-focused processing</span>
+pablo-pro<span class="w"> </span>input.md<span class="w"> </span>--mode<span class="o">=</span>table<span class="w"> </span>--max-rows<span class="o">=</span><span class="m">4</span>
+
+<span class="c1"># Card-focused processing</span>
+pablo-pro<span class="w"> </span>input.md<span class="w"> </span>--mode<span class="o">=</span>cards<span class="w"> </span>--max-lines<span class="o">=</span><span class="m">15</span>
+
+<span class="c1"># Custom output with verbose stats</span>
+pablo-pro<span class="w"> </span>input.md<span class="w"> </span>--output<span class="o">=</span>result.md<span class="w"> </span>--verbose
+</pre></div>
+</div>
+</section>
+<section id="advanced-features">
+<h3>Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading">¶</a></h3>
+<p><strong>File Watching</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Development mode with file watching</span>
+pablo-pro<span class="w"> </span>input.md<span class="w"> </span>--watch
+</pre></div>
+</div>
+<p><strong>Batch Processing</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Process multiple files</span>
+pablo-pro<span class="w"> </span>*.md<span class="w"> </span>--batch<span class="w"> </span>--output-dir<span class="o">=</span>./processed
+</pre></div>
+</div>
+</section>
+</section>
+<section id="migration-guide">
+<h2>Migration Guide<a class="headerlink" href="#migration-guide" title="Link to this heading">¶</a></h2>
+<section id="from-current-to-enhanced-system">
+<h3>From Current to Enhanced System<a class="headerlink" href="#from-current-to-enhanced-system" title="Link to this heading">¶</a></h3>
+<p>The enhanced system is designed as a modern replacement for the current system:</p>
+<ol class="arabic simple">
+<li><p><strong>Similar API</strong>: Basic usage remains the same</p></li>
+<li><p><strong>Enhanced Features</strong>: Better table handling, content optimization</p></li>
+<li><p><strong>Modular Design</strong>: Easy to extend and customize</p></li>
+<li><p><strong>Performance</strong>: Streamlined and efficient processing</p></li>
+</ol>
+</section>
+<section id="integration-options">
+<h3>Integration Options<a class="headerlink" href="#integration-options" title="Link to this heading">¶</a></h3>
+<p><strong>Option 1: Gradual Migration</strong></p>
+<ul class="simple">
+<li><p>Use enhanced system for new presentations</p></li>
+<li><p>Keep current system for existing workflows</p></li>
+<li><p>Both systems can coexist</p></li>
+</ul>
+<p><strong>Option 2: Full Migration</strong></p>
+<ul class="simple">
+<li><p>Replace build scripts to use pablo-pro</p></li>
+<li><p>Update package.json scripts</p></li>
+<li><p>Test thoroughly with existing content</p></li>
+</ul>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">¶</a></h2>
+<section id="content-preparation">
+<h3>Content Preparation<a class="headerlink" href="#content-preparation" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Use semantic markdown structure (proper heading hierarchy)</p></li>
+<li><p>Keep slide content focused (avoid overly long slides)</p></li>
+<li><p>Use HTML divs for special styling when needed</p></li>
+<li><p>Include sources sections for references</p></li>
+</ol>
+</section>
+<section id="table-optimization">
+<h3>Table Optimization<a class="headerlink" href="#table-optimization" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Keep tables simple and focused</p></li>
+<li><p>Use appropriate column/row limits for readability</p></li>
+<li><p>Consider splitting large tables across multiple slides</p></li>
+<li><p>Test table rendering on different screen sizes</p></li>
+</ol>
+</section>
+<section id="theme-integration">
+<h3>Theme Integration<a class="headerlink" href="#theme-integration" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Choose appropriate slide classes for content type</p></li>
+<li><p>Test with target themes during development</p></li>
+<li><p>Use consistent styling patterns across presentations</p></li>
+<li><p>Leverage theme-specific features (proposal slides, emphasis blocks)</p></li>
+</ol>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">¶</a></h2>
+<section id="common-issues">
+<h3>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading">¶</a></h3>
+<p><strong>Slide Breaks Not Working</strong>:</p>
+<ul class="simple">
+<li><p>Check content length vs. maxLinesPerCard setting</p></li>
+<li><p>Verify heading hierarchy is correct</p></li>
+<li><p>Ensure proper markdown formatting</p></li>
+</ul>
+<p><strong>Table Display Issues</strong>:</p>
+<ul class="simple">
+<li><p>Verify table markdown syntax</p></li>
+<li><p>Check if tables exceed column/row limits</p></li>
+<li><p>Test with different processing modes</p></li>
+</ul>
+<p><strong>Theme Styling Problems</strong>:</p>
+<ul class="simple">
+<li><p>Ensure theme is properly compiled</p></li>
+<li><p>Check that slide classes are being applied</p></li>
+<li><p>Verify theme compatibility with content structure</p></li>
+</ul>
+</section>
+<section id="debug-mode">
+<h3>Debug Mode<a class="headerlink" href="#debug-mode" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable verbose output for troubleshooting</span>
+pablo-pro<span class="w"> </span>input.md<span class="w"> </span>--verbose
+
+<span class="c1"># Check processing statistics</span>
+pablo-pro<span class="w"> </span>input.md<span class="w"> </span>--mode<span class="o">=</span>smart<span class="w"> </span>--verbose
+</pre></div>
+</div>
+<p>This will show detailed information about:</p>
+<ul class="simple">
+<li><p>Content optimization applied</p></li>
+<li><p>Table processing decisions</p></li>
+<li><p>Slide generation statistics</p></li>
+<li><p>Processing mode configuration</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Pablo Presentation System</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Theme Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="theme-creation.html">Theme Creation and Development Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zappts-theme-reference.html">Zappts Theme Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="table-colors-reference.html">Table Colors Reference - Zappts Dark Theme</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="developer-guide.html">WARP.md</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Preprocessor Systems Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#current-preprocessor-system">Current Preprocessor System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enhanced-preprocessor-system-pablo-pro">Enhanced Preprocessor System (pablo-pro)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#migration-guide">Migration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="developer-guide.html" title="previous chapter">WARP.md</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Pablo Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/docs/preprocessor-guide.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

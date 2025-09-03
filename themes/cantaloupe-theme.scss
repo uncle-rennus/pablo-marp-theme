@@ -1,0 +1,75 @@
+// Cantaloupe Theme SCSS - Light & Dark Modes
+
+:root {
+  // Primary
+  --cantaloupe-primary: #FFA62F;
+  // Secondary
+  --cantaloupe-secondary-1: #FFA480;
+  --cantaloupe-secondary-2: #FFC067;
+  // Background
+  --cantaloupe-bg-1: #FFFDD0;
+  --cantaloupe-bg-2: #FFEBD3;
+  // Text
+  --cantaloupe-text-1: #FFA64E;
+  --cantaloupe-text-2: #679186;
+  // CTA/Contrast
+  --cantaloupe-cta: #069494;
+}
+
+[data-theme="dark"], .dark {
+  --cantaloupe-primary: #FFA62F;
+  --cantaloupe-secondary-1: #FFC067;
+  --cantaloupe-secondary-2: #FDBCB4;
+  --cantaloupe-bg-1: #679186;
+  --cantaloupe-bg-2: #87A96B;
+  --cantaloupe-text-1: #FFFDD0;
+  --cantaloupe-text-2: #FFEBD3;
+  --cantaloupe-cta: #069494;
+}
+
+body {
+  background: var(--cantaloupe-bg-1);
+  color: var(--cantaloupe-text-1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--cantaloupe-primary);
+}
+
+a {
+  color: var(--cantaloupe-cta);
+}
+
+table, th, td {
+  border: 1px solid var(--cantaloupe-secondary-2);
+}
+
+th {
+  background: var(--cantaloupe-secondary-1);
+  color: var(--cantaloupe-text-2);
+}
+
+td {
+  background: var(--cantaloupe-bg-2);
+  color: var(--cantaloupe-text-1);
+}
+
+.cta, .button, button {
+  background: var(--cantaloupe-cta);
+  color: var(--cantaloupe-bg-1);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+[data-theme="dark"] body, .dark body {
+  background: var(--cantaloupe-bg-1);
+  color: var(--cantaloupe-text-1);
+}
+
+section.cantaloupe-slide {
+  background: var(--cantaloupe-bg-2);
+  color: var(--cantaloupe-text-2);
+} 

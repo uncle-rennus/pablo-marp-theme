@@ -1,0 +1,1313 @@
+'\" t
+.\" Man page generated from reStructuredText.
+.
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.TH "PABLOPRESENTATIONSYSTEM" "1" "Aug 30, 2025" "" "Pablo Presentation System"
+.SH NAME
+pablopresentationsystem \- Pablo Presentation System 1.0.0
+.sp
+Pablo is a sophisticated Marpit\-based presentation system with intelligent slide generation, markdown\-in\-HTML rendering, and automated content processing.
+.SH GETTING STARTED
+.sp
+Pablo is a sophisticated Marpit\-based presentation system with a three\-stage processing pipeline that supports intelligent slide generation, markdown\-in\-HTML rendering, and automated content processing.
+.SS Prerequisites
+.INDENT 0.0
+.IP \(bu 2
+Node.js 16+
+.IP \(bu 2
+Python 3+ (for HTTP server)
+.IP \(bu 2
+PowerShell (for Windows automation)
+.UNINDENT
+.SS Installation
+.INDENT 0.0
+.IP 1. 3
+\fBClone/Download\fP the project
+.IP 2. 3
+\fBInstall dependencies\fP:
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.EX
+npm install
+
+.EE
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SS Development Workflow
+.SS Start the development server:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+npm run serve
+# or for development (builds themes + starts server)
+npm run dev
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Build the presentation:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+npm run build:presentation
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS View the presentation:
+.sp
+Open \fBhttp://localhost:1234/output/zappts\-AI\-as\-a\-service.html\fP
+.SS Quick Start Example
+.sp
+Create your presentation in Markdown format with semantic structure:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+\-\-\-
+marp: true
+theme: zappts\-dark\-theme
+\-\-\-
+
+# Main Title
+
+## Section Heading
+
+Your content here with automatic slide generation.
+
+<div class=\(dqsources\(dq>
+  **Fontes:**
+  \- [Source 1](https://example.com)
+  \- [Source 2](https://example.com)
+</div>
+
+## Another Section
+
+More content that will be intelligently split into slides.
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Build Commands
+.TS
+box center;
+l|l.
+T{
+Command
+T}	T{
+Description
+T}
+_
+T{
+\fBnpm run build:presentation\fP
+T}	T{
+Complete pipeline: preprocess → Marp → post\-process
+T}
+_
+T{
+\fBnpm run build\fP
+T}	T{
+Build SCSS themes
+T}
+_
+T{
+\fBnpm run serve\fP
+T}	T{
+Start development server (port 1234)
+T}
+_
+T{
+\fBnpm run dev\fP
+T}	T{
+Build themes and start server
+T}
+_
+T{
+\fBnpm run live\fP
+T}	T{
+Start live\-server with auto\-refresh (port 1234)
+T}
+.TE
+.SH CONFIGURATION
+.sp
+Pablo uses several configuration files to control different aspects of the presentation system.
+.SS Preprocessor Configuration (\fBpablo.config.js\fP)
+.sp
+Controls the slide generation algorithm:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+export const config = {
+  maxLinesPerCard: 20,        // Maximum lines per slide
+  maxColumnsPerSlide: 4,      // Maximum columns for grid layouts
+  maxRowsPerSlide: 10,        // Maximum rows for grid layouts
+  charsPerLine: 80,           // Characters per line for height estimation
+  themes: [                   // Available themes
+    \(aqcard\-theme\(aq,
+    \(aqcustom\-theme\(aq, 
+    \(aqlight\-theme\(aq,
+    \(aqzappts\-dark\-theme\(aq,
+    \(aqhyperflow\-dark\-theme\(aq
+  ]
+};
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Key Parameters:
+.INDENT 0.0
+.IP \(bu 2
+\fBmaxLinesPerCard\fP: Controls when content gets split into multiple slides
+.IP \(bu 2
+\fBcharsPerLine\fP: Used for height estimation calculations
+.IP \(bu 2
+\fBthemes\fP: List of available theme names for validation
+.UNINDENT
+.SS Marp Configuration (\fBmarp.config.js\fP)
+.sp
+Controls Marp behavior:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+module.exports = {
+  html: true,
+  allowLocalFiles: true,
+  themeSet: \(aq./themes\(aq,
+  markdown: {
+    breaks: true,
+    html: true,
+    linkify: true,
+    typographer: true,
+    gfm: true
+  }
+};
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Key Settings:
+.INDENT 0.0
+.IP \(bu 2
+\fBhtml\fP: Enable HTML processing in markdown
+.IP \(bu 2
+\fBallowLocalFiles\fP: Allow local file references
+.IP \(bu 2
+\fBthemeSet\fP: Directory containing CSS theme files
+.IP \(bu 2
+\fBmarkdown\fP: Markdown\-it configuration options
+.UNINDENT
+.SS Theme Configuration
+.SS Available Themes
+.INDENT 0.0
+.IP \(bu 2
+\fBzappts\-dark\-theme\fP: Corporate dark theme with blue branding
+.IP \(bu 2
+\fBhyperflow\-dark\-theme\fP: Modern technical presentation theme
+.IP \(bu 2
+\fBcard\-theme\fP: Card\-based layout with Catppuccin colors
+.IP \(bu 2
+\fBlight\-theme\fP: Minimal light color scheme
+.IP \(bu 2
+\fBcustom\-theme\fP: Configurable base theme
+.UNINDENT
+.SS Using Themes
+.sp
+Set the theme in your presentation frontmatter:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+\-\-\-
+marp: true
+theme: zappts\-dark\-theme
+size: 16:9
+paginate: true
+\-\-\-
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS File Naming Convention
+.INDENT 0.0
+.IP \(bu 2
+\fBSource files\fP: \fB*.source.md\fP (original content)
+.IP \(bu 2
+\fBProcessed files\fP: \fB*.md\fP (preprocessor output)
+.IP \(bu 2
+\fBFinal output\fP: \fBoutput/*.html\fP
+.IP \(bu 2
+\fBBackups\fP: \fB*.backup.timestamp\fP
+.IP \(bu 2
+\fBTemp files\fP: \fB*.tmp.timestamp\fP
+.UNINDENT
+.sp
+Example flow: \fBpresentation.source.md\fP → \fBpresentation.md\fP → \fBoutput/presentation.html\fP
+.SH TROUBLESHOOTING
+.sp
+Common issues and solutions when working with the Pablo presentation system.
+.SS Common Issues
+.SS PowerShell Execution Policy Error
+.sp
+\fBProblem\fP: Scripts cannot be executed due to PowerShell execution policy.
+.sp
+\fBSolution\fP:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+Set\-ExecutionPolicy \-ExecutionPolicy RemoteSigned \-Scope CurrentUser
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Preprocessor Errors
+.sp
+\fBProblem\fP: Slide generation fails or produces unexpected results.
+.sp
+\fBSolutions\fP:
+.INDENT 0.0
+.IP \(bu 2
+Check source file syntax and frontmatter
+.IP \(bu 2
+Verify \fBpablo.config.js\fP configuration
+.IP \(bu 2
+Ensure proper markdown structure
+.UNINDENT
+.sp
+\fBDebug Mode\fP:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+node \-e \(dqconst {PabloSlideGenerator} = require(\(aq./src/preprocessor/index.js\(aq); const generator = new PabloSlideGenerator({debug: true}); console.log(generator.processMarkdown(fs.readFileSync(\(aqfile.source.md\(aq, \(aqutf8\(aq)));\(dq
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Marp Build Failures
+.sp
+\fBProblem\fP: Marp fails to build presentation.
+.sp
+\fBSolutions\fP:
+.INDENT 0.0
+.IP \(bu 2
+Verify theme files exist and are compiled: \fBnpm run build\fP
+.IP \(bu 2
+Check markdown syntax and HTML elements
+.IP \(bu 2
+Ensure all referenced assets exist
+.UNINDENT
+.sp
+\fBTest Individual Components\fP:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+# Test Marp only  
+npx marp file.md \-\-output test.html \-\-theme ./output/themes/zappts\-dark\-theme.css
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Post\-processing Issues
+.sp
+\fBProblem\fP: HTML processing fails or corrupts presentation.
+.sp
+\fBSolutions\fP:
+.INDENT 0.0
+.IP \(bu 2
+Check HTML file permissions
+.IP \(bu 2
+Verify markdown syntax in HTML elements
+.IP \(bu 2
+Review backup files for content comparison
+.UNINDENT
+.sp
+\fBTest Post\-processor\fP:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+node postprocess\-marp\-html.js test.html \-\-help
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Theme Not Found
+.sp
+\fBProblem\fP: Theme is not applied to presentation.
+.sp
+\fBSolutions\fP:
+.INDENT 0.0
+.IP 1. 3
+Ensure themes are compiled: \fBnpm run build\fP
+.IP 2. 3
+Check theme name in frontmatter matches available themes
+.IP 3. 3
+Verify theme CSS files exist in \fBoutput/themes/\fP
+.UNINDENT
+.SS Port Conflicts
+.sp
+\fBProblem\fP: Development server cannot start.
+.sp
+\fBSolution\fP: The dev server auto\-detects available ports starting from 1234. If issues persist, manually specify a different port.
+.SS Debug Commands
+.SS Test Preprocessor Only
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+node \-e \(dqconst {PabloSlideGenerator} = require(\(aq./src/preprocessor/index.js\(aq); console.log(new PabloSlideGenerator().processMarkdown(fs.readFileSync(\(aqfile.source.md\(aq, \(aqutf8\(aq)));\(dq
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Test Preprocessor with Debugging
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+node \-e \(dqconst {PabloSlideGenerator} = require(\(aq./src/preprocessor/index.js\(aq); const generator = new PabloSlideGenerator({debug: true}); console.log(generator.processMarkdown(fs.readFileSync(\(aqfile.source.md\(aq, \(aqutf8\(aq)));\(dq
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Test Preprocessor Validation
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+node \-e \(dqconst {PabloSlideGenerator} = require(\(aq./src/preprocessor/index.js\(aq); const generator = new PabloSlideGenerator(); const processed = generator.processMarkdown(fs.readFileSync(\(aqfile.source.md\(aq, \(aqutf8\(aq)); const warnings = generator.validateSlides(processed.split(\(aq\-\-\-\(aq).slice(2)); console.log(\(aqValidation warnings:\(aq, warnings);\(dq
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Enable Debug Mode
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+DEBUG=* npm run build:presentation
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS File Issues
+.SS Backup and Recovery
+.sp
+Pablo automatically creates backups during processing. If something goes wrong:
+.INDENT 0.0
+.IP 1. 3
+Check for backup files: \fB*.backup.timestamp\fP
+.IP 2. 3
+Restore from backup if needed
+.IP 3. 3
+Verify file permissions
+.UNINDENT
+.SS Manual Pipeline Steps
+.sp
+For debugging specific stages:
+.INDENT 0.0
+.IP 1. 3
+\fBPreprocess only\fP:
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.EX
+node build\-presentation.js \-\-preprocess\-only
+
+.EE
+.UNINDENT
+.UNINDENT
+.IP 2. 3
+\fBMarp only\fP:
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.EX
+npx marp processed.md \-\-output output.html \-\-theme ./themes/theme.css
+
+.EE
+.UNINDENT
+.UNINDENT
+.IP 3. 3
+\fBPost\-process only\fP:
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.EX
+node postprocess\-marp\-html.js output.html
+
+.EE
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SS Getting Help
+.sp
+If you encounter issues not covered here:
+.INDENT 0.0
+.IP 1. 3
+Check the debug output with \fBDEBUG=*\fP
+.IP 2. 3
+Verify all dependencies are installed
+.IP 3. 3
+Ensure file permissions are correct
+.IP 4. 3
+Review the build logs for specific error messages
+.UNINDENT
+.SH THEME CREATION PROCESS DEMO
+.SS Summary
+.sp
+I successfully demonstrated the complete theme creation process for the Pablo presentation system by:
+.SS 1. Created Example Theme (\fBexample\-new\-theme.scss\fP)
+.sp
+\fBKey Features:\fP
+.INDENT 0.0
+.IP \(bu 2
+Custom brand colors (Orange #FF6B35, Navy #004E89, Turquoise #40E0D0)
+.IP \(bu 2
+Gradient title slide backgrounds
+.IP \(bu 2
+Professional Roboto typography
+.IP \(bu 2
+Modern SCSS structure with CSS custom properties
+.IP \(bu 2
+Complete Marpit/Marp compatibility
+.UNINDENT
+.sp
+\fBTheme Components:\fP
+.INDENT 0.0
+.IP \(bu 2
+Color palette definition with SCSS variables
+.IP \(bu 2
+CSS custom property exports for browser compatibility
+.IP \(bu 2
+Title slide styling with gradients and typography
+.IP \(bu 2
+Content slide styling for all card classes
+.IP \(bu 2
+Table, code block, and blockquote styling
+.IP \(bu 2
+Sources/notes positioning and styling
+.UNINDENT
+.SS 2. Integrated Theme into Build System
+.INDENT 0.0
+.IP \(bu 2
+Added \fBexample\-new\-theme.scss\fP to \fBbuild\-theme.js\fP configuration
+.IP \(bu 2
+Successfully compiled SCSS to CSS using the build system
+.IP \(bu 2
+Generated \fBoutput/themes/example\-new\-theme.css\fP (5,263 bytes)
+.UNINDENT
+.SS 3. Created Demo Presentation
+.sp
+\fBFile:\fP \fBexample\-new\-theme\-demo.md\fP
+.INDENT 0.0
+.IP \(bu 2
+7 slides demonstrating theme features
+.IP \(bu 2
+Title slide with gradient background
+.IP \(bu 2
+Content slides showing typography hierarchy
+.IP \(bu 2
+Code examples and tables
+.IP \(bu 2
+Step\-by\-step theme creation guide
+.IP \(bu 2
+Resource references
+.UNINDENT
+.SS 4. Built and Tested Theme
+.INDENT 0.0
+.IP \(bu 2
+Successfully compiled presentation to HTML (\fBexample\-new\-theme\-demo.html\fP)
+.IP \(bu 2
+Verified theme rendering works correctly
+.IP \(bu 2
+All theme elements display properly
+.UNINDENT
+.SS 5. Updated Documentation
+.sp
+\fBEnhanced \X'tty: link http://WARP.md'\fI\%WARP.md\fP\X'tty: link' with comprehensive theme creation section:\fP
+.INDENT 0.0
+.IP \(bu 2
+Step\-by\-step theme creation process
+.IP \(bu 2
+Theme structure guidelines
+.IP \(bu 2
+Required Marpit compatibility elements
+.IP \(bu 2
+Recommended features checklist
+.IP \(bu 2
+Complete workflow from SCSS to final presentation
+.IP \(bu 2
+Reference to example theme template
+.UNINDENT
+.SS Files Created/Modified
+.SS New Files:
+.INDENT 0.0
+.IP 1. 3
+\fBthemes/example\-new\-theme.scss\fP \- Complete theme template
+.IP 2. 3
+\fBexample\-new\-theme\-demo.md\fP \- Demo presentation
+.IP 3. 3
+\fBexample\-new\-theme\-demo.html\fP \- Compiled HTML output
+.IP 4. 3
+\fBoutput/themes/example\-new\-theme.css\fP \- Compiled CSS theme
+.UNINDENT
+.SS Modified Files:
+.INDENT 0.0
+.IP 1. 3
+\fBbuild\-theme.js\fP \- Added new theme to build list
+.IP 2. 3
+\fBWARP.md\fP \- Enhanced with theme creation documentation
+.UNINDENT
+.SS Theme Creation Workflow Summary
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+# 1. Create theme file
+vim themes/your\-theme\-name.scss
+
+# 2. Add to build configuration
+# Edit build\-theme.js: add \(aqyour\-theme\-name.scss\(aq to themeFiles array
+
+# 3. Compile theme
+node build\-theme.js
+
+# 4. Create presentation using theme
+# Add to frontmatter: theme: your\-theme\-name
+
+# 5. Build presentation
+npx @marp\-team/marp\-cli presentation.md \-\-theme\-set output/themes \-\-output presentation.html
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Theme Template Features
+.sp
+The \fBexample\-new\-theme.scss\fP serves as a comprehensive template showing:
+.INDENT 0.0
+.IP \(bu 2
+\fBColor Management:\fP SCSS variables + CSS custom properties
+.IP \(bu 2
+\fBTypography:\fP Font family, sizing, and hierarchy
+.IP \(bu 2
+\fBLayout:\fP Proper slide dimensions and spacing
+.IP \(bu 2
+\fBVisual Elements:\fP Gradients, borders, shadows
+.IP \(bu 2
+\fBComponent Styling:\fP Tables, code blocks, lists, blockquotes
+.IP \(bu 2
+\fBSlide Classes:\fP Support for all card\-based layouts
+.IP \(bu 2
+\fBAccessibility:\fP Proper contrast and readable typography
+.UNINDENT
+.SS Next Steps for Theme Development
+.INDENT 0.0
+.IP 1. 3
+\fBCopy Template:\fP Use \fBexample\-new\-theme.scss\fP as starting point
+.IP 2. 3
+\fBCustomize Colors:\fP Modify brand color variables
+.IP 3. 3
+\fBAdjust Typography:\fP Change fonts and sizing
+.IP 4. 3
+\fBTest Thoroughly:\fP Build presentations to verify styling
+.IP 5. 3
+\fBDocument Changes:\fP Update theme\-specific documentation
+.UNINDENT
+.sp
+This demonstration provides a complete, working example of the Pablo theme creation system in action.
+.SH TABLE COLORS REFERENCE - ZAPPTS DARK THEME
+.SS Quick Reference
+.SS Table Row Background Colors
+.TS
+box center;
+l|l|l|l.
+T{
+Element
+T}	T{
+Variable
+T}	T{
+Color
+T}	T{
+Hex Code
+T}
+_
+T{
+\fBHeader Row\fP
+T}	T{
+\fB$table\-header\-bg\fP
+T}	T{
+Light Blue
+T}	T{
+\fB#0A85CC\fP
+T}
+_
+T{
+\fBRegular Rows\fP
+T}	T{
+\fB$table\-row\-bg\fP
+T}	T{
+Dark Navy
+T}	T{
+\fB#0f1120\fP
+T}
+_
+T{
+\fBEven Rows\fP
+T}	T{
+\fB$table\-row\-alt\-bg\fP
+T}	T{
+Darkest Navy
+T}	T{
+\fB#0c0e1a\fP
+T}
+.TE
+.SS Table Text Colors
+.TS
+box center;
+l|l|l|l.
+T{
+Element
+T}	T{
+Variable
+T}	T{
+Color
+T}	T{
+Hex Code
+T}
+_
+T{
+\fBHeader Text\fP
+T}	T{
+\fB$table\-header\-text\fP
+T}	T{
+White
+T}	T{
+\fB#FFFFFF\fP
+T}
+_
+T{
+\fBCell Text\fP
+T}	T{
+\fB$table\-text\fP
+T}	T{
+White
+T}	T{
+\fB#FFFFFF\fP
+T}
+_
+T{
+\fBStrong Text\fP
+T}	T{
+\fB$ctp\-green\fP
+T}	T{
+Light Gray
+T}	T{
+\fB#F0F0F0\fP
+T}
+.TE
+.SS Table Borders
+.TS
+box center;
+l|l|l|l.
+T{
+Element
+T}	T{
+Variable
+T}	T{
+Color
+T}	T{
+Hex Code
+T}
+_
+T{
+\fBCell Borders\fP
+T}	T{
+\fB$table\-border\-color\fP
+T}	T{
+Light Blue
+T}	T{
+\fB#1a93d4\fP
+T}
+.TE
+.SS Visual Pattern
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+┌─────────────────────────────────────┐
+│ Header Row (Light Blue: #0A85CC)    │ ← $table\-header\-bg
+├─────────────────────────────────────┤
+│ Row 1 (Dark Navy: #0f1120)          │ ← $table\-row\-bg
+├─────────────────────────────────────┤
+│ Row 2 (Darkest Navy: #0c0e1a)       │ ← $table\-row\-alt\-bg
+├─────────────────────────────────────┤
+│ Row 3 (Dark Navy: #0f1120)          │ ← $table\-row\-bg
+├─────────────────────────────────────┤
+│ Row 4 (Darkest Navy: #0c0e1a)       │ ← $table\-row\-alt\-bg
+└─────────────────────────────────────┘
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Configuration
+.sp
+All table colors are defined in \fBthemes/zappts\-dark\-theme.config.scss\fP:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+// Table colors
+$table\-header\-bg: $ctp\-surface0 !default;  // Light blue for headers
+$table\-header\-text: $ctp\-mauve !default;   // White text for headers
+$table\-row\-bg: $ctp\-mantle !default;       // Dark navy for regular rows
+$table\-row\-alt\-bg: $ctp\-crust !default;    // Darkest navy for alternating rows
+$table\-border\-color: $ctp\-surface1 !default; // Light blue for borders
+$table\-text: $ctp\-text !default;           // White text for table content
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Customization
+.sp
+To change table colors, modify the variables in \fBthemes/zappts\-dark\-theme.config.scss\fP and rebuild the theme:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+npm run build
+
+.EE
+.UNINDENT
+.UNINDENT
+.SH WARP.MD
+.sp
+This file provides guidance to WARP (warp.dev) when working with code in this repository.
+.SS Overview
+.sp
+This is a sophisticated Marpit\-based presentation system with a three\-stage processing pipeline that supports intelligent slide generation, markdown\-in\-HTML rendering, and automated content processing. The system transforms semantic markdown into professional presentations with multiple theme options and advanced layout capabilities.
+.SS Build Pipeline
+.sp
+The presentation generation follows a three\-stage pipeline:
+.SS Primary Command
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+npm run build:presentation
+
+.EE
+.UNINDENT
+.UNINDENT
+.sp
+This orchestrates all three stages automatically for the main presentation.
+.SS Pipeline Stages
+.INDENT 0.0
+.IP 1. 3
+\fBPreprocess\fP: \fBnode build\-presentation.js\fP (runs \fBPabloSlideGenerator\fP)
+.INDENT 3.0
+.IP \(bu 2
+Parses semantic blocks (headings, content sections, HTML elements)
+.IP \(bu 2
+Chunks content into slides based on estimated height
+.IP \(bu 2
+Extracts sources sections into HTML blocks
+.IP \(bu 2
+Applies card classes for styling
+.UNINDENT
+.IP 2. 3
+\fBMarp Build\fP: Marp converts processed markdown to HTML
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.EX
+npx marp processed.md \-\-output output/presentation.html \-\-config\-file marp.config.js \-\-html \-\-allow\-local\-files
+
+.EE
+.UNINDENT
+.UNINDENT
+.IP 3. 3
+\fBPost\-process\fP: \fBnode postprocess\-marp\-html.js output/presentation.html\fP
+.INDENT 3.0
+.IP \(bu 2
+Processes markdown content within HTML elements using markdown\-it
+.IP \(bu 2
+Creates backups and uses atomic file operations
+.IP \(bu 2
+Specifically targets \fB<div class=\(dqsources\(dq>\fP elements
+.UNINDENT
+.UNINDENT
+.SS Architecture Overview
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+Source (.source.md) → Preprocessor → Marp → Post\-processor → Final (.html)
+       ↓                ↓             ↓            ↓
+   Semantic        Chunked       Themed      Markdown\-in\-HTML
+   Blocks          Slides        HTML        Processed
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Core Components
+.INDENT 0.0
+.IP \(bu 2
+\fBPreprocessor\fP (\fBsrc/preprocessor/slide\-generator.js\fP):
+.INDENT 2.0
+.IP \(bu 2
+\fBPabloSlideGenerator\fP class handles semantic parsing
+.IP \(bu 2
+Configurable via \fBpablo.config.js\fP (maxLinesPerCard, charsPerLine)
+.IP \(bu 2
+Height estimation algorithm for optimal slide breaks
+.UNINDENT
+.IP \(bu 2
+\fBTheme System\fP (\fBthemes/*.scss\fP + \fBbuild\-theme.js\fP):
+.INDENT 2.0
+.IP \(bu 2
+SCSS compilation to CSS
+.IP \(bu 2
+Multiple themes: \fBcard\-theme\fP, \fBzappts\-dark\-theme\fP, \fBhyperflow\-dark\-theme\fP
+.IP \(bu 2
+Compiled themes stored in \fBoutput/themes/\fP
+.UNINDENT
+.IP \(bu 2
+\fBPost\-processor\fP (\fBpostprocess\-marp\-html.js\fP):
+.INDENT 2.0
+.IP \(bu 2
+CLI with backup/restore functionality
+.IP \(bu 2
+Markdown\-it based HTML processing
+.IP \(bu 2
+Atomic file operations with validation
+.UNINDENT
+.UNINDENT
+.SS Development Workflow
+.SS Start Development Server
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+npm run serve        # Node.js server (auto\-detects port from 1234)
+npm run start        # Same as serve
+npm run dev          # Build themes and start server
+npm run live         # Live\-reload server on port 1234
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Build Commands
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+# Theme building
+npm run build                 # Compile all SCSS themes
+npm run watch                 # Watch themes for changes
+
+# Presentation building  
+npm run build:presentation    # Full pipeline (recommended)
+
+# Development workflow
+npm run dev                   # Build themes and start server
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS File Naming Convention
+.INDENT 0.0
+.IP \(bu 2
+Source files: \fB*.source.md\fP (original content)
+.IP \(bu 2
+Processed files: \fB*.md\fP (preprocessor output)
+.IP \(bu 2
+Final output: \fBoutput/*.html\fP
+.IP \(bu 2
+Backups: \fB*.backup.timestamp\fP
+.IP \(bu 2
+Temp files: \fB*.tmp.timestamp\fP
+.UNINDENT
+.sp
+Example flow: \fBzappts\-AI\-as\-a\-service.source.md\fP → \fBzappts\-AI\-as\-a\-service.md\fP → \fBoutput/zappts\-AI\-as\-a\-service.html\fP
+.SS Configuration Files
+.SS \fBpablo.config.js\fP \- Preprocessor Configuration
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+export const config = {
+  maxLinesPerCard: 20,        // Slide height limit
+  maxColumnsPerSlide: 4,      // Grid layout limits
+  maxRowsPerSlide: 10,
+  charsPerLine: 80,           // Height calculation basis
+  themes: [\(aqcard\-theme\(aq, \(aqzappts\-dark\-theme\(aq, ...]
+};
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS \fBmarp.config.js\fP \- Marp Configuration
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+module.exports = {
+  markdown: {
+    breaks: true, html: true, linkify: true,
+    typographer: true, gfm: true
+  },
+  themeSet: \(aq./output/themes\(aq
+};
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS \fBbuild\-presentation.js\fP \- Build Orchestrator
+.INDENT 0.0
+.IP \(bu 2
+Handles the full three\-stage pipeline
+.IP \(bu 2
+File existence validation
+.IP \(bu 2
+Cache clearing and cleanup
+.IP \(bu 2
+Error handling with process exits
+.UNINDENT
+.SS Theme System
+.SS Available Themes
+.INDENT 0.0
+.IP \(bu 2
+\fBzappts\-dark\-theme\fP: Corporate dark theme with blue branding
+.IP \(bu 2
+\fBhyperflow\-dark\-theme\fP: Modern technical presentation theme
+.IP \(bu 2
+\fBcard\-theme\fP: Card\-based layout with Catppuccin colors
+.IP \(bu 2
+\fBlight\-theme\fP: Minimal light color scheme
+.IP \(bu 2
+\fBcustom\-theme\fP: Configurable base theme
+.UNINDENT
+.SS Theme Development
+.INDENT 0.0
+.IP 1. 3
+Edit SCSS files in \fBthemes/\fP directory
+.IP 2. 3
+Run \fBnpm run build\fP to compile
+.IP 3. 3
+Themes output to \fBoutput/themes/*.css\fP
+.IP 4. 3
+Use in frontmatter: \fBtheme: theme\-name\fP
+.UNINDENT
+.SS Creating New Themes
+.sp
+To create a custom theme from scratch:
+.INDENT 0.0
+.IP 1. 3
+\fBCreate Theme File\fP: Add a new \fB\&.scss\fP file in the \fBthemes/\fP directory
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.EX
+/*! 
+ * @theme your\-theme\-name
+ * @auto\-scaling true
+ * @size 16:9 1280px 720px
+ */
+
+// Define your color palette
+$primary\-brand: #FF6B35;
+$secondary\-brand: #004E89;
+$background\-dark: #1A1A1D;
+
+.EE
+.UNINDENT
+.UNINDENT
+.IP 2. 3
+\fBAdd to Build Configuration\fP: Edit \fBbuild\-theme.js\fP and include your theme file:
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.EX
+const themeFiles = [
+  \(aqcard\-theme.scss\(aq,
+  \(aqyour\-theme\-name.scss\(aq  // Add here
+];
+
+.EE
+.UNINDENT
+.UNINDENT
+.IP 3. 3
+\fBCompile Theme\fP: Build the CSS output
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.EX
+node build\-theme.js
+
+.EE
+.UNINDENT
+.UNINDENT
+.IP 4. 3
+\fBTest Theme\fP: Create a markdown file using your theme
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.EX
+\-\-\-
+marp: true
+theme: your\-theme\-name
+class: title
+\-\-\-
+
+.EE
+.UNINDENT
+.UNINDENT
+.IP 5. 3
+\fBBuild Presentation\fP: Generate final output
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.EX
+npx @marp\-team/marp\-cli presentation.md \-\-theme\-set output/themes \-\-output presentation.html
+
+.EE
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SS Theme Structure Guidelines
+.sp
+\fBRequired Elements for Marpit Compatibility:\fP
+.INDENT 0.0
+.IP \(bu 2
+CSS custom properties in \fB:root\fP for color variables
+.IP \(bu 2
+Base \fBsection\fP styles with proper dimensions (1280x720px)
+.IP \(bu 2
+Title slide styles for \fBsection.title\fP
+.IP \(bu 2
+Content slide styles for \fBsection.card\-single\fP, \fBsection.card\-start\fP, etc.
+.UNINDENT
+.sp
+\fBRecommended Theme Features:\fP
+.INDENT 0.0
+.IP \(bu 2
+Hierarchical heading styles (h1, h2, h3) with distinct colors
+.IP \(bu 2
+Typography settings (font\-family, sizes, line\-height)
+.IP \(bu 2
+Table styling with borders and background colors
+.IP \(bu 2
+Code block styling with syntax\-appropriate backgrounds
+.IP \(bu 2
+Blockquote styling with accent borders
+.IP \(bu 2
+List styling with custom markers
+.IP \(bu 2
+Layout variables (padding, margins, border\-radius)
+.UNINDENT
+.sp
+\fBExample Theme Template:\fP
+See \fBthemes/example\-new\-theme.scss\fP for a complete template showing:
+.INDENT 0.0
+.IP \(bu 2
+Color palette definition with SCSS variables
+.IP \(bu 2
+CSS custom property exports
+.IP \(bu 2
+Complete slide class styling
+.IP \(bu 2
+Professional typography hierarchy
+.IP \(bu 2
+Visual elements (gradients, accent bars, shadows)
+.UNINDENT
+.SS Theme Builder (\fBbuild\-theme.js\fP)
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+node build\-theme.js          # Build all themes
+node build\-theme.js watch    # Build and watch for changes
+node build\-theme.js help     # Show detailed usage information
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Key Architectural Concepts
+.SS Semantic Block Parsing
+.sp
+The preprocessor identifies content types:
+.INDENT 0.0
+.IP \(bu 2
+\fBtitle\-content\fP: H1 headings (become title slides)
+.IP \(bu 2
+\fBh2\-section\fP/\fBh3\-section\fP: Section headings
+.IP \(bu 2
+\fBparagraph\fP: Regular content
+.IP \(bu 2
+\fBhtml\-block\fP: HTML placeholders (\fB__HTML_BLOCK_N__\fP)
+.UNINDENT
+.SS Slide Chunking Algorithm
+.INDENT 0.0
+.IP \(bu 2
+Estimates content height based on line count, tables, lists
+.IP \(bu 2
+Splits content when \fBestimatedHeight > maxLinesPerCard\fP
+.IP \(bu 2
+Preserves semantic boundaries (doesn’t split mid\-heading)
+.IP \(bu 2
+Applies card classes: \fBcard\-single\fP, \fBcard\-start\fP, \fBcard\-middle\fP, \fBcard\-end\fP
+.UNINDENT
+.SS Sources Section Processing
+.sp
+Automatically detects and formats source citations:
+.INDENT 0.0
+.IP \(bu 2
+Patterns: \fB**Sources:**\fP, \fB**Fontes:**\fP, \fB## Sources\fP
+.IP \(bu 2
+Converts to \fB<div class=\(dqleft\-notes\(dq><div class=\(dqsources\(dq>\fP HTML blocks
+.IP \(bu 2
+Maintains markdown formatting within sources
+.UNINDENT
+.SS Markdown\-in\-HTML Processing
+.INDENT 0.0
+.IP \(bu 2
+Post\-processor targets specific HTML elements
+.IP \(bu 2
+Uses markdown\-it for reliable conversion
+.IP \(bu 2
+Preserves Marp/Bespoke.js functionality
+.IP \(bu 2
+Safety features: backups, validation, atomic writes
+.UNINDENT
+.SS Development Tips
+.SS Debugging Pipeline Stages
+.sp
+Test individual stages:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+# Test preprocessor only
+node \-e \(dqconst {PabloSlideGenerator} = require(\(aq./src/preprocessor/index.js\(aq); console.log(new PabloSlideGenerator().processMarkdown(fs.readFileSync(\(aqfile.source.md\(aq, \(aqutf8\(aq)))\(dq
+
+# Test preprocessor with debugging enabled
+node \-e \(dqconst {PabloSlideGenerator} = require(\(aq./src/preprocessor/index.js\(aq); const generator = new PabloSlideGenerator({debug: true}); console.log(generator.processMarkdown(fs.readFileSync(\(aqfile.source.md\(aq, \(aqutf8\(aq)));\(dq
+
+# Test preprocessor validation
+node \-e \(dqconst {PabloSlideGenerator} = require(\(aq./src/preprocessor/index.js\(aq); const generator = new PabloSlideGenerator(); const processed = generator.processMarkdown(fs.readFileSync(\(aqfile.source.md\(aq, \(aqutf8\(aq)); const warnings = generator.validateSlides(processed.split(\(aq\-\-\-\(aq).slice(2)); console.log(\(aqValidation warnings:\(aq, warnings);\(dq
+
+# Test Marp only  
+npx marp file.md \-\-output test.html \-\-theme ./output/themes/zappts\-dark\-theme.css
+
+# Test post\-processor only
+node postprocess\-marp\-html.js test.html \-\-help
+
+.EE
+.UNINDENT
+.UNINDENT
+.SS Recent Improvements
+.sp
+\fBPreprocessing Enhancements:\fP
+.INDENT 0.0
+.IP \(bu 2
+\fBEnhanced height estimation\fP: Better support for code blocks, tables, images, and lists
+.IP \(bu 2
+\fBAdded error handling\fP: Input validation and comprehensive error messages
+.IP \(bu 2
+\fBImproved frontmatter\fP: Proper YAML formatting with special character handling
+.IP \(bu 2
+\fBAdded debugging\fP: Use \fBnew PabloSlideGenerator({debug: true})\fP for verbose output
+.IP \(bu 2
+\fBAdded validation\fP: \fBvalidateSlides()\fP method checks for common issues
+.UNINDENT
+.sp
+\fBTheme System Modernization:\fP
+.INDENT 0.0
+.IP \(bu 2
+\fBModernized Sass syntax\fP: Converted deprecated \fB@import\fP to modern \fB@use\fP syntax
+.IP \(bu 2
+\fBEliminated deprecation warnings\fP: Fully compatible with Dart Sass 3.0.0+
+.IP \(bu 2
+\fBImproved build performance\fP: Cleaner theme compilation process
+.UNINDENT
+.SS Common Issues
+.INDENT 0.0
+.IP \(bu 2
+\fBPowerShell execution\fP: \fBSet\-ExecutionPolicy \-ExecutionPolicy RemoteSigned \-Scope CurrentUser\fP
+.IP \(bu 2
+\fBTheme not found\fP: Ensure \fBnpm run build\fP completed successfully
+.IP \(bu 2
+\fBHTML processing fails\fP: Check markdown syntax in \fB<div class=\(dqsources\(dq>\fP elements
+.IP \(bu 2
+\fBPort conflicts\fP: Dev server auto\-detects available ports starting from 1234
+.IP \(bu 2
+\fBPreprocessing errors\fP: Use debug mode to troubleshoot slide generation issues
+.UNINDENT
+.SS Project Structure Understanding
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.EX
+pablo/
+├── src/preprocessor/           # Core slide generation logic
+├── themes/                     # SCSS theme sources
+├── output/                     # Generated HTML and compiled CSS
+├── *.source.md                 # Original presentation content
+├── *.md                        # Preprocessed intermediate files
+├── build\-presentation.js       # Main build orchestrator
+├── postprocess\-marp\-html.js    # HTML post\-processing CLI
+└── pablo.config.js             # Preprocessor configuration
+
+.EE
+.UNINDENT
+.UNINDENT
+.sp
+This system is designed for creating professional presentations with intelligent content organization, multiple visual themes, and robust processing pipelines.
+.SH INDICES AND SEARCH
+.INDENT 0.0
+.IP \(bu 2
+\fI\%Index\fP
+.IP \(bu 2
+\fI\%Search\fP
+.UNINDENT
+.SH AUTHOR
+Pablo Team
+.SH COPYRIGHT
+2025, Pablo Team
+.\" Generated by docutils manpage writer.
+.

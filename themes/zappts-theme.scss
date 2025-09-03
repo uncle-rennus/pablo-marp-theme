@@ -1,0 +1,668 @@
+/*!
+ * @theme zappts-theme
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ */
+
+// Google Fonts import for Montserrat
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+// =============================================================================
+// AUTHENTIC ZAPPTS CORPORATE THEME - CORRECTED VERSION
+// =============================================================================
+// Based on extracted PPTX data with exact positioning and font sizes
+
+// =============================================================================
+// AUTHENTIC ZAPPTS BRAND COLORS (from extracted theme XML)
+// =============================================================================
+
+// Primary brand colors from Zappts Corporate Deck theme
+$zappts-primary-blue: #4285F4 !default;    // accent1 - Main Zappts blue
+$zappts-dark-gray: #212121 !default;       // accent2 - Dark text
+$zappts-medium-gray: #78909C !default;     // accent3 - Medium gray
+$zappts-orange: #FFAB40 !default;          // accent4 - Accent orange
+$zappts-teal: #0097A7 !default;            // accent5 - Links/secondary
+$zappts-yellow: #EEFF41 !default;          // accent6 - Highlight
+
+// Background colors
+$zappts-white: #FFFFFF !default;           // lt1 - Main background
+$zappts-light-gray: #EEEEEE !default;      // lt2 - Light background
+$zappts-very-light: #F3F3F3 !default;      // Alternative light
+$zappts-black: #000000 !default;           // dk1 - Text
+$zappts-text-gray: #595959 !default;       // dk2 - Secondary text
+$zappts-specific-gray: #646B6B !default;   // Found in slide content
+
+// Typography with Google Fonts - Corrected font sizes
+$zappts-font-family: "Montserrat", Arial, Helvetica, sans-serif !default;
+
+// Corrected font sizes (converted from points)
+$zappts-font-section-title: 36pt !default;  // Full Section Title = 36pt
+$zappts-font-simple-title: 16.5pt !default; // Simple slide title = 16.5pt
+$zappts-font-regular-text: 14pt !default;   // Regular text = 14pt
+
+// Convert points to pixels (1pt = 1.33px approximately)
+$zappts-font-size-section: calc(36pt * 1.33) !default;  // ~48px
+$zappts-font-size-title: calc(16.5pt * 1.33) !default;  // ~22px  
+$zappts-font-size-body: calc(14pt * 1.33) !default;     // ~18.5px
+
+// =============================================================================
+// CSS CUSTOM PROPERTIES
+// =============================================================================
+
+:root {
+  // Authentic Zappts brand colors
+  --zappts-primary-blue: #{$zappts-primary-blue};
+  --zappts-dark-gray: #{$zappts-dark-gray};
+  --zappts-medium-gray: #{$zappts-medium-gray};
+  --zappts-orange: #{$zappts-orange};
+  --zappts-teal: #{$zappts-teal};
+  --zappts-yellow: #{$zappts-yellow};
+  --zappts-white: #{$zappts-white};
+  --zappts-light-gray: #{$zappts-light-gray};
+  --zappts-very-light: #{$zappts-very-light};
+  --zappts-black: #{$zappts-black};
+  --zappts-text-gray: #{$zappts-text-gray};
+  --zappts-specific-gray: #{$zappts-specific-gray};
+  
+  // Typography with corrected sizes
+  --zappts-font: #{$zappts-font-family};
+  --section-title-size: #{$zappts-font-size-section};
+  --slide-title-size: #{$zappts-font-size-title};
+  --body-size: #{$zappts-font-size-body};
+}
+
+// =============================================================================
+// BASE SLIDE STYLES WITH EXACT IMAGE POSITIONING
+// =============================================================================
+
+section {
+  width: 1280px;
+  height: 720px;
+  background: var(--zappts-white);
+  color: var(--zappts-black);
+  font-family: var(--zappts-font);
+  font-size: var(--body-size);
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+
+  // Orange bar on content slides only (not title/cover slides)
+  &:not(.proposal):not(.slide--proposal):not(.title)::before {
+    content: "";
+    position: absolute;
+    left: 80px;      // Left margin
+    top: 120px;      // Below header area
+    width: 1120px;   // Extends across most of slide
+    height: 3px;     // Thin orange line
+    background: var(--zappts-orange);
+    z-index: 1;
+  }
+}
+
+// Content slides only - not cover/title slides
+section:not(.proposal):not(.slide--proposal):not(.title) {
+  // Multiple background images: top-right logo (image2 resized) + bottom-left decoration (image1)
+  background: 
+    url('./assets/image2.png') 1080px 30px / 160px 40px no-repeat,
+    url('./assets/image1.png') 40px 480px / 240px 200px no-repeat,
+    var(--zappts-white);
+}
+
+// Typography defaults with corrected font sizes
+h1 { 
+  font-family: var(--zappts-font); 
+  font-size: var(--slide-title-size);  // 16.5pt for simple slides
+  color: var(--zappts-primary-blue); 
+  margin: 20px 0 15px 0; 
+  font-weight: 600;
+  position: relative;
+  z-index: 3;
+}
+
+h2 { 
+  font-family: var(--zappts-font); 
+  font-size: calc(var(--slide-title-size) * 0.9); 
+  color: var(--zappts-primary-blue); 
+  margin: 15px 0 10px 0; 
+  font-weight: 500;
+  position: relative;
+  z-index: 3;
+}
+
+h3 { 
+  font-family: var(--zappts-font); 
+  font-size: calc(var(--body-size) * 1.1); 
+  color: var(--zappts-dark-gray); 
+  margin: 10px 0 8px 0; 
+  font-weight: 500;
+  position: relative;
+  z-index: 3;
+}
+
+p { 
+  font-family: var(--zappts-font);
+  font-size: var(--body-size);  // 14pt
+  margin: 0 0 10px 0; 
+  line-height: 1.6;
+  position: relative;
+  z-index: 3;
+}
+
+ul, ol { 
+  font-size: var(--body-size);
+  margin: 0 0 10px 20px;
+  position: relative;
+  z-index: 3;
+}
+
+li { 
+  font-size: var(--body-size);
+  margin-bottom: 5px;
+  position: relative;
+  z-index: 3;
+}
+
+strong { 
+  color: var(--zappts-primary-blue); 
+}
+
+em { 
+  color: var(--zappts-orange); 
+}
+
+// =============================================================================
+// SLIDE TYPE 1: TITLE/PROPOSAL SLIDE 
+// =============================================================================
+
+// Original classes for manual slide types
+section.proposal,
+section.slide--proposal,
+// Preprocessor-generated title class
+section.title {
+  // image8 - background for title slide
+  background-image: url('./assets/image8.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  // Blue opacity overlay
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(66, 133, 244, 0.7);
+    z-index: 1;
+  }
+  
+  // Logo on title slide - centered and prominent
+  // Converted from Google Presentation coordinates to 1280x720 slide  
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 200px;      // Upper portion of slide
+    transform: translateX(-50%);
+    width: 300px;    // Larger logo for title slide
+    height: 80px;    // Proportional height
+    background-image: url('./assets/image2.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 3;
+  }
+  
+  // Style the main title on title slides
+  h1 {
+    position: absolute;
+    top: 320px;      // Below logo
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--section-title-size);  // Large title size
+    color: var(--zappts-white);
+    font-weight: 700;
+    text-align: center;
+    z-index: 3;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    margin: 0;
+    width: 90%;
+  }
+  
+  // Style subtitles and additional content on title slides
+  h3, p, em {
+    color: var(--zappts-white);
+    text-align: center;
+    z-index: 3;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  
+  // Center any images (like client logos)
+  img {
+    display: block;
+    margin: 20px auto;
+    max-width: 300px;
+    z-index: 3;
+    position: relative;
+    border: 2px dashed var(--zappts-white);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .proposal-info {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 12px;
+    color: var(--zappts-white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 3;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  
+  .proposal-title {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    color: var(--zappts-white);
+    font-weight: 700;
+    text-align: center;
+    z-index: 3;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  .customer-logo {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6.45cm;
+    height: 1.40cm;
+    object-fit: contain;
+    border: 2px dashed var(--zappts-white);
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 3;
+    border-radius: 4px;
+  }
+}
+
+// =============================================================================  
+// SLIDE TYPE 2: SECTION TITLE SLIDE (Full Section Title = 36pt)
+// =============================================================================
+
+section.section-title,
+section.slide--section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  
+  h1 {
+    font-size: var(--section-title-size);  // 36pt
+    position: relative;
+    z-index: 3;
+    font-weight: 700;
+    margin: 0;
+    
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 4px;
+      background: var(--zappts-orange);
+    }
+  }
+}
+
+// =============================================================================
+// SLIDE TYPE 3: SIMPLE TITLE & CONTENT SLIDE 
+// =============================================================================
+
+section.title-content,
+section.slide--title-content {
+  padding: 40px 60px;
+  
+  h1 {
+    border-bottom: 3px solid var(--zappts-primary-blue);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    font-size: var(--slide-title-size);  // 16.5pt
+  }
+  
+  .content {
+    font-size: var(--body-size);  // 14pt
+    line-height: 1.6;
+    max-width: none;  // Take full width
+    z-index: 3;
+    position: relative;
+  }
+}
+
+// =============================================================================
+// SLIDE TYPE 4: ONE COLUMN TITLE & TEXT (take whole slide)
+// =============================================================================
+
+section.onecol,
+section.slide--onecol {
+  padding: 40px 60px;
+  
+  h1 {
+    font-size: var(--slide-title-size);  // 16.5pt
+    margin-bottom: 25px;
+  }
+  
+  p {
+    font-size: var(--body-size);  // 14pt
+    margin-bottom: 15px;
+    width: 100%;  // Take full width
+  }
+  
+  .para--emphasis {
+    background: rgba(102, 107, 107, 0.1);
+    color: var(--zappts-specific-gray);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--zappts-primary-blue);
+    margin: 20px 0;
+    position: relative;
+    z-index: 3;
+    font-weight: 500;
+    width: 100%;  // Take full width
+    box-sizing: border-box;
+  }
+}
+
+// =============================================================================
+// SLIDE TYPE 5: TWO COLUMNS TITLE & TEXT (fixed layout)
+// =============================================================================
+
+section.twocol,
+section.slide--twocol {
+  padding: 40px 60px;
+  
+  h1 {
+    font-size: var(--slide-title-size);  // 16.5pt
+    margin-bottom: 25px;
+  }
+  
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 3;
+    width: 100%;
+  }
+  
+  .col--left,
+  .col--right {
+    font-size: var(--body-size);  // 14pt
+    
+    h3 {
+      color: var(--zappts-primary-blue);
+      border-bottom: 2px solid var(--zappts-light-gray);
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+      font-size: calc(var(--body-size) * 1.1);
+    }
+    
+    p {
+      font-size: var(--body-size);  // 14pt
+      line-height: 1.6;
+    }
+  }
+}
+
+// =============================================================================
+// SLIDE TYPE 6: MAIN TOPIC TITLE
+// =============================================================================
+
+section.main-topic,
+section.slide--main-topic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  
+  h1 {
+    font-size: var(--section-title-size);  // 36pt like section title
+    margin-bottom: 20px;
+    z-index: 3;
+    font-weight: 700;
+  }
+  
+  .subtitle {
+    font-size: calc(var(--body-size) * 1.2);
+    color: var(--zappts-text-gray);
+    font-style: italic;
+    z-index: 3;
+    position: relative;
+  }
+}
+
+// =============================================================================
+// SLIDE TYPE 7: TITLE + SUBTITLE + RIGHT CONTENT BLOCK (fixed division)
+// =============================================================================
+
+section.title-sub-right,
+section.slide--title-sub-right {
+  display: grid;
+  grid-template-columns: 1fr 350px;  // Fixed right column width
+  gap: 40px;
+  padding: 40px 60px;
+  
+  .left-content {
+    position: relative;
+    z-index: 3;
+    
+    h1 {
+      font-size: var(--slide-title-size);  // 16.5pt
+      margin-bottom: 15px;
+    }
+    
+    .subtitle {
+      font-size: calc(var(--body-size) * 0.9);
+      color: var(--zappts-text-gray);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    
+    p {
+      font-size: var(--body-size);  // 14pt
+    }
+  }
+  
+  .support-box {
+    background: var(--zappts-light-gray);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--zappts-very-light);
+    height: fit-content;
+    position: relative;
+    z-index: 3;
+    
+    h3 {
+      color: var(--zappts-primary-blue);
+      font-size: calc(var(--body-size) * 1.1);
+      margin-bottom: 15px;
+    }
+    
+    p, li {
+      font-size: calc(var(--body-size) * 0.9);
+    }
+  }
+}
+
+// =============================================================================
+// SLIDE TYPE 8: TITLE + SUBTITLE + RIGHT-SIDE BLOCK with Grey Card
+// =============================================================================
+
+section.title-sub-right-block,
+section.slide--title-sub-right-block {
+  display: grid;
+  grid-template-columns: 1fr 350px;  // Fixed right column width
+  gap: 40px;
+  padding: 40px 60px;
+  
+  .left-content {
+    position: relative;
+    z-index: 3;
+    
+    h1 {
+      font-size: var(--slide-title-size);  // 16.5pt
+      margin-bottom: 15px;
+    }
+    
+    .subtitle {
+      font-size: calc(var(--body-size) * 0.9);
+      color: var(--zappts-text-gray);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    
+    p {
+      font-size: var(--body-size);  // 14pt
+    }
+  }
+  
+  .support-block {
+    position: relative;
+    z-index: 3;
+    
+    .support-image {
+      width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 8px;
+    }
+    
+    .support-text {
+      padding: 20px;
+      background: var(--zappts-light-gray);  // Grey card
+      border-radius: 8px;
+      font-size: calc(var(--body-size) * 0.9);
+      border: 1px solid var(--zappts-very-light);
+      
+      p {
+        font-size: calc(var(--body-size) * 0.9);
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+// =============================================================================
+// CARD-BASED SLIDES (Generated by Preprocessor)
+// =============================================================================
+
+// Card slides - content slides with proper padding and styling
+section.card-start,
+section.card-middle, 
+section.card-end,
+section.card-single {
+  padding: 40px 60px;
+  
+  h1, h2 {
+    border-bottom: 3px solid var(--zappts-primary-blue);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    font-size: var(--slide-title-size);  // 16.5pt
+  }
+  
+  h3 {
+    color: var(--zappts-primary-blue);
+    border-bottom: 1px solid var(--zappts-light-gray);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+  }
+  
+  // Override the global section background for card slides
+  &:not(.title) {
+    // Keep the orange bar and background images
+    background: 
+      url('./assets/image2.png') 1080px 30px / 160px 40px no-repeat,
+      url('./assets/image1.png') 40px 480px / 240px 200px no-repeat,
+      var(--zappts-white);
+      
+    &::before {
+      content: "";
+      position: absolute;
+      left: 80px;
+      top: 120px;
+      width: 1120px;
+      height: 3px;
+      background: var(--zappts-orange);
+      z-index: 1;
+    }
+  }
+}
+
+// Special styling for card transitions
+section.card-start {
+  // First slide in a card series
+  h1, h2 {
+    color: var(--zappts-primary-blue);
+  }
+}
+
+section.card-middle {
+  // Middle slides in a card series
+  h2 {
+    font-size: calc(var(--slide-title-size) * 0.95);
+  }
+}
+
+section.card-end {
+  // Last slide in a card series - add some emphasis
+  border-bottom: 4px solid var(--zappts-orange);
+}
+
+// =============================================================================
+// UTILITY CLASSES
+// =============================================================================
+
+.centered { text-align: center; }
+.vcenter { display: flex; align-items: center; justify-content: center; }
+.right { text-align: right; }
+.muted { color: var(--zappts-text-gray); }
+.highlight { 
+  color: var(--zappts-orange); 
+  background: var(--zappts-light-gray); 
+  padding: 2px 6px; 
+  border-radius: 4px; 
+}
+.grid { display: grid; }
+.col { flex: 1; }
+
+// =============================================================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+@media (max-width: 1024px) {
+  section.twocol .columns,
+  section.title-sub-right,
+  section.title-sub-right-block {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  // Adjust positioning for smaller screens
+  section:not(.proposal):not(.slide--proposal) {
+    background-size: 80%, 80%, auto;
+  }
+}

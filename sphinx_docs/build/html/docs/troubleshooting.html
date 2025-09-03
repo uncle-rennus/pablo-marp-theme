@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Troubleshooting &#8212; Pablo Presentation System 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Theme Creation Process Demo" href="theme-creation.html" />
+    <link rel="prev" title="Configuration" href="configuration.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">¶</a></h1>
+<p>Common issues and solutions when working with the Pablo presentation system.</p>
+<section id="common-issues">
+<h2>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading">¶</a></h2>
+<section id="powershell-execution-policy-error">
+<h3>PowerShell Execution Policy Error<a class="headerlink" href="#powershell-execution-policy-error" title="Link to this heading">¶</a></h3>
+<p><strong>Problem</strong>: Scripts cannot be executed due to PowerShell execution policy.</p>
+<p><strong>Solution</strong>:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">Set-ExecutionPolicy</span> <span class="n">-ExecutionPolicy</span> <span class="n">RemoteSigned</span> <span class="n">-Scope</span> <span class="n">CurrentUser</span>
+</pre></div>
+</div>
+</section>
+<section id="preprocessor-errors">
+<h3>Preprocessor Errors<a class="headerlink" href="#preprocessor-errors" title="Link to this heading">¶</a></h3>
+<p><strong>Problem</strong>: Slide generation fails or produces unexpected results.</p>
+<p><strong>Solutions</strong>:</p>
+<ul class="simple">
+<li><p>Check source file syntax and frontmatter</p></li>
+<li><p>Verify <code class="docutils literal notranslate"><span class="pre">pablo.config.js</span></code> configuration</p></li>
+<li><p>Ensure proper markdown structure</p></li>
+</ul>
+<p><strong>Debug Mode</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;const {PabloSlideGenerator} = require(&#39;./src/preprocessor/index.js&#39;); const generator = new PabloSlideGenerator({debug: true}); console.log(generator.processMarkdown(fs.readFileSync(&#39;file.source.md&#39;, &#39;utf8&#39;)));&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="marp-build-failures">
+<h3>Marp Build Failures<a class="headerlink" href="#marp-build-failures" title="Link to this heading">¶</a></h3>
+<p><strong>Problem</strong>: Marp fails to build presentation.</p>
+<p><strong>Solutions</strong>:</p>
+<ul class="simple">
+<li><p>Verify theme files exist and are compiled: <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">build</span></code></p></li>
+<li><p>Check markdown syntax and HTML elements</p></li>
+<li><p>Ensure all referenced assets exist</p></li>
+</ul>
+<p><strong>Test Individual Components</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test Marp only  </span>
+npx<span class="w"> </span>marp<span class="w"> </span>file.md<span class="w"> </span>--output<span class="w"> </span>test.html<span class="w"> </span>--theme<span class="w"> </span>./output/themes/zappts-dark-theme.css
+</pre></div>
+</div>
+</section>
+<section id="post-processing-issues">
+<h3>Post-processing Issues<a class="headerlink" href="#post-processing-issues" title="Link to this heading">¶</a></h3>
+<p><strong>Problem</strong>: HTML processing fails or corrupts presentation.</p>
+<p><strong>Solutions</strong>:</p>
+<ul class="simple">
+<li><p>Check HTML file permissions</p></li>
+<li><p>Verify markdown syntax in HTML elements</p></li>
+<li><p>Review backup files for content comparison</p></li>
+</ul>
+<p><strong>Test Post-processor</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node<span class="w"> </span>postprocess-marp-html.js<span class="w"> </span>test.html<span class="w"> </span>--help
+</pre></div>
+</div>
+</section>
+<section id="theme-not-found">
+<h3>Theme Not Found<a class="headerlink" href="#theme-not-found" title="Link to this heading">¶</a></h3>
+<p><strong>Problem</strong>: Theme is not applied to presentation.</p>
+<p><strong>Solutions</strong>:</p>
+<ol class="arabic simple">
+<li><p>Ensure themes are compiled: <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">build</span></code></p></li>
+<li><p>Check theme name in frontmatter matches available themes</p></li>
+<li><p>Verify theme CSS files exist in <code class="docutils literal notranslate"><span class="pre">output/themes/</span></code></p></li>
+</ol>
+</section>
+<section id="port-conflicts">
+<h3>Port Conflicts<a class="headerlink" href="#port-conflicts" title="Link to this heading">¶</a></h3>
+<p><strong>Problem</strong>: Development server cannot start.</p>
+<p><strong>Solution</strong>: The dev server auto-detects available ports starting from 1234. If issues persist, manually specify a different port.</p>
+</section>
+</section>
+<section id="debug-commands">
+<h2>Debug Commands<a class="headerlink" href="#debug-commands" title="Link to this heading">¶</a></h2>
+<section id="test-preprocessor-only">
+<h3>Test Preprocessor Only<a class="headerlink" href="#test-preprocessor-only" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;const {PabloSlideGenerator} = require(&#39;./src/preprocessor/index.js&#39;); console.log(new PabloSlideGenerator().processMarkdown(fs.readFileSync(&#39;file.source.md&#39;, &#39;utf8&#39;)));&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="test-preprocessor-with-debugging">
+<h3>Test Preprocessor with Debugging<a class="headerlink" href="#test-preprocessor-with-debugging" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;const {PabloSlideGenerator} = require(&#39;./src/preprocessor/index.js&#39;); const generator = new PabloSlideGenerator({debug: true}); console.log(generator.processMarkdown(fs.readFileSync(&#39;file.source.md&#39;, &#39;utf8&#39;)));&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="test-preprocessor-validation">
+<h3>Test Preprocessor Validation<a class="headerlink" href="#test-preprocessor-validation" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;const {PabloSlideGenerator} = require(&#39;./src/preprocessor/index.js&#39;); const generator = new PabloSlideGenerator(); const processed = generator.processMarkdown(fs.readFileSync(&#39;file.source.md&#39;, &#39;utf8&#39;)); const warnings = generator.validateSlides(processed.split(&#39;---&#39;).slice(2)); console.log(&#39;Validation warnings:&#39;, warnings);&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="enable-debug-mode">
+<h3>Enable Debug Mode<a class="headerlink" href="#enable-debug-mode" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">DEBUG</span><span class="o">=</span>*<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>build:presentation
+</pre></div>
+</div>
+</section>
+</section>
+<section id="file-issues">
+<h2>File Issues<a class="headerlink" href="#file-issues" title="Link to this heading">¶</a></h2>
+<section id="backup-and-recovery">
+<h3>Backup and Recovery<a class="headerlink" href="#backup-and-recovery" title="Link to this heading">¶</a></h3>
+<p>Pablo automatically creates backups during processing. If something goes wrong:</p>
+<ol class="arabic simple">
+<li><p>Check for backup files: <code class="docutils literal notranslate"><span class="pre">*.backup.timestamp</span></code></p></li>
+<li><p>Restore from backup if needed</p></li>
+<li><p>Verify file permissions</p></li>
+</ol>
+</section>
+<section id="manual-pipeline-steps">
+<h3>Manual Pipeline Steps<a class="headerlink" href="#manual-pipeline-steps" title="Link to this heading">¶</a></h3>
+<p>For debugging specific stages:</p>
+<ol class="arabic">
+<li><p><strong>Preprocess only</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node<span class="w"> </span>build-presentation.js<span class="w"> </span>--preprocess-only
+</pre></div>
+</div>
+</li>
+<li><p><strong>Marp only</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>marp<span class="w"> </span>processed.md<span class="w"> </span>--output<span class="w"> </span>output.html<span class="w"> </span>--theme<span class="w"> </span>./themes/theme.css
+</pre></div>
+</div>
+</li>
+<li><p><strong>Post-process only</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node<span class="w"> </span>postprocess-marp-html.js<span class="w"> </span>output.html
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading">¶</a></h2>
+<p>If you encounter issues not covered here:</p>
+<ol class="arabic simple">
+<li><p>Check the debug output with <code class="docutils literal notranslate"><span class="pre">DEBUG=*</span></code></p></li>
+<li><p>Verify all dependencies are installed</p></li>
+<li><p>Ensure file permissions are correct</p></li>
+<li><p>Review the build logs for specific error messages</p></li>
+</ol>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Pablo Presentation System</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#common-issues">Common Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debug-commands">Debug Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-issues">File Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Theme Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="theme-creation.html">Theme Creation Process Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="table-colors-reference.html">Table Colors Reference - Zappts Dark Theme</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developer-guide.html">WARP.md</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="configuration.html" title="previous chapter">Configuration</a></li>
+      <li>Next: <a href="theme-creation.html" title="next chapter">Theme Creation Process Demo</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Pablo Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/docs/troubleshooting.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
