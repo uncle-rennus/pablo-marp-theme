@@ -5,691 +5,639 @@
  */
 
 // =============================================================================
-// ZAPPTS DARK THEME CONFIGURATION
+// ZAPPTS DARK THEME - BUSINESS PRESENTATION LAYOUTS
+// =============================================================================
+// Based on authentic Zappts corporate deck with proper business slide positioning
+
+// Google Fonts import for Montserrat (authentic Zappts font)
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+// =============================================================================
+// AUTHENTIC ZAPPTS BRAND COLORS (Dark Theme Variant)
 // =============================================================================
 
-// Import configuration file with all variables
-@use 'zappts-dark-theme.config' as *;
+// Zappts corporate colors adapted for dark theme
+$zappts-primary-blue: #4285F4 !default;    // Main Zappts blue
+$zappts-dark-bg: #1E1E1E !default;         // Dark background
+$zappts-orange: #FFAB40 !default;          // Accent orange
+$zappts-teal: #0097A7 !default;            // Secondary teal
+$zappts-white: #FFFFFF !default;           // White text
+$zappts-light-gray: #F0F0F0 !default;      // Light gray text
+$zappts-medium-gray: #CCCCCC !default;     // Medium gray
+$zappts-dark-gray: #888888 !default;       // Dark gray for emphasis
+$zappts-emphasis-gray: #646B6B !default;   // Specific emphasis color
 
 // =============================================================================
-// BASE STYLES (Marpit-compliant)
+// CSS CUSTOM PROPERTIES
 // =============================================================================
 
 :root {
-  // CSS Custom Properties for runtime customization
-  --zappts-base: #{$zappts-base};
-  --zappts-mantle: #{$zappts-mantle};
-  --zappts-crust: #{$zappts-crust};
-  --zappts-surface0: #{$zappts-surface0};
-  --zappts-surface1: #{$zappts-surface1};
-  --zappts-surface2: #{$zappts-surface2};
-  --zappts-overlay0: #{$zappts-overlay0};
-  --zappts-overlay1: #{$zappts-overlay1};
-  --zappts-overlay2: #{$zappts-overlay2};
-  --zappts-subtext0: #{$zappts-subtext0};
-  --zappts-subtext1: #{$zappts-subtext1};
-  --zappts-text: #{$zappts-text};
-  --zappts-lavender: #{$zappts-lavender};
-  --zappts-blue: #{$zappts-blue};
-  --zappts-sapphire: #{$zappts-sapphire};
-  --zappts-sky: #{$zappts-sky};
+  // Authentic Zappts brand colors (dark theme)
+  --zappts-primary-blue: #{$zappts-primary-blue};
+  --zappts-dark-bg: #{$zappts-dark-bg};
+  --zappts-orange: #{$zappts-orange};
   --zappts-teal: #{$zappts-teal};
-  --zappts-green: #{$zappts-green};
-  --zappts-yellow: #{$zappts-yellow};
-  --zappts-peach: #{$zappts-peach};
-  --zappts-maroon: #{$zappts-maroon};
-  --zappts-red: #{$zappts-red};
-  --zappts-mauve: #{$zappts-mauve};
-  --zappts-pink: #{$zappts-pink};
-  --zappts-flamingo: #{$zappts-flamingo};
-  --zappts-rosewater: #{$zappts-rosewater};
+  --zappts-white: #{$zappts-white};
+  --zappts-light-gray: #{$zappts-light-gray};
+  --zappts-medium-gray: #{$zappts-medium-gray};
+  --zappts-dark-gray: #{$zappts-dark-gray};
+  --zappts-emphasis-gray: #{$zappts-emphasis-gray};
   
-  --cover-bg: #{$cover-bg};
-  --cover-text: #{$cover-text};
-  --cover-accent: #{$cover-accent};
-  --cover-subtitle: #{$cover-subtitle};
+  // Typography
+  --zappts-font: "Montserrat", Arial, Helvetica, sans-serif;
+  --section-title-size: 48px;  // Large section titles
+  --slide-title-size: 22px;    // Regular slide titles
+  --body-size: 18px;           // Body text
 }
 
-// Base section styles (Marpit requirement)
+// =============================================================================
+// BASE SLIDE STYLES WITH BACKGROUND IMAGES
+// =============================================================================
+
 section {
   width: 1280px;
   height: 720px;
-  background: var(--zappts-base);
-  color: var(--zappts-text);
-  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
-  font-size: 24px;
-  line-height: 1.6;
-  margin: 0;
+  background: var(--zappts-dark-bg);
+  color: var(--zappts-white);
+  font-family: var(--zappts-font);
+  font-size: var(--body-size);
+  line-height: 1.5;
   padding: 0;
+  margin: 0;
   position: relative;
   overflow: hidden;
-}
 
-// =============================================================================
-// TITLE SLIDE STYLES
-// =============================================================================
-
-section.title {
-  background: var(--cover-bg) !important;
-  color: var(--cover-text) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-  text-align: center !important;
-  padding: 80px !important;
-
-  h1 {
-    color: var(--cover-accent) !important;
-    font-size: 3.5em !important;
-    font-weight: 700 !important;
-    margin-bottom: 30px !important;
-    letter-spacing: 1px !important;
-  }
-
-  h3 {
-    color: var(--cover-subtitle) !important;
-    font-size: 1.8em !important;
-    font-weight: 400 !important;
-    margin-bottom: 40px !important;
-  }
-
-  em {
-    color: var(--zappts-overlay1) !important;
-    font-style: normal !important;
-  }
-}
-
-// =============================================================================
-// CARD SYSTEM - DIRECT SECTION STYLING
-// =============================================================================
-
-// Card sections - direct styling
-section.card,
-section.card-single,
-section.card-start,
-section.card-middle,
-section.card-end {
-  background: var(--zappts-base) !important;
-  color: var(--zappts-text) !important;
-  padding: 0 !important;
-  position: relative !important;
-  overflow: hidden !important;
-}
-
-// Card backgrounds via ::before pseudo-elements
-section.card::before,
-section.card-single::before,
-section.card-start::before,
-section.card-middle::before,
-section.card-end::before {
-  content: '';
-  position: absolute;
-  top: 120px;
-  right: 80px;
-  bottom: 80px;
-  left: calc(28% + 20px);
-  background: var(--zappts-surface0);
-  border: 3px solid var(--zappts-mauve);
-  border-radius: 20px;
-  box-shadow: 0 12px 40px rgba(17, 17, 27, 0.4);
-  z-index: 1;
-}
-
-// Card middle and end adjustments
-section.card-middle::before,
-section.card-end::before {
-  top: 40px;
-}
-
-// Single card - all rounded corners
-section.card-single::before {
-  border-radius: 20px;
-}
-
-// Card start - top rounded only
-section.card-start::before {
-  border-radius: 20px 20px 0 0;
-  border-bottom: none;
-  bottom: 0;
-}
-
-// Card middle - no top/bottom radius
-section.card-middle::before {
-  border-radius: 0;
-  border-left: 3px solid var(--zappts-mauve);
-  border-right: 3px solid var(--zappts-mauve);
-  border-top: none;
-  border-bottom: none;
-  top: 0;
-  bottom: 0;
-}
-
-// Card end - bottom rounded only
-section.card-end::before {
-  border-radius: 0 0 20px 20px;
-  border-top: none;
-  top: 0;
-}
-
-// Card content padding
-section.card,
-section.card-single,
-section.card-start,
-section.card-middle,
-section.card-end {
-  padding: 160px 120px 120px calc(28% + 60px) !important;
-}
-
-section.card-middle,
-section.card-end {
-  padding: 80px 120px 120px calc(28% + 60px) !important;
-}
-
-// =============================================================================
-// LEFT NOTES STYLING
-// =============================================================================
-
-.left-notes {
-  position: absolute !important;
-  bottom: 40px !important;
-  left: 80px !important;
-  width: calc(28% - 120px) !important;
-  max-height: 200px !important;
-  z-index: 3 !important;
-  color: var(--zappts-subtext1) !important;
-  font-size: 16px !important;
-  line-height: 1.5 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow-y: auto !important;
-  display: flex !important;
-  flex-direction: column !important;
-
-  h2, h3 {
-    color: var(--zappts-mauve) !important;
-    font-size: 18px !important;
-    margin: 16px 0 8px 0 !important;
-  }
-
-  ul, ol {
-    margin: 8px 0 !important;
-    padding-left: 16px !important;
-  }
-
-  li {
-    margin-bottom: 4px !important;
-    font-size: 14px !important;
-    color: var(--zappts-subtext1) !important;
-  }
-
-  strong {
-    color: var(--zappts-green) !important;
-  }
-
-  em {
-    color: var(--zappts-peach) !important;
-  }
-
-  p {
-    margin-bottom: 8px !important;
-    font-size: 14px !important;
-    color: var(--zappts-subtext1) !important;
-  }
-
-  .sources {
-    margin-top: 16px !important;
-    font-size: 11px !important;
-    color: #ccc !important;
-    line-height: 1.3 !important;
-    background: transparent !important;
-    padding: 0 !important;
-    margin-right: 0 !important;
-    max-height: none !important;
-    overflow: visible !important;
-
-    h1, h2, h3, h4, h5, h6 {
-      color: #9399b2 !important;
-      font-size: 11px !important;
-      font-weight: 600 !important;
-      margin: 0 0 4px 0 !important;
-    }
-
-    strong {
-      color: #aaa !important;
-      font-weight: 600 !important;
-      font-size: 11px !important;
-    }
-
-    ul, ol {
-      margin: 8px 0 !important;
-      padding-left: 16px !important;
-      list-style: none !important;
-    }
-
-    li {
-      margin: 8px 0 !important;
-      color: #ccc !important;
-      font-size: 10px !important;
-      line-height: 1.5 !important;
-      list-style-type: disc !important;
-      list-style-position: outside !important;
-      padding-left: 8px !important;
-
-      &:before {
-        display: none !important;
-      }
-    }
-
-    a {
-      color: #3fa9f5 !important;
-      text-decoration: none !important;
-      display: inline-block !important;
-      position: relative !important;
-      z-index: 10 !important;
-      font-weight: 500 !important;
-      padding: 2px 0 !important;
-      font-size: 10px !important;
-
-      &:hover {
-        color: #3fa9f5 !important;
-        background: var(--zappts-surface1) !important;
-        padding: 2px 4px !important;
-        border-radius: 4px !important;
-      }
-    }
-
-    p {
-      margin: 8px 0 !important;
-      color: #ccc !important;
-      font-size: 10px !important;
-    }
-  }
-}
-
-section.card-middle .left-notes,
-section.card-end .left-notes {
-  bottom: 40px !important;
-}
-
-// =============================================================================
-// SLIDE TITLE STYLING
-// =============================================================================
-
-.slide-title {
-  position: absolute !important;
-  top: 40px !important;
-  left: 80px !important;
-  width: calc(28% - 40px) !important;
-  z-index: 3 !important;
-  font-size: 28px !important;
-  font-weight: 600 !important;
-  color: var(--zappts-mauve) !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background: rgba(0, 0, 0, 0) !important;
-  line-height: 1.3 !important;
-}
-
-section.card-middle .slide-title,
-section.card-end .slide-title {
-  display: none !important;
-}
-
-// =============================================================================
-// CARD CONTENT STYLING
-// =============================================================================
-
-section.card h1,
-section.card-single h1,
-section.card-start h1,
-section.card-middle h1,
-section.card-end h1 {
-  color: var(--zappts-mauve);
-  font-size: 40px;
-  font-weight: 700;
-  margin: 0 0 24px 0;
-  position: relative;
-  z-index: 2;
-}
-
-section.card h2,
-section.card-single h2,
-section.card-start h2,
-section.card-middle h2,
-section.card-end h2 {
-  color: var(--zappts-pink);
-  font-size: 32px;
-  font-weight: 600;
-  margin: 24px 0 16px 0;
-  border-bottom: 2px solid var(--zappts-mauve);
-  padding-bottom: 8px;
-  position: relative;
-  z-index: 2;
-}
-
-section.card h3,
-section.card-single h3,
-section.card-start h3,
-section.card-middle h3,
-section.card-end h3 {
-  color: var(--zappts-yellow);
-  font-size: 24px;
-  font-weight: 500;
-  margin: 20px 0 12px 0;
-  position: relative;
-  z-index: 2;
-}
-
-section.card ul,
-section.card ol,
-section.card-single ul,
-section.card-single ol,
-section.card-start ul,
-section.card-start ol,
-section.card-middle ul,
-section.card-middle ol,
-section.card-end ul,
-section.card-end ol {
-  margin: 16px 0;
-  padding-left: 20px;
-  position: relative;
-  z-index: 2;
-}
-
-section.card li,
-section.card-single li,
-section.card-start li,
-section.card-middle li,
-section.card-end li {
-  margin-bottom: 8px;
-  font-size: 22px;
-  color: var(--zappts-text);
-  line-height: 1.5;
-  position: relative;
-  z-index: 2;
-}
-
-section.card p,
-section.card-single p,
-section.card-start p,
-section.card-middle p,
-section.card-end p {
-  margin-bottom: 16px;
-  font-size: 22px;
-  color: var(--zappts-text);
-  line-height: 1.6;
-  position: relative;
-  z-index: 2;
-}
-
-section.card strong,
-section.card-single strong,
-section.card-start strong,
-section.card-middle strong,
-section.card-end strong {
-  color: var(--zappts-green);
-  font-weight: 700;
-}
-
-section.card em,
-section.card-single em,
-section.card-start em,
-section.card-middle em,
-section.card-end em {
-  color: var(--zappts-peach);
-  font-style: italic;
-}
-
-section.card code,
-section.card-single code,
-section.card-start code,
-section.card-middle code,
-section.card-end code {
-  background: var(--zappts-mantle);
-  color: var(--zappts-yellow);
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
-  font-size: 20px;
-  border: 1px solid var(--zappts-surface1);
-}
-
-// =============================================================================
-// GENERAL SECTION STYLING
-// =============================================================================
-
-section h1 {
-  color: var(--zappts-mauve);
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-section h2 {
-  color: var(--zappts-pink);
-  font-size: 32px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  border-bottom: 2px solid var(--zappts-mauve);
-  padding-bottom: 8px;
-}
-
-section h3 {
-  color: var(--zappts-yellow);
-  font-size: 24px;
-  font-weight: 500;
-  margin-bottom: 12px;
-}
-
-section ul,
-section ol {
-  margin: 16px 0;
-  padding-left: 20px;
-}
-
-section li {
-  margin-bottom: 8px;
-  font-size: 22px;
-  color: var(--zappts-text);
-}
-
-section strong {
-  color: var(--zappts-green);
-  font-weight: 700;
-}
-
-section em {
-  color: var(--zappts-peach);
-  font-style: italic;
-}
-
-section code {
-  background: var(--zappts-mantle);
-  color: var(--zappts-yellow);
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
-  font-size: 20px;
-  border: 1px solid var(--zappts-surface1);
-}
-
-section a {
-  color: var(--zappts-blue);
-  text-decoration: underline;
-  font-weight: 500;
-
-  &:hover {
-    color: var(--zappts-sky);
-    text-decoration: none;
-  }
-}
-
-// =============================================================================
-// ZAPPTS TITLE SLIDE CUSTOMIZATION
-// =============================================================================
-
-// Override title slide styling with highest specificity - override base theme
-div#\:\$p > svg > foreignObject > section.title.title {
-  background: var(--cover-bg) !important;
-  color: var(--cover-text) !important;
-  display: block !important; // Override flex layout
-  flex-direction: initial !important; // Override flex
-  justify-content: initial !important; // Override flex  
-  align-items: initial !important; // Override flex
-  text-align: initial !important; // Override centered text
-  padding: 0 !important;
-  position: relative !important;
-  
-  // Horizontal blue strip
-  &::before {
-    content: '';
+  // Orange accent bar on content slides (not title/proposal slides)
+  &:not(.proposal):not(.title)::before {
+    content: "";
     position: absolute;
-    top: 35%;
+    left: 80px;
+    top: 120px;
+    width: 1120px;
+    height: 3px;
+    background: var(--zappts-orange);
+    z-index: 1;
+  }
+}
+
+// Content slides - background images positioning
+section:not(.proposal):not(.title) {
+  // Logo top-right + decorative bottom-left
+  background: 
+    url('./assets/image2.png') 1080px 30px / 160px 40px no-repeat,
+    url('./assets/image1.png') 40px 480px / 240px 200px no-repeat,
+    var(--zappts-dark-bg);
+}
+
+// =============================================================================
+// TYPOGRAPHY DEFAULTS
+// =============================================================================
+
+h1 { 
+  font-family: var(--zappts-font); 
+  font-size: var(--slide-title-size);
+  color: var(--zappts-primary-blue); 
+  margin: 20px 0 15px 0; 
+  font-weight: 600;
+  position: relative;
+  z-index: 3;
+}
+
+h2 { 
+  font-family: var(--zappts-font); 
+  font-size: calc(var(--slide-title-size) * 0.9); 
+  color: var(--zappts-primary-blue); 
+  margin: 15px 0 10px 0; 
+  font-weight: 500;
+}
+
+h3 { 
+  font-family: var(--zappts-font); 
+  font-size: calc(var(--body-size) * 1.1); 
+  color: var(--zappts-light-gray); 
+  margin: 10px 0 8px 0; 
+  font-weight: 500;
+}
+
+p { 
+  font-family: var(--zappts-font);
+  font-size: var(--body-size);
+  margin: 0 0 10px 0; 
+  line-height: 1.6;
+}
+
+ul, ol { 
+  font-size: var(--body-size);
+  margin: 0 0 10px 20px;
+}
+
+li { 
+  font-size: var(--body-size);
+  margin-bottom: 5px;
+}
+
+strong { 
+  color: var(--zappts-primary-blue); 
+}
+
+em { 
+  color: var(--zappts-orange); 
+}
+
+// =============================================================================
+// SLIDE TYPE 1: TITLE/PROPOSAL SLIDE 
+// =============================================================================
+
+section.proposal,
+section.title {
+  // Background image with blue overlay
+  background-image: url('./assets/image8.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  // Blue opacity overlay
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
     left: 0;
     right: 0;
-    height: 8px;
-    background: var(--cover-accent);
+    bottom: 0;
+    background: rgba(66, 133, 244, 0.7);
     z-index: 1;
   }
   
+  // Logo on title slide - centered and prominent
+  &::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 80px;
+    background-image: url('./assets/image2.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 3;
+  }
+  
   h1 {
-    position: absolute !important;
-    top: 45% !important; // Position mid-below the strip
-    left: 80px !important; // Left-aligned with standard margin
-    right: 80px !important;
-    color: var(--cover-text) !important;
-    font-size: 2.8em !important; // Smaller than original 3.5em
-    font-weight: 700 !important;
-    margin: 0 !important;
-    letter-spacing: 1px !important;
-    text-align: left !important; // Left-oriented
-    z-index: 2;
-    margin-bottom: 0 !important; // Override base margin
+    position: absolute;
+    top: 320px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--section-title-size);
+    color: var(--zappts-white);
+    font-weight: 700;
+    text-align: center;
+    z-index: 3;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    margin: 0;
+    width: 90%;
   }
-
-  h3 {
-    position: absolute !important;
-    top: 60% !important; // Below the title
-    left: 80px !important;
-    right: 80px !important;
-    color: var(--cover-subtitle) !important;
-    font-size: 1.4em !important; // Smaller subtitle
-    font-weight: 400 !important;
-    margin: 0 !important;
-    text-align: left !important;
-    z-index: 2;
-    margin-bottom: 0 !important; // Override base margin
+  
+  h3, p, em {
+    color: var(--zappts-white);
+    text-align: center;
+    z-index: 3;
+    position: relative;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
   }
-
-  em {
-    color: var(--zappts-overlay1) !important;
-    font-style: normal !important;
+  
+  .proposal-info {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 12px;
+    color: var(--zappts-white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 3;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  
+  .proposal-title {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    color: var(--zappts-white);
+    font-weight: 700;
+    text-align: center;
+    z-index: 3;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  .customer-logo {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6.45cm;
+    height: 1.40cm;
+    object-fit: contain;
+    border: 2px dashed var(--zappts-white);
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 3;
+    border-radius: 4px;
   }
 }
+
+// =============================================================================  
+// SLIDE TYPE 2: SECTION TITLE SLIDE
+// =============================================================================
+
+section.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  
+  h1 {
+    font-size: var(--section-title-size);
+    position: relative;
+    z-index: 3;
+    font-weight: 700;
+    margin: 0;
+    
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 4px;
+      background: var(--zappts-orange);
+    }
+  }
+}
+
+// =============================================================================
+// SLIDE TYPE 3: SIMPLE TITLE & CONTENT SLIDE 
+// =============================================================================
+
+section.title-content {
+  padding: 40px 60px;
+  
+  h1 {
+    border-bottom: 3px solid var(--zappts-primary-blue);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    font-size: var(--slide-title-size);
+  }
+  
+  .content {
+    font-size: var(--body-size);
+    line-height: 1.6;
+    max-width: none;
+    z-index: 3;
+    position: relative;
+  }
+}
+
+// =============================================================================
+// SLIDE TYPE 4: ONE COLUMN TITLE & TEXT
+// =============================================================================
+
+section.onecol {
+  padding: 40px 60px;
+  
+  h1 {
+    font-size: var(--slide-title-size);
+    margin-bottom: 25px;
+  }
+  
+  p {
+    font-size: var(--body-size);
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .para--emphasis {
+    background: rgba(100, 107, 107, 0.15);
+    color: var(--zappts-emphasis-gray);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--zappts-primary-blue);
+    margin: 20px 0;
+    position: relative;
+    z-index: 3;
+    font-weight: 500;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+// =============================================================================
+// SLIDE TYPE 5: TWO COLUMNS TITLE & TEXT
+// =============================================================================
+
+section.twocol {
+  padding: 40px 60px;
+  
+  h1 {
+    font-size: var(--slide-title-size);
+    margin-bottom: 25px;
+  }
+  
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 3;
+    width: 100%;
+  }
+  
+  .col--left,
+  .col--right {
+    font-size: var(--body-size);
+    
+    h3 {
+      color: var(--zappts-primary-blue);
+      border-bottom: 2px solid rgba(240, 240, 240, 0.3);
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+      font-size: calc(var(--body-size) * 1.1);
+    }
+    
+    p {
+      font-size: var(--body-size);
+      line-height: 1.6;
+    }
+  }
+}
+
+// =============================================================================
+// SLIDE TYPE 6: MAIN TOPIC TITLE
+// =============================================================================
+
+section.main-topic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  
+  h1 {
+    font-size: var(--section-title-size);
+    margin-bottom: 20px;
+    z-index: 3;
+    font-weight: 700;
+  }
+  
+  .subtitle {
+    font-size: calc(var(--body-size) * 1.2);
+    color: var(--zappts-medium-gray);
+    font-style: italic;
+    z-index: 3;
+    position: relative;
+  }
+}
+
+// =============================================================================
+// SLIDE TYPE 7: TITLE + SUBTITLE + RIGHT CONTENT BLOCK
+// =============================================================================
+
+section.title-sub-right {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 40px;
+  padding: 40px 60px;
+  
+  .left-content {
+    position: relative;
+    z-index: 3;
+    
+    h1 {
+      font-size: var(--slide-title-size);
+      margin-bottom: 15px;
+    }
+    
+    .subtitle {
+      font-size: calc(var(--body-size) * 0.9);
+      color: var(--zappts-medium-gray);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    
+    p {
+      font-size: var(--body-size);
+    }
+  }
+  
+  .support-box {
+    background: rgba(240, 240, 240, 0.05);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(240, 240, 240, 0.1);
+    height: fit-content;
+    position: relative;
+    z-index: 3;
+    
+    h3 {
+      color: var(--zappts-primary-blue);
+      font-size: calc(var(--body-size) * 1.1);
+      margin-bottom: 15px;
+    }
+    
+    p, li {
+      font-size: calc(var(--body-size) * 0.9);
+    }
+  }
+}
+
+// =============================================================================
+// SLIDE TYPE 8: TITLE + SUBTITLE + RIGHT-SIDE BLOCK
+// =============================================================================
+
+section.title-sub-right-block {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 40px;
+  padding: 40px 60px;
+  
+  .left-content {
+    position: relative;
+    z-index: 3;
+    
+    h1 {
+      font-size: var(--slide-title-size);
+      margin-bottom: 15px;
+    }
+    
+    .subtitle {
+      font-size: calc(var(--body-size) * 0.9);
+      color: var(--zappts-medium-gray);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    
+    p {
+      font-size: var(--body-size);
+    }
+  }
+  
+  .support-block {
+    position: relative;
+    z-index: 3;
+    
+    .support-image {
+      width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+      margin-bottom: 15px;
+      border-radius: 8px;
+    }
+    
+    .support-text {
+      padding: 20px;
+      background: rgba(240, 240, 240, 0.05);
+      border-radius: 8px;
+      font-size: calc(var(--body-size) * 0.9);
+      border: 1px solid rgba(240, 240, 240, 0.1);
+      
+      p {
+        font-size: calc(var(--body-size) * 0.9);
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+// =============================================================================
+// CARD-BASED SLIDES (Generated by Preprocessor)
+// =============================================================================
+
+// Card slides - standard business presentation styling
+section.card-start,
+section.card-middle, 
+section.card-end,
+section.card-single {
+  padding: 40px 60px;
+  
+  h1, h2 {
+    border-bottom: 3px solid var(--zappts-primary-blue);
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    font-size: var(--slide-title-size);
+  }
+  
+  h3 {
+    color: var(--zappts-primary-blue);
+    border-bottom: 1px solid rgba(240, 240, 240, 0.3);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+  }
+}
+
+// Special styling for card transitions
+section.card-start {
+  h1, h2 {
+    color: var(--zappts-primary-blue);
+  }
+}
+
+section.card-middle {
+  h2 {
+    font-size: calc(var(--slide-title-size) * 0.95);
+  }
+}
+
+section.card-end {
+  border-bottom: 4px solid var(--zappts-orange);
+}
+
 
 // =============================================================================
 // TABLE STYLING
 // =============================================================================
 
 section table {
-  width: 100% !important;
-  border-collapse: collapse !important;
-  margin: $table-margin !important;
-  background: $table-row-bg !important;
-  color: $table-text !important;
-  font-size: $table-font-size !important;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08) !important;
-  position: relative !important;
-  z-index: $z-index-card-content !important;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px 0;
+  background: rgba(240, 240, 240, 0.05);
+  color: var(--zappts-white);
+  font-size: var(--body-size);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 3;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 section th, section td {
-  border: $table-border-width solid $table-border-color !important;
-  padding: $table-padding !important;
-  text-align: left !important;
+  border: 1px solid rgba(240, 240, 240, 0.2);
+  padding: 12px 18px;
+  text-align: left;
 }
 
 section th {
-  background: $table-header-bg !important;
-  color: $table-header-text !important;
-  font-weight: 700 !important;
-  font-size: $table-header-font-size !important;
+  background: var(--zappts-primary-blue);
+  color: var(--zappts-white);
+  font-weight: 700;
+  font-size: calc(var(--body-size) * 1.1);
 }
 
 section td {
-  background: $table-row-bg !important;
-  color: $table-text !important;
+  background: rgba(240, 240, 240, 0.02);
+  color: var(--zappts-light-gray);
 }
 
 section tr:nth-child(even) td {
-  background: $table-row-alt-bg !important;
+  background: rgba(240, 240, 240, 0.05);
 }
 
 section table strong {
-  color: $zappts-green !important;
+  color: var(--zappts-primary-blue);
 }
 
-// Card-specific table styling for higher specificity
-section.card table,
-section.card-single table,
-section.card-start table,
-section.card-middle table,
-section.card-end table {
-  width: 100% !important;
-  border-collapse: collapse !important;
-  margin: $table-margin !important;
-  background: $table-row-bg !important;
-  color: $table-text !important;
-  font-size: $table-font-size !important;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08) !important;
-  position: relative !important;
-  z-index: $z-index-card-content !important;
-}
+// =============================================================================
+// UTILITY CLASSES
+// =============================================================================
 
-section.card th, section.card td,
-section.card-single th, section.card-single td,
-section.card-start th, section.card-start td,
-section.card-middle th, section.card-middle td,
-section.card-end th, section.card-end td {
-  border: $table-border-width solid $table-border-color !important;
-  padding: $table-padding !important;
-  text-align: left !important;
+.centered { text-align: center; }
+.vcenter { display: flex; align-items: center; justify-content: center; }
+.right { text-align: right; }
+.muted { color: var(--zappts-medium-gray); }
+.highlight { 
+  color: var(--zappts-orange); 
+  background: rgba(255, 171, 64, 0.1); 
+  padding: 2px 6px; 
+  border-radius: 4px; 
 }
+.grid { display: grid; }
+.col { flex: 1; }
 
-section.card th,
-section.card-single th,
-section.card-start th,
-section.card-middle th,
-section.card-end th {
-  background: $table-header-bg !important;
-  color: $table-header-text !important;
-  font-weight: 700 !important;
-  font-size: $table-header-font-size !important;
+// =============================================================================
+// RESPONSIVE ADJUSTMENTS
+// =============================================================================
+
+@media (max-width: 1024px) {
+  section.twocol .columns,
+  section.title-sub-right,
+  section.title-sub-right-block {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  
+  // Adjust background images for smaller screens
+  section:not(.proposal):not(.title) {
+    background-size: 80px 20px, 120px 100px;
+  }
+
+  // Reduce font sizes for smaller screens
+  :root {
+    --section-title-size: 36px;
+    --slide-title-size: 18px;
+    --body-size: 16px;
+  }
 }
-
-section.card td,
-section.card-single td,
-section.card-start td,
-section.card-middle td,
-section.card-end td {
-  background: $table-row-bg !important;
-  color: $table-text !important;
-}
-
-section.card tr:nth-child(even) td,
-section.card-single tr:nth-child(even) td,
-section.card-start tr:nth-child(even) td,
-section.card-middle tr:nth-child(even) td,
-section.card-end tr:nth-child(even) td {
-  background: $table-row-alt-bg !important;
-}
-
-section.card table strong,
-section.card-single table strong,
-section.card-start table strong,
-section.card-middle table strong,
-section.card-end table strong {
-  color: $zappts-green !important;
-} 
