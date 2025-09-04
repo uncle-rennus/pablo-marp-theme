@@ -1,0 +1,16 @@
+{
+  "name": "pablo-preprocessor",
+  "version": "1.0.0",
+  "description": "A preprocessor for markdown to make it compatible with the Pablo Marp theme.",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "pablo-pre": "src/cli.js"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}

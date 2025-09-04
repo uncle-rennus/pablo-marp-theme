@@ -1,0 +1,16 @@
+{
+  "name": "markdown-table-preprocessor",
+  "version": "1.0.0",
+  "description": "A preprocessor for markdown tables to make them presentation-friendly.",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "preprocess-md": "src/cli.js"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
